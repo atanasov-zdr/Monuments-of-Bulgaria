@@ -1,0 +1,153 @@
+#mainNav {
+    min-height: 56px;
+}
+
+#mainNav .navbar-toggler {
+    font-size: 80%;
+    padding: 0.75rem;
+    color: #64a19d;
+    border: 1px solid #64a19d;
+}
+
+#mainNav .navbar-toggler:focus {
+    outline: none;
+}
+
+#mainNav .navbar-brand {
+    color: #161616;
+    font-weight: 700;
+    padding: .9rem 0;
+}
+
+#mainNav .navbar-nav .nav-item:hover {
+    color: fade(white, 80%);
+    outline: none;
+    background-color: black;
+}
+
+#mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+@media (min-width: 992px) {
+    #mainNav {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+        background-color: transparent;
+        -webkit-transition: background-color 0.3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    #mainNav .navbar-brand {
+        padding: .5rem 0;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    #mainNav .nav-link {
+        -webkit-transition: none;
+        transition: none;
+        padding: 2rem 1.5rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    #mainNav .nav-link:hover {
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    #mainNav .nav-link:active {
+        color: white;
+    }
+
+    #mainNav.navbar-shrink {
+        background-color: #fff;
+    }
+
+    #mainNav.navbar-shrink .navbar-brand {
+        color: #161616;
+    }
+
+    #mainNav.navbar-shrink .nav-link {
+        color: #161616;
+        padding: 1.5rem 1.5rem 1.25rem;
+        border-bottom: 0.25rem solid transparent;
+    }
+
+    #mainNav.navbar-shrink .nav-link:hover {
+        color: #64a19d;
+    }
+
+    #mainNav.navbar-shrink .nav-link:active {
+        color: #467370;
+    }
+
+    #mainNav.navbar-shrink .nav-link.active {
+        color: #64a19d;
+        outline: none;
+        border-bottom: 0.25rem solid #64a19d;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    letter-spacing: .0625em;
+}
+
+.bg-panda {
+    background-color: #202020;
+}
+
+.text-panda {
+    color: #202020;
+}
+
+.border-panda {
+    border: 2px solid #202020;
+    border-radius: 7px;
+}
+
+.nav-link-white {
+    color: #FFFFFF;
+}
+
+.hr-2 {
+    height: 2px;
+}
+
+a {
+    text-underline: none;
+}
+
+    a:hover {
+        outline: none;
+        text-decoration: none;
+    }
+
+tr {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+textarea {
+    resize: none;
+}
+
+table tbody th {
+    width: 25%;
+}
+
+ul li:hover {
+    cursor: pointer;
+    background-color: black !important;
+}
+
+div > div > section > form > div > p > button {
+    background-color: #3b5998;
+}

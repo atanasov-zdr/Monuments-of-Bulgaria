@@ -1,0 +1,226 @@
+[
+  {
+    "Name": "Blagoevgrad",
+    "Description": "Blagoevgrad Province , also known as Pirin Macedonia, is a province (oblast) of southwestern Bulgaria.  It borders four other Bulgarian provinces to the north and east, to the Greek region of Macedonia  to the south, and the Republic of Macedonia to the west.",
+    "LandArea": 6449.47,
+    "MunicipalitiesCount": 14,
+    "Population": 323552,
+    "PopulationDensity": 49.95
+  },
+  {
+    "Name": "Burgas",
+    "Description": "Burgas Province is a province in southeastern Bulgaria, including southern Bulgarian Black Sea Coast.  It is bounded on the south by Turkey. The province is named after its administrative and industrial  centre - the city of Burgas - the fourth biggest town in the country. It is the largest province  by area.",
+    "LandArea": 7748.07,
+    "MunicipalitiesCount": 13,
+    "Population": 415817,
+    "PopulationDensity": 54.58
+  },
+  {
+    "Name": "Dobrich",
+    "Description": "Dobrich Province is a province in northeastern Bulgaria, part of Southern Dobruja geographical region.",
+    "LandArea": 4719.71,
+    "MunicipalitiesCount": 8,
+    "Population": 189677,
+    "PopulationDensity": 40.36
+  },
+  {
+    "Name": "Gabrovo",
+    "Description": "Gabrovo Province is a small province lying at the geographical centre of Bulgaria. It is named after  its main town - Gabrovo.",
+    "LandArea": 2023.01,
+    "MunicipalitiesCount": 4,
+    "Population": 122702,
+    "PopulationDensity": 59.77
+  },
+  {
+    "Name": "Haskovo",
+    "Description": "Haskovo Province is a province in southern Bulgaria, neighbouring Greece and Turkey to the southeast,  comprising parts of the Thracian valley along the river Maritsa. It is named after its administrative  and industrial centre - the city of Haskovo.",
+    "LandArea": 5533.29,
+    "MunicipalitiesCount": 11,
+    "Population": 246238,
+    "PopulationDensity": 61.06
+  },
+  {
+    "Name": "Kardzhali",
+    "Description": "Kardzhali District is a province of southern Bulgaria, neighbouring Greece with the Greek regional  units of Xanthi, Rhodope, and Evros to the south and east.",
+    "LandArea": 3209.11,
+    "MunicipalitiesCount": 7,
+    "Population": 152808,
+    "PopulationDensity": 37.9
+  },
+  {
+    "Name": "Kyustendil",
+    "Description": "Kyustendil Province is a province in southwestern Bulgaria. It borders on the provinces of Sofia,  Pernik, and Blagoevgrad; to the west, its limits coincide with the state borders between Bulgaria  and the Republic of Macedonia, and between Bulgaria and the Republic of Serbia.",
+    "LandArea": 3051.52,
+    "MunicipalitiesCount": 9,
+    "Population": 136686,
+    "PopulationDensity": 45.16
+  },
+  {
+    "Name": "Lovech",
+    "Description": "Lovech Province is one of the 28 provinces of Bulgaria, lying at the northern centre of the country.  It is named after its main city - Lovech.",
+    "LandArea": 4128.76,
+    "MunicipalitiesCount": 8,
+    "Population": 141422,
+    "PopulationDensity": 34.21
+  },
+  {
+    "Name": "Montana",
+    "Description": "Montana Province is a province in northwestern Bulgaria, bordering Serbia in the southwest and Romania  in the north. It spreads its area between the Danube river and Balkan mountain.",
+    "LandArea": 3635.38,
+    "MunicipalitiesCount": 11,
+    "Population": 148098,
+    "PopulationDensity": 41.2
+  },
+  {
+    "Name": "Pazardzhik",
+    "Description": "Pazardzhik Province is a province in Southern Bulgaria, named after its administrative and industrial  centre - the city of Pazardzhik.",
+    "LandArea": 4456.92,
+    "MunicipalitiesCount": 12,
+    "Population": 275548,
+    "PopulationDensity": 62.72
+  },
+  {
+    "Name": "Pernik",
+    "Description": "Pernik Province is a province in western Bulgaria, neighbouring Serbia. Its main city is Pernik, and  other municipalities are Breznik, Kovachevtsi, Radomir, Tran, and Zemen.",
+    "LandArea": 2394.22,
+    "MunicipalitiesCount": 6,
+    "Population": 133530,
+    "PopulationDensity": 56.18
+  },
+  {
+    "Name": "Pleven",
+    "Description": "Pleven Province is a province located in central northern Bulgaria, bordering the Danube river,  Romania and the Bulgarian provinces of Vratsa, Veliko Tarnovo and Lovech.",
+    "LandArea": 4653.32,
+    "MunicipalitiesCount": 11,
+    "Population": 269752,
+    "PopulationDensity": 63.98
+  },
+  {
+    "Name": "Plovdiv",
+    "Description": "Plovdiv Province is a province in central southern Bulgaria. The province is named after its administrative and industrial centre — the city of Plovdiv.",
+    "LandArea": 5972.89,
+    "MunicipalitiesCount": 18,
+    "Population": 683027,
+    "PopulationDensity": 114.35
+  },
+  {
+    "Name": "Razgrad",
+    "Description": "Razgrad Province, former name Razgrad okrug) is a province in Northeastern Bulgaria, geographically  part of the Ludogorie region. It is named after its administrative and industrial centre - the town  of Razgrad.",
+    "LandArea": 2639.74,
+    "MunicipalitiesCount": 7,
+    "Population": 125190,
+    "PopulationDensity": 47.28
+  },
+  {
+    "Name": "Ruse",
+    "Description": "Ruse Province is a province in northern Bulgaria, named after its main city - Ruse, neighbouring  Romania via the Danube.",
+    "LandArea": 2803.36,
+    "MunicipalitiesCount": 8,
+    "Population": 235252,
+    "PopulationDensity": 89.93
+  },
+  {
+    "Name": "Shumen",
+    "Description": "Shumen Province is a province in northeastern Bulgaria named after its main city Shumen.",
+    "LandArea": 3389.68,
+    "MunicipalitiesCount": 10,
+    "Population": 180528,
+    "PopulationDensity": 53.65
+  },
+  {
+    "Name": "Silistra",
+    "Description": "Silistra Province is a province of Bulgaria, named after its main city - Silistra. Silistra Province  is a traditionally agricultural province, mainly because of its fertile soil. The province is known  for its pelicans and apricot brandy.",
+    "LandArea": 2846.29,
+    "MunicipalitiesCount": 7,
+    "Population": 119474,
+    "PopulationDensity": 41.74
+  },
+  {
+    "Name": "Sliven",
+    "Description": "Sliven Province is a province in southeastern Bulgaria, named after its administrative and  industrial centre — the city of Sliven.",
+    "LandArea": 3544.07,
+    "MunicipalitiesCount": 4,
+    "Population": 197473,
+    "PopulationDensity": 54.16
+  },
+  {
+    "Name": "Smolyan",
+    "Description": "Smolyan Province is a province in Southern-central Bulgaria, located in the Rhodope Mountains,  neighbouring Greece to the south. It is named after its administrative and industrial centre—the  city of Smolyan.",
+    "LandArea": 3192.85,
+    "MunicipalitiesCount": 10,
+    "Population": 121752,
+    "PopulationDensity": 34.47
+  },
+  {
+    "Name": "Sofia",
+    "Description": "Sofia Province is a province (oblast) of Bulgaria. The province does not include Sofia in its  territories, but Sofia remains its administrative center. The province borders on the provinces  of Pernik, Kyustendil, Blagoevgrad, Pazardzhik, Plovdiv, Lovech, Vratsa, Montana and \"Sofia-Capital\",  to the northwest there is border with Serbia.",
+    "LandArea": 7062.33,
+    "MunicipalitiesCount": 22,
+    "Population": 247489,
+    "PopulationDensity": 34.01
+  },
+  {
+    "Name": "Sofia City",
+    "Description": "Sofia City Province is a province (oblast) of Bulgaria. Its administrative center is the city of  Sofia, the capital of the country. The province borders on Sofia Province and Pernik Province.  It is a city-state.",
+    "LandArea": 1348.9,
+    "MunicipalitiesCount": 1,
+    "Population": 1291591,
+    "PopulationDensity": 957.44
+  },
+  {
+    "Name": "Stara Zagora",
+    "Description": "Stara Zagora, formerly known as the Stara Zagora okrug, is a province of south-central Bulgaria.  It is named after its administrative and industrial centre—the city of Stara Zagora—the sixth-biggest  town in the country. In the southeastern part of the province on the edge of Radnevo Municipality  there is a coal production facility.",
+    "LandArea": 5151.12,
+    "MunicipalitiesCount": 11,
+    "Population": 333265,
+    "PopulationDensity": 67.2
+  },
+  {
+    "Name": "Targovishte",
+    "Description": "Targovishte Province is a province in northeastern Bulgaria, named after its main city - Targovishte.",
+    "LandArea": 2558.53,
+    "MunicipalitiesCount": 5,
+    "Population": 120818,
+    "PopulationDensity": 44.17
+  },
+  {
+    "Name": "Varna",
+    "Description": "Varna Province is a province in eastern Bulgaria, onе of the 28 Bulgarian provinces. The province  is named after its administrative centre, Varna.",
+    "LandArea": 3819.47,
+    "MunicipalitiesCount": 12,
+    "Population": 475074,
+    "PopulationDensity": 124.4
+  },
+  {
+    "Name": "Veliko Tarnovo",
+    "Description": "Veliko Tarnovo is a province in the middle of the northern part of Bulgaria. Its capital city,  Veliko Tarnovo, is of historical significance as it is known as the capital of Medieval Bulgaria.",
+    "LandArea": 4661.57,
+    "MunicipalitiesCount": 10,
+    "Population": 258494,
+    "PopulationDensity": 55.19
+  },
+  {
+    "Name": "Vidin",
+    "Description": "Vidin Province is the northwesternmost province of Bulgaria. It borders Serbia to the west and  Romania to the northeast. Its administrative centre is the city of Vidin on the Danube river.  There are remains of many castles, some of which are Baba Vida, one of the last Bulgarian  strongholds during the Ottoman invasion and the Belogradchik fortress.",
+    "LandArea": 3032.88,
+    "MunicipalitiesCount": 11,
+    "Population": 101018,
+    "PopulationDensity": 32.89
+  },
+  {
+    "Name": "Vratsa",
+    "Description": "Vratsa Province is a Bulgarian province located in the northwestern part of the country, between  Danube river in the north and Stara Planina mountain in the south. It is named after its main  town - Vratsa.",
+    "LandArea": 3619.77,
+    "MunicipalitiesCount": 10,
+    "Population": 186848,
+    "PopulationDensity": 45.59
+  },
+  {
+    "Name": "Yambol",
+    "Description": "Yambol is a province in southeastern Bulgaria, neighbouring Turkey to the south. It is named after  its main city Yambol.",
+    "LandArea": 3355.48,
+    "MunicipalitiesCount": 5,
+    "Population": 131447,
+    "PopulationDensity": 31.23
+  }
+]

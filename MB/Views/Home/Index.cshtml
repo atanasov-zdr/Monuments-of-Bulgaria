@@ -1,0 +1,224 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MB - WebApplication</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/grayscale.min.css" rel="stylesheet">
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <a class="navbar-brand js-scroll-trigger pl-3" href="/">Home</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-3">
+                <li class="nav-item">
+                    <a asp-controller="Oblasts" asp-action="All" class="nav-link js-scroll-trigger">Oblasts</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Monuments" asp-action="All" class="nav-link js-scroll-trigger">Monuments</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a asp-area="Identity" asp-page="/Account/Login" class="nav-link js-scroll-trigger">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Identity" asp-page="/Account/Register" class="nav-link js-scroll-trigger">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="mx-auto my-0">Monuments of Bulgaria</h1>
+                <h2 class="text-white-50 mx-auto mt-3">A free web app for bulgarian monuments divided by oblasts.</h2>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    @*<section id="about" class="about-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-white mb-4 text-white">Built with Bootstrap 4</h2>
+                    <p class="text-white-50">
+                        Grayscale is a free Bootstrap theme created by Start Bootstrap.
+                        It can be yours right now, simply download the template on
+                        <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>.
+                        The theme is open source, and you can use it for any purpose, personal or commercial.
+                    </p>
+                </div>
+            </div>
+            <img src="/img/ipad.png" class="img-fluid" alt="">
+        </div>
+    </section>*@
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <!-- Featured Project Row -->
+            <div class="row align-items-center no-gutters mb-5">
+                <div class="col-xl-7 col-lg-7">
+                    <img class="img-fluid mb-3 mb-lg-0" src="/img/bg-masthead.jpg" alt="National-Park-Museum-Shipka">
+                </div>
+                <div class="col-xl-5 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4 class="text-white">Shipka</h4>
+                        <p class="text-white-50 mb-0">
+                            National Park Museum Shipka is located on top of Shipka Peak (1,326 m) in the Balkan Mountains. The
+                            park comprises of 26 monuments, the reconstructed battle positions, artillery batteries and dugouts of
+                            the defenders of Shipka Pass during the Russo-Turkish War from 1877 - 78. The Liberty Memorial is among
+                            the largest of the monuments in the park. Its outline resembles a medieval Bulgarian fortress and can
+                            be seen from dozens of kilometres. It was built with donations from the people from all over Bulgaria
+                            and was inaugurated on 26 August 1934. It is 31.5 m tall and 890 steps lead up to it. The powerful
+                            bronze lion – symbol of the Bulgarian state – guards the entrance to the Memorial. The other three
+                            walls of the monument bear the names Shipka, Sheinovo and Stara Zagora – the battlefields in defence of
+                            the Pass.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Project One Row -->
+            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="/img/demo-image-01.jpg" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">Misty</h4>
+                                <p class="mb-0 text-white-50">
+                                    An example of where you can put an image of a project,
+                                    or anything else, along with a description.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 ml-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project Two Row -->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6">
+                    <img class="img-fluid" src="/img/demo-image-02.jpg" alt="">
+                </div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">Mountains</h4>
+                                <p class="mb-0 text-white-50">
+                                    Another example of a project with its respective description. These sections work
+                                    well responsively as well, try this theme on a small screen!
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Signup Section -->
+    <section id="signup" class="signup-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto text-center">
+                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+                    <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+                    <form class="form-inline d-flex" action="/home/subscribe" method="post">
+                        <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail"
+                               placeholder="Enter email address..." name="email">
+                        <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="contact-section bg-black">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Address</h4>
+                            <hr class="my-4">
+                            <div class="small text-black-50">block 61, 1734 Studentski Kompleks, Sofia</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Email</h4>
+                            <hr class="my-4">
+                            <div class="small text-black-50">
+                                <a href="https://mail.google.com">atanasov.zdr@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card py-4 h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-mobile-alt text-primary mb-2"></i>
+                            <h4 class="text-uppercase m-0">Phone</h4>
+                            <hr class="my-4">
+                            <div class="small text-black-50">+359 88 802 0177</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social d-flex justify-content-center">
+                <a href="https://www.facebook.com/" target="_blank" class="mx-2 fb">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="mx-2 inst">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/" target="_blank" class="mx-2 git">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-center text-white-50">
+        <div class="container">Copyright &copy; Monuments of Bulgaria - @DateTime.Now.Year</div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="/js/grayscale.min.js"></script>
+</body>
+</html>
+
+
