@@ -17,6 +17,8 @@
     using Services.Contracts;
     using Utilities;
     using ViewModels.Oblasts;
+    using MB.ViewModels.Monuments;
+    using ReflectionIT.Mvc.Paging;
 
     public class Startup
     {
@@ -63,7 +65,10 @@
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             AutoMapperConfig.RegisterMappings(
-                typeof(OblastSeedViewModel).Assembly);
+                typeof(OblastSeedViewModel).Assembly,
+                typeof(MonumentAllViewModel).Assembly);
+
+            services.AddPaging(opt => opt.ViewName = "Pager");
 
             services.AddScoped<UserStore<MbUser>>();
             //services.AddScoped<RoleManager<IdentityRole>>();

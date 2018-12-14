@@ -24,6 +24,8 @@
             SeedRoles(roleManager);
             
             SeedOblasts(dbContext);
+
+            SeedMonuments(dbContext);
         }
 
         private static void SeedRoles(RoleManager<IdentityRole> roleManager)
@@ -52,6 +54,24 @@
                 {
                     dbContext.Oblasts.Add(oblast);
                 }
+            }
+
+            dbContext.SaveChanges();
+        }
+        private static void SeedMonuments(MbDbContext dbContext)
+        {
+            if (dbContext.Monuments.Any())
+                return;
+
+            for (int i = 89; i <= 116; i++)
+            {
+                var monument = new Monument
+                {
+                    Name = "name" + i,
+                    OblastId = i,
+                };
+
+                dbContext.Monuments.Add(monument);
             }
 
             dbContext.SaveChanges();

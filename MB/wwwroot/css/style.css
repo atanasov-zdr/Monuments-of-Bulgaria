@@ -151,3 +151,11 @@ ul li:hover {
 div > div > section > form > div > p > button {
     background-color: #3b5998;
 }
+
+.monuments a:hover {
+    color: white !important;
+}
+
+nav.pager {
+    margin-bottom: 7rem;
+}
