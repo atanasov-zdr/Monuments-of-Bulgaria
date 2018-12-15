@@ -33,9 +33,16 @@
             return View(viewModel);            
         }
 
-        public IActionResult AllForOblast(int oblastId)
+        public IActionResult AllForOblast(int oblastId, int page = 1)
         {
-            return base.View();
+            IEnumerable<MonumentAllViewModel> monuments = this.monumentsService
+                .GetAllForOblastOrderedByName(oblastId)
+                .To<MonumentAllViewModel>()
+                .ToList();
+
+            int pageSize = 12;
+            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, pageSize, page);
+            return base.View(viewModel);
         }
 
         public IActionResult Details(int monumentId)

@@ -152,7 +152,7 @@ div > div > section > form > div > p > button {
     background-color: #3b5998;
 }
 
-.monuments a:hover {
+.monuments section > a:hover {
     color: white !important;
 }
 

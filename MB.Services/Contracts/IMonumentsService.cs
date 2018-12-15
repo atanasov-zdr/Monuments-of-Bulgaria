@@ -7,5 +7,7 @@
     public interface IMonumentsService
     {
         IQueryable<Monument> GetAllOrderedByName();
+
+        IQueryable<Monument> GetAllForOblastOrderedByName(int oblastId);
     }
 }

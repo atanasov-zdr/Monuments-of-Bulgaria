@@ -1,57 +1,41 @@
-﻿@*@model MB.ViewModels.Oblasts.OblastsNamesViewModel
-@{ ViewData["Title"] = "All Oblasts"; }
+﻿@model ReflectionIT.Mvc.Paging.PagingList<MB.ViewModels.Monuments.MonumentAllViewModel>
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "All Monuments for " + Model[0].OblastName;
+    Model.Action = "AllForOblast";
+    ViewData["OblastId"] = Model[0].OblastId;
+}
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
 
-<div class="container-fluid mx-auto row mt-5 mb-5">
-    <section class="col-3 mb-5">
-        <ul class="list-group">
-            @foreach (string name in Model.OblastsNames)
-            {
-                <li onclick="renderOblastInfo('@name')" class="list-group-item bg-dark font-weight-bold">
-                    <a class="text-white-50">@name</a>
-                </li>
-            }
-        </ul>
-    </section>
-    <section class="col-9 d-flex justify-content-center mb-5">
-        <div class="col-10">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th id="oblastName" colspan="2" class="text-center font-weight-bold h5">(Name)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="font-weight-bold">Land Area:</th>
-                        <td id="oblastLandArea">(Land Area)</td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Population:</th>
-                        <td id="oblastPopulation">(Population)</td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Population Density:</th>
-                        <td id="oblastPopulationDensity">(Population Density)</td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Municipalities Count:</th>
-                        <td id="oblastMunicipalitiesCount">(Municipalities Count)</td>
-                    </tr>
-                    <tr>
-                        <th class="font-weight-bold">Description:</th>
-                        <td id="oblastDescription">(Description)</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-center mt-5">
-                <button id="viewMonuments" href="#" class="btn btn-primary text-white" disabled>View Monuments</button>
-            </div>
+@* black magic *@
+<div class="container-fluid mx-auto mt-5 mb-5 text-center text-dark monuments">
+    @{ int counter = 0; }
+    @for (int i = 0; i < Math.Ceiling(Model.Count / 4.0); i++)
+     {
+        <div class="row d-flex justify-content-around mb-5 mt-5">
+            @for (int j = 0; j < 4; j++)
+             {
+                @if (counter <= Model.Count - 1)
+                 {
+                    var monument = Model[counter++];
+                    <section class="col-2 border border-dark rounded-top p-0">
+                        <h4 class="pt-2">@monument.Name</h4>
+                        <hr class="bg-dark mt-0" />
+                        <img src="~/img/bg-masthead.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
+                        <a asp-controller="Monuments" asp-action="Details" asp-route-id="@monument.Id"
+                           class="btn btn btn-outline-dark btn-sm m-3">View Details</a>
+                    </section>
+                 }
+                else
+                {
+                    <section class="col-2"></section>
+                }
+             }
         </div>
-    </section>
+     }
 </div>
 
-@section JavaScript {
-    <script src="~/js/oblasts.js"></script>
-}*@
+<nav class="pager">
+    <vc:pager paging-list="@Model" />
+</nav>

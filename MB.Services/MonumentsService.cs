@@ -19,5 +19,9 @@
         {
             return this.dbContext.Monuments.OrderBy(x => x.Name);
         }
+        public IQueryable<Monument> GetAllForOblastOrderedByName(int oblastId)
+        {
+            return this.dbContext.Monuments.Where(x => x.OblastId == oblastId).OrderBy(x => x.Name);
+        }
     }
 }

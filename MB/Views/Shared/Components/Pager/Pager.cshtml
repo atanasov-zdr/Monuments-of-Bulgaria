@@ -10,7 +10,8 @@
         @if (start > 1)
         {
             <li class="page-item">
-                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(1))" aria-label="First" class="page-link">
+                <a href="@Url.Action(Model.Action, new { oblastId = ViewData["OblastId"], page = Model.GetRouteValueForPage(1)})" 
+                   aria-label="First" class="page-link">
                     <span aria-hidden="true">1</span>
                 </a>
             </li>
@@ -18,7 +19,8 @@
         @if (this.Model.PageIndex > 1)
         {
             <li class="page-item">
-                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageIndex - 1))" aria-label="Previous" class="page-link">
+                <a href="@Url.Action(Model.Action, new { oblastId = ViewData["OblastId"], page = Model.PageIndex - 1})" 
+                   aria-label="Previous" class="page-link">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -26,13 +28,15 @@
         @for (int i = start; i <= stop; i++)
         {
             <li class="page-item @((Model.PageIndex == i) ? "active" : null)">
-                @Html.ActionLink(i.ToString(), Model.Action, Model.GetRouteValueForPage(i), new { @class = "page-link" })
+                <a asp-controller="Monuments" asp-action="@Model.Action" asp-route-oblastId="@ViewData["OblastId"]" 
+                   asp-route-page="@i" class="page-link">@i.ToString()</a>
             </li>
         }
         @if (this.Model.PageIndex < this.Model.PageCount)
         {
             <li class="page-item">
-                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageIndex + 1))" aria-label="Next" class="page-link">
+                <a href="@Url.Action(Model.Action, new { oblastId = ViewData["OblastId"], page = Model.PageIndex + 1 })" 
+                   aria-label="Next" class="page-link">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
@@ -40,8 +44,9 @@
         @if (stop < this.Model.PageCount)
         {
             <li class="page-item">
-                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageCount))" aria-label="Last" class="page-link">
-                    <span aria-hidden="true">@this.Model.PageCount</span>
+                <a href="@Url.Action(Model.Action, new { oblastId = ViewData["OblastId"], page = Model.GetRouteValueForPage(Model.PageCount)})" 
+                   aria-label="Last" class="page-link">
+                    <span aria-hidden="true">@Model.PageCount</span>
                 </a>
             </li>
         }
