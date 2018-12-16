@@ -17,6 +17,8 @@
 
         public int Stars { get; set; }
 
+        public string Address { get; set; }
+
         public string Description { get; set; }
 
         public double OverallRating => this.HotelReviews.Average(x => (int)x.Rating);

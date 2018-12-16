@@ -159,3 +159,9 @@ div > div > section > form > div > p > button {
 nav.pager {
     margin-bottom: 7rem;
 }
+
+.password i {
+    top: 33%;
+    right: 3%;
+    cursor: pointer;
+}

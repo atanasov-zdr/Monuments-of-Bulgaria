@@ -16,9 +16,12 @@
                     <input asp-for="Input.UserName" class="form-control" placeholder="Username..." />
                     <span asp-validation-for="Input.UserName" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group password">
                     <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" placeholder="Password..." />
+                    <div class="position-relative">
+                        <input asp-for="Input.Password" class="form-control" placeholder="Password..." />
+                        <i toggle="#Input_Password" class="fas fa-eye position-absolute toggle-password"></i>
+                    </div>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -77,4 +80,8 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+}
+
+@section JavaScript {
+    <script src="~/js/passwords.js"></script>
 }
