@@ -4,14 +4,16 @@ using MB.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MB.Data.Migrations
 {
     [DbContext(typeof(MbDbContext))]
-    partial class MbDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181215215219_AddDescriptionToMonument")]
+    partial class AddDescriptionToMonument
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,66 +27,15 @@ namespace MB.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description");
-
                     b.Property<string>("Name");
 
                     b.Property<int>("OblastId");
-
-                    b.Property<int>("Stars");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OblastId");
 
                     b.ToTable("Hotels");
-                });
-
-            modelBuilder.Entity("MB.Models.HotelComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content");
-
-                    b.Property<int>("Dislikes");
-
-                    b.Property<int>("HotelId");
-
-                    b.Property<int>("Likes");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("HotelComments");
-                });
-
-            modelBuilder.Entity("MB.Models.HotelReview", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("HotelId");
-
-                    b.Property<string>("Rating")
-                        .IsRequired();
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("HotelReviews");
                 });
 
             modelBuilder.Entity("MB.Models.MbUser", b =>
@@ -159,59 +110,6 @@ namespace MB.Data.Migrations
                     b.HasIndex("OblastId");
 
                     b.ToTable("Monuments");
-                });
-
-            modelBuilder.Entity("MB.Models.MonumentComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content");
-
-                    b.Property<int>("Dislikes");
-
-                    b.Property<int>("Likes");
-
-                    b.Property<int>("MonumentId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MonumentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("MonumentComments");
-                });
-
-            modelBuilder.Entity("MB.Models.MonumentReview", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("MonumentId");
-
-                    b.Property<string>("Rating")
-                        .IsRequired();
-
-                    b.Property<string>("TimeOfYear")
-                        .IsRequired();
-
-                    b.Property<string>("TravellerType")
-                        .IsRequired();
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MonumentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("MonumentReviews");
                 });
 
             modelBuilder.Entity("MB.Models.Oblast", b =>
@@ -355,60 +253,12 @@ namespace MB.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("MB.Models.HotelComment", b =>
-                {
-                    b.HasOne("MB.Models.Hotel", "Hotel")
-                        .WithMany("HotelComments")
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MB.Models.MbUser", "User")
-                        .WithMany("HotelComments")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("MB.Models.HotelReview", b =>
-                {
-                    b.HasOne("MB.Models.Hotel", "Hotel")
-                        .WithMany("HotelReviews")
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MB.Models.MbUser", "User")
-                        .WithMany("HotelReviews")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("MB.Models.Monument", b =>
                 {
                     b.HasOne("MB.Models.Oblast", "Oblast")
                         .WithMany("Monuments")
                         .HasForeignKey("OblastId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MB.Models.MonumentComment", b =>
-                {
-                    b.HasOne("MB.Models.Monument", "Monument")
-                        .WithMany("MonumentComments")
-                        .HasForeignKey("MonumentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MB.Models.MbUser", "User")
-                        .WithMany("MonumentComments")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("MB.Models.MonumentReview", b =>
-                {
-                    b.HasOne("MB.Models.Monument", "Monument")
-                        .WithMany("MonumentReviews")
-                        .HasForeignKey("MonumentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MB.Models.MbUser", "User")
-                        .WithMany("MonumentReviews")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

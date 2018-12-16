@@ -43,11 +43,6 @@
             int pageSize = 12;
             IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, pageSize, page);
             return base.View(viewModel);
-        }
-
-        public IActionResult Details(int monumentId)
-        {
-            return base.View();
-        }
+        }        
     }
 }
