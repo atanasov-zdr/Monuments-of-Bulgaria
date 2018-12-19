@@ -17,7 +17,11 @@
 
         public string  Description { get; set; }
 
-        public double OverallRating => this.MonumentReviews.Average(x => (int)x.Rating);
+        public double OverallRating => this.MonumentReviews.Any() ? this.MonumentReviews.Average(x => (int)x.Rating) : 0;
+
+        public int ReviewsCount => this.MonumentReviews.Count();
+
+        public int CommentsCount => this.MonumentComments.Count();
 
         public int OblastId { get; set; }
         public virtual Oblast Oblast { get; set; }

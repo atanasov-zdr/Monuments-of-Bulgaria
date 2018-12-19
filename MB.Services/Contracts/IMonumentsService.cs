@@ -9,5 +9,7 @@
         IQueryable<Monument> GetAllOrderedByName();
 
         IQueryable<Monument> GetAllForOblastOrderedByName(int oblastId);
+
+        Monument GetById(int monumentId);
     }
 }

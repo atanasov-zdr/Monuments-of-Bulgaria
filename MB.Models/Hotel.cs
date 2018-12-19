@@ -21,7 +21,11 @@
 
         public string Description { get; set; }
 
-        public double OverallRating => this.HotelReviews.Average(x => (int)x.Rating);
+        public double OverallRating => this.HotelReviews.Any() ? this.HotelReviews.Average(x => (int)x.Rating) : 0;
+
+        public int ReviewsCount => this.HotelReviews.Count();
+
+        public int CommentsCount => this.HotelComments.Count();
 
         public int OblastId { get; set; }
         public virtual Oblast Oblast { get; set; }

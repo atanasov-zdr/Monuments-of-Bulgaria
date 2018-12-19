@@ -23,5 +23,10 @@
         {
             return this.dbContext.Monuments.Where(x => x.OblastId == oblastId).OrderBy(x => x.Name);
         }
+
+        public Monument GetById(int monumentId)
+        {
+            return this.dbContext.Monuments.FirstOrDefault(x => x.Id == monumentId);
+        }
     }
 }

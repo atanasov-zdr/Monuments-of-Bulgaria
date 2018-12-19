@@ -6,6 +6,6 @@
         Couples = 2,
         Solo = 3,
         Business = 4,
-        Friend = 5,
+        Friends = 5,
     }
 }
