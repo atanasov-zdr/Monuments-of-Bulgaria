@@ -165,3 +165,7 @@ nav.pager {
     right: 3%;
     cursor: pointer;
 }
+
+#writeReview:hover {
+    color: white !important;
+}

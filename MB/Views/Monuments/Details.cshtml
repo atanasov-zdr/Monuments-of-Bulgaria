@@ -1,0 +1,186 @@
+﻿@model MB.ViewModels.Monuments.MonumentDetailsViewModel
+@{ ViewData["Title"] = Model.Name; }
+
+<h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+<section class="d-flex justify-content-around text-dark mt-5">
+    <section class="col-lg-5 bg-light p-4">
+        <h3 class="text-center">Description</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare magna elementum suscipit placerat. Nunc sit amet sem auctor, malesuada eros id, feugiat odio. Nunc egestas egestas tristique. Vivamus vel nisi odio. Sed auctor luctus est, ac tristique nibh ultrices lobortis. Proin nibh felis, varius id blandit vel, egestas imperdiet magna. Maecenas in elementum erat. Pellentesque sed velit ultrices nisi pharetra tempor. Nam iaculis, sapien in pellentesque rhoncus, orci neque posuere justo, ac suscipit velit diam eget sem.
+        </p>
+    </section>
+    <section class="col-lg-5 mt-5">
+        <div class="mt-1">
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+        </div>
+        <div class="mt-1">
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+        </div>
+        <div class="mt-1">
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+            <img src="~/img/bg-masthead.jpg" style="width: 24%;" />
+        </div>
+    </section>
+</section>
+
+<section class="mx-auto text-dark mt-5 mb-5 bg-light p-4">
+    <h3 class="text-center">Reviews (2601)</h3>
+
+    <section class="w-50 mx-auto mt-5">
+        <h5 class="text-center">Rating: 4.5</h5>
+        <div class="row">
+            <label class="col-2">Excellent</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 60%" aria-valuenow="1589" aria-valuemin="0" aria-valuemax="5463"></div>
+            </div>
+            <label class="col-2 text-right">60% (1589)</label>
+        </div>
+        <div class="row">
+            <label class="col-2">Very Good</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 31%" aria-valuenow="770" aria-valuemin="0" aria-valuemax="5463"></div>
+            </div>
+            <label class="col-2 text-right">31% (770)</label>
+        </div>
+        <div class="row">
+            <label class="col-2">Average</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 7%" aria-valuenow="215" aria-valuemin="0" aria-valuemax="5463"></div>
+            </div>
+            <label class="col-2 text-right">7% (215)</label>
+        </div>
+        <div class="row">
+            <label class="col-2">Poor</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="5463"></div>
+            </div>
+            <label class="col-2 text-right">1% (20)</label>
+        </div>
+        <div class="row">
+            <label class="col-2">Terrible</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="7" aria-valuemin="0" aria-valuemax="5463"></div>
+            </div>
+            <label class="col-2 text-right">1% (7)</label>
+        </div>
+    </section>
+    <div class="d-flex justify-content-around mt-5">
+        <section class="col-lg-5">
+            <h5 class="text-center">Time of Year</h5>
+            <div class="row">
+                <label class="col-2">Spring</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 60%" aria-valuenow="1589" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">60% (1589)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Summer</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 31%" aria-valuenow="770" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">31% (770)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Autumn</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 7%" aria-valuenow="215" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">7% (215)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Winter</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 2%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">2% (20)</label>
+            </div>
+        </section>
+        <section class="col-lg-5">
+            <h5 class="text-center">Traveller Type</h5>
+            <div class="row">
+                <label class="col-2">Families</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 60%" aria-valuenow="1589" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">60% (1589)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Couples</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 31%" aria-valuenow="770" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">31% (770)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Solo</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 7%" aria-valuenow="215" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">7% (215)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Business</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">1% (20)</label>
+            </div>
+            <div class="row">
+                <label class="col-2">Friends</label>
+                <div class="progress mt-1 col-7 p-0">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="7" aria-valuemin="0" aria-valuemax="5463"></div>
+                </div>
+                <label class="col-3 text-right">1% (7)</label>
+            </div>
+        </section>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center">
+        <a id="writeReview" class="btn btn-outline-dark">Write Review</a>
+    </div>
+</section>
+
+<section class="m-5 w-75 mx-auto bg-light p-4 text-dark">
+    <h3 class="text-center">Comments (4)</h3>
+
+    <form class="form-inline mt-5 d-flex justify-content-around">
+        <input type="hidden" name="monumentId" value="" />
+        <textarea type="text" name="content" class="form-control col-9" rows="3"></textarea>
+        <button type="submit" class="btn btn-dark col-2">Write Comment</button>
+    </form>
+
+    <hr class="bg-dark mt-5" />
+    <div>
+        <div class="d-flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between p-0">
+                <img src="~/images/user.png" alt="user-photo" class="mr-3 rounded" style="width: 3rem; height: 3rem;" />
+                <div class="mt-2">(username)</div>
+            </div>
+        </div>
+        <p>
+            Ut at sagittis ex, a fringilla mauris. Integer ac suscipit nisi. Nulla facilisi. Phasellus in enim ut neque dictum mattis ac ut odio. Praesent facilisis, turpis sodales sollicitudin convallis, metus nulla porta risus, et varius velit metus et lorem. Morbi eu diam sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean congue id purus vel iaculis. Sed justo tellus, bibendum ut posuere vitae, suscipit sit amet nibh. Integer finibus rhoncus enim placerat mollis. Vivamus porttitor felis sed sem dictum, vel aliquet lacus sagittis. Fusce maximus et est a elementum. Sed nec libero lorem. Maecenas malesuada tellus vitae ligula ultricies, vitae gravida nisi elementum. Integer a eros et elit aliquet vestibulum. Nullam pretium elit non eleifend ultrices.
+        </p>
+        <div class="d-flex justify-content-between">
+            <div class="mt-1">
+                <label>264</label>
+                <i class="far fa-thumbs-up mr-3"></i>
+                <label>15</label>
+                <i class="far fa-thumbs-down"></i>
+            </div>
+            <div class="mr-3">
+                <button class="btn btn-success">Like</button>
+                <button class="btn btn-danger">Dislike</button>
+            </div>
+        </div>
+    </div>
+</section>

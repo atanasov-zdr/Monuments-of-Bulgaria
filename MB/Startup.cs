@@ -10,15 +10,18 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+    using AutoMapper;
+
+    using ReflectionIT.Mvc.Paging;
+
     using Data;
     using Mapping;
     using Models;
     using Services;
     using Services.Contracts;
     using Utilities;
+    using ViewModels.Monuments;
     using ViewModels.Oblasts;
-    using MB.ViewModels.Monuments;
-    using ReflectionIT.Mvc.Paging;
 
     public class Startup
     {
@@ -64,10 +67,12 @@
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddAutoMapper();
+
             AutoMapperConfig.RegisterMappings(
                 typeof(OblastSeedViewModel).Assembly,
                 typeof(MonumentAllViewModel).Assembly);
-
+            
             services.AddPaging(opt => opt.ViewName = "Pager");
 
             services.AddScoped<UserStore<MbUser>>();
