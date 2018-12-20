@@ -15,15 +15,22 @@
     using Models;
     using Services.Contracts;
     using ViewModels.Monuments;
+    using ViewModels.MonumentComments;
+    using ViewModels.MonumentReviews;
 
     public class MonumentsController : BaseController
     {
         private readonly IMonumentsService monumentsService;
+        private readonly IMonumentCommentsService monumentCommentsService;
         private readonly IMapper mapper;
 
-        public MonumentsController(IMonumentsService monumentsService, IMapper mapper)
+        public MonumentsController(
+            IMonumentsService monumentsService, 
+            IMonumentCommentsService monumentCommentsService, 
+            IMapper mapper)
         {
             this.monumentsService = monumentsService;
+            this.monumentCommentsService = monumentCommentsService;
             this.mapper = mapper;
         }
 
@@ -56,9 +63,17 @@
             Monument monument = this.monumentsService.GetById(monumentId);
 
             if (monument == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(monument));
 
             var viewModel = this.mapper.Map<MonumentDetailsViewModel>(monument);
+
+            var reviews = this.mapper.Map<MonumentReviewsViewModel>(monument);
+            viewModel.Reviews = reviews;
+
+            var comments = this.monumentCommentsService.GetAllForMonument(monumentId)
+                .To<MonumentCommentViewModel>()
+                .ToList();
+            viewModel.Comments = comments;
 
             return base.View(viewModel);
         }

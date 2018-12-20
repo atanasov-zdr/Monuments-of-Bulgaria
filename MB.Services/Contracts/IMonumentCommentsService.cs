@@ -1,6 +1,17 @@
 ﻿namespace MB.Services.Contracts
 {
+    using System.Linq;
+
+    using Models;
+
     public interface IMonumentCommentsService
     {
+        IQueryable<MonumentComment> GetAllForMonument(int monumentId);
+
+        void Create(int monumentId, string content, string username);
+
+        void Like(int commentId);
+
+        void Dislike(int commentId);
     }
 }

@@ -21,6 +21,7 @@
     using Services.Contracts;
     using Utilities;
     using ViewModels.Monuments;
+    using ViewModels.MonumentComments;
     using ViewModels.Oblasts;
 
     public class Startup
@@ -71,7 +72,8 @@
 
             AutoMapperConfig.RegisterMappings(
                 typeof(OblastSeedViewModel).Assembly,
-                typeof(MonumentAllViewModel).Assembly);
+                typeof(MonumentAllViewModel).Assembly,
+                typeof(MonumentCommentViewModel).Assembly);
             
             services.AddPaging(opt => opt.ViewName = "Pager");
 
@@ -83,6 +85,8 @@
 
             services.AddScoped<IOblastsService, OblastsService>();
             services.AddScoped<IMonumentsService, MonumentsService>();
+            services.AddScoped<IMonumentReviewsService, MonumentReviewsService>();
+            services.AddScoped<IMonumentCommentsService, MonumentCommentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

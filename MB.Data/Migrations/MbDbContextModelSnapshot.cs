@@ -15,7 +15,7 @@ namespace MB.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -50,6 +50,8 @@ namespace MB.Data.Migrations
 
                     b.Property<string>("Content");
 
+                    b.Property<DateTime>("CreatedOn");
+
                     b.Property<int>("Dislikes");
 
                     b.Property<int>("HotelId");
@@ -73,10 +75,11 @@ namespace MB.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedOn");
+
                     b.Property<int>("HotelId");
 
-                    b.Property<string>("Rating")
-                        .IsRequired();
+                    b.Property<string>("Rating");
 
                     b.Property<string>("UserId");
 
@@ -171,6 +174,8 @@ namespace MB.Data.Migrations
 
                     b.Property<string>("Content");
 
+                    b.Property<DateTime>("CreatedOn");
+
                     b.Property<int>("Dislikes");
 
                     b.Property<int>("Likes");
@@ -194,16 +199,15 @@ namespace MB.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedOn");
+
                     b.Property<int>("MonumentId");
 
-                    b.Property<string>("Rating")
-                        .IsRequired();
+                    b.Property<string>("Rating");
 
-                    b.Property<string>("TimeOfYear")
-                        .IsRequired();
+                    b.Property<string>("TimeOfYear");
 
-                    b.Property<string>("TravellerType")
-                        .IsRequired();
+                    b.Property<string>("TravellerType");
 
                     b.Property<string>("UserId");
 

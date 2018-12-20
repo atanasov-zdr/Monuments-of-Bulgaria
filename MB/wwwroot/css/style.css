@@ -169,3 +169,8 @@ nav.pager {
 #writeReview:hover {
     color: white !important;
 }
+
+.userPhoto {
+    width: 3rem;
+    height: 3rem;
+}

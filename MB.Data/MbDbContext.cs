@@ -27,7 +27,7 @@
         public DbSet<HotelReview> HotelReviews { get; set; }
 
         public DbSet<HotelComment> HotelComments { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<MonumentReview>()

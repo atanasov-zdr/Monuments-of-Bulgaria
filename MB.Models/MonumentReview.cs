@@ -1,15 +1,24 @@
 ﻿namespace MB.Models
 {
+    using System;
+
     using Base;
     using Enums;
 
     public class MonumentReview : BaseModel<int>
     {
-        public Rating Rating { get; set; }
+        public MonumentReview()
+        {
+            this.CreatedOn = DateTime.UtcNow;
+        }
 
-        public TravellerType TravellerType { get; set; }
+        public Rating? Rating { get; set; }
 
-        public Season TimeOfYear { get; set; }
+        public Season? TimeOfYear { get; set; }
+
+        public TravellerType? TravellerType { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public int MonumentId { get; set; }
         public virtual Monument Monument { get; set; }

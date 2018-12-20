@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MB.Data\MB.Data.csproj" />
+    <ProjectReference Include="..\MB.ViewModels\MB.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

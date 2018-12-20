@@ -1495,7 +1495,6 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Views\MonumentComments\" />
-    <Folder Include="Views\MonumentReviews\" />
     <Folder Include="Views\Shared\Components\Pager\" />
   </ItemGroup>
 

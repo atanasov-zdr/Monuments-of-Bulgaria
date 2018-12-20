@@ -1,12 +1,21 @@
 ﻿namespace MB.Models
 {
+    using System;
+
     using Base;
     using Enums;
 
     public class HotelReview : BaseModel<int>
     {
-        public Rating Rating { get; set; }
-        
+        public HotelReview()
+        {
+            this.CreatedOn = DateTime.UtcNow;
+        }
+
+        public Rating? Rating { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
         public int HotelId { get; set; }
         public virtual Hotel Hotel { get; set; }
 

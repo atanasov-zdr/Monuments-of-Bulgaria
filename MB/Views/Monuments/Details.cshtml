@@ -6,9 +6,7 @@
 <section class="d-flex justify-content-around text-dark mt-5">
     <section class="col-lg-5 bg-light p-4">
         <h3 class="text-center">Description</h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare magna elementum suscipit placerat. Nunc sit amet sem auctor, malesuada eros id, feugiat odio. Nunc egestas egestas tristique. Vivamus vel nisi odio. Sed auctor luctus est, ac tristique nibh ultrices lobortis. Proin nibh felis, varius id blandit vel, egestas imperdiet magna. Maecenas in elementum erat. Pellentesque sed velit ultrices nisi pharetra tempor. Nam iaculis, sapien in pellentesque rhoncus, orci neque posuere justo, ac suscipit velit diam eget sem.
-        </p>
+        <p>@Model.Description</p>
     </section>
     <section class="col-lg-5 mt-5">
         <div class="mt-1">
@@ -33,154 +31,170 @@
 </section>
 
 <section class="mx-auto text-dark mt-5 mb-5 bg-light p-4">
-    <h3 class="text-center">Reviews (2601)</h3>
+    <h3 class="text-center">Reviews (@Model.ReviewsCount)</h3>
 
     <section class="w-50 mx-auto mt-5">
-        <h5 class="text-center">Rating: 4.5</h5>
+        <h5 class="text-center">Overall Rating: @Model.OverallRating</h5>
         <div class="row">
-            <label class="col-2">Excellent</label>
+            @{ var excellentPercent = Model.Reviews.RatingExcellent / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Excellent (5)</label>
             <div class="progress mt-1 col-8 p-0">
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 60%" aria-valuenow="1589" aria-valuemin="0" aria-valuemax="5463"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @excellentPercent%"></div>
             </div>
-            <label class="col-2 text-right">60% (1589)</label>
+            <label class="col-2 text-right">@excellentPercent% (@Model.Reviews.RatingExcellent)</label>
         </div>
         <div class="row">
-            <label class="col-2">Very Good</label>
+            @{ var veryGoodPercent = Model.Reviews.RatingVeryGood / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Very Good (4)</label>
             <div class="progress mt-1 col-8 p-0">
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 31%" aria-valuenow="770" aria-valuemin="0" aria-valuemax="5463"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @veryGoodPercent%"></div>
             </div>
-            <label class="col-2 text-right">31% (770)</label>
+            <label class="col-2 text-right">@veryGoodPercent% (@Model.Reviews.RatingVeryGood)</label>
         </div>
         <div class="row">
-            <label class="col-2">Average</label>
+            @{ var averagePercent = Model.Reviews.RatingAverage / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Average (3)</label>
             <div class="progress mt-1 col-8 p-0">
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 7%" aria-valuenow="215" aria-valuemin="0" aria-valuemax="5463"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @averagePercent%"></div>
             </div>
-            <label class="col-2 text-right">7% (215)</label>
+            <label class="col-2 text-right">@averagePercent% (@Model.Reviews.RatingAverage)</label>
         </div>
         <div class="row">
-            <label class="col-2">Poor</label>
+            @{ var poorPercent = Model.Reviews.RatingPoor / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Poor (2)</label>
             <div class="progress mt-1 col-8 p-0">
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="5463"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @poorPercent%"></div>
             </div>
-            <label class="col-2 text-right">1% (20)</label>
+            <label class="col-2 text-right">@poorPercent% (@Model.Reviews.RatingPoor)</label>
         </div>
         <div class="row">
-            <label class="col-2">Terrible</label>
+            @{ var terriblePercent = Model.Reviews.RatingTerrible / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Terrible (1)</label>
             <div class="progress mt-1 col-8 p-0">
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="7" aria-valuemin="0" aria-valuemax="5463"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @terriblePercent%"></div>
             </div>
-            <label class="col-2 text-right">1% (7)</label>
+            <label class="col-2 text-right">@terriblePercent% (@Model.Reviews.RatingTerrible)</label>
         </div>
     </section>
     <div class="d-flex justify-content-around mt-5">
         <section class="col-lg-5">
             <h5 class="text-center">Time of Year</h5>
             <div class="row">
+                @{ var springPercent = Model.Reviews.TimeOfYearSpring / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Spring</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 60%" aria-valuenow="1589" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @springPercent%"></div>
                 </div>
-                <label class="col-3 text-right">60% (1589)</label>
+                <label class="col-3 text-right">@springPercent% (@Model.Reviews.TimeOfYearSpring)</label>
             </div>
             <div class="row">
+                @{ var summerPercent = Model.Reviews.TimeOfYearSummer / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Summer</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 31%" aria-valuenow="770" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @summerPercent%"></div>
                 </div>
-                <label class="col-3 text-right">31% (770)</label>
+                <label class="col-3 text-right">@summerPercent% (@Model.Reviews.TimeOfYearSummer)</label>
             </div>
             <div class="row">
+                @{ var autumnPercent = Model.Reviews.TimeOfYearAutumn / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Autumn</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 7%" aria-valuenow="215" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @autumnPercent%"></div>
                 </div>
-                <label class="col-3 text-right">7% (215)</label>
+                <label class="col-3 text-right">@autumnPercent% (@Model.Reviews.TimeOfYearAutumn)</label>
             </div>
             <div class="row">
+                @{ var winterPercent = Model.Reviews.TimeOfYearWinter / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Winter</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 2%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @winterPercent%"></div>
                 </div>
-                <label class="col-3 text-right">2% (20)</label>
+                <label class="col-3 text-right">@winterPercent% (@Model.Reviews.TimeOfYearWinter)</label>
             </div>
         </section>
         <section class="col-lg-5">
             <h5 class="text-center">Traveller Type</h5>
             <div class="row">
+                @{ var familiesPercent = Model.Reviews.TravellerTypeFamilies / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Families</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 60%" aria-valuenow="1589" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @familiesPercent%"></div>
                 </div>
-                <label class="col-3 text-right">60% (1589)</label>
+                <label class="col-3 text-right">@familiesPercent% (@Model.Reviews.TravellerTypeFamilies)</label>
             </div>
             <div class="row">
+                @{ var couplesPercent = Model.Reviews.TravellerTypeCouples / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Couples</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 31%" aria-valuenow="770" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @couplesPercent%"></div>
                 </div>
-                <label class="col-3 text-right">31% (770)</label>
+                <label class="col-3 text-right">@couplesPercent% (@Model.Reviews.TravellerTypeCouples)</label>
             </div>
             <div class="row">
+                @{ var soloPercent = Model.Reviews.TravellerTypeSolo / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Solo</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 7%" aria-valuenow="215" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @soloPercent%"></div>
                 </div>
-                <label class="col-3 text-right">7% (215)</label>
+                <label class="col-3 text-right">@soloPercent% (@Model.Reviews.TravellerTypeSolo)</label>
             </div>
             <div class="row">
+                @{ var businessPercent = Model.Reviews.TravellerTypeBusiness / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Business</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @businessPercent%"></div>
                 </div>
-                <label class="col-3 text-right">1% (20)</label>
+                <label class="col-3 text-right">@businessPercent% (@Model.Reviews.TravellerTypeBusiness)</label>
             </div>
             <div class="row">
+                @{ var friendsPercent = Model.Reviews.TravellerTypeFriends / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
                 <label class="col-2">Friends</label>
                 <div class="progress mt-1 col-7 p-0">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 1%" aria-valuenow="7" aria-valuemin="0" aria-valuemax="5463"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: @friendsPercent%"></div>
                 </div>
-                <label class="col-3 text-right">1% (7)</label>
+                <label class="col-3 text-right">@friendsPercent% (@Model.Reviews.TravellerTypeFriends)</label>
             </div>
         </section>
     </div>
 
     <div class="mt-4 d-flex justify-content-center">
-        <a id="writeReview" class="btn btn-outline-dark">Write Review</a>
+        <a asp-controller="MonumentReviews" asp-action="Write" asp-route-monumentId="@Model.Id" id="writeReview" class="btn btn-outline-dark">Write Review</a>
     </div>
 </section>
 
 <section class="m-5 w-75 mx-auto bg-light p-4 text-dark">
-    <h3 class="text-center">Comments (4)</h3>
-
-    <form class="form-inline mt-5 d-flex justify-content-around">
-        <input type="hidden" name="monumentId" value="" />
+    <h3 class="text-center">Comments (@Model.Comments.Count())</h3>
+    
+    <form asp-controller="MonumentComments" asp-action="Write" method="post" class="form-inline mt-5 d-flex justify-content-around">
+        <input type="hidden" name="monumentId" value="@Model.Id" />
         <textarea type="text" name="content" class="form-control col-9" rows="3"></textarea>
         <button type="submit" class="btn btn-dark col-2">Write Comment</button>
     </form>
 
-    <hr class="bg-dark mt-5" />
-    <div>
-        <div class="d-flex justify-content-between mb-2">
-            <div class="d-flex justify-content-between p-0">
-                <img src="~/images/user.png" alt="user-photo" class="mr-3 rounded" style="width: 3rem; height: 3rem;" />
-                <div class="mt-2">(username)</div>
+    @foreach (var comment in Model.Comments)
+    {
+        <hr class="bg-dark mt-5" />
+        <div>
+            <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex justify-content-between p-0">
+                    <img src="~/images/user.png" alt="user-photo" class="mr-3 rounded userPhoto" />
+                    <div class="mt-3">@comment.UserUsername</div>
+                </div>
+                <div class="mr-3">@comment.CreatedOn</div>
+            </div>
+            <p>@comment.Content</p>
+            <div class="d-flex justify-content-between">
+                <div class="mt-1">
+                    <label>@comment.Likes</label>
+                    <i class="far fa-thumbs-up mr-3"></i>
+                    <label>@comment.Dislikes</label>
+                    <i class="far fa-thumbs-down"></i>
+                </div>
+                <div class="mr-3">
+                    <a asp-controller="MonumentComments" asp-action="Like" asp-route-monumentId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success">Like</a>
+                    <a asp-controller="MonumentComments" asp-action="Dislike" asp-route-monumentId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-danger">Dislike</a>
+                </div>
             </div>
         </div>
-        <p>
-            Ut at sagittis ex, a fringilla mauris. Integer ac suscipit nisi. Nulla facilisi. Phasellus in enim ut neque dictum mattis ac ut odio. Praesent facilisis, turpis sodales sollicitudin convallis, metus nulla porta risus, et varius velit metus et lorem. Morbi eu diam sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean congue id purus vel iaculis. Sed justo tellus, bibendum ut posuere vitae, suscipit sit amet nibh. Integer finibus rhoncus enim placerat mollis. Vivamus porttitor felis sed sem dictum, vel aliquet lacus sagittis. Fusce maximus et est a elementum. Sed nec libero lorem. Maecenas malesuada tellus vitae ligula ultricies, vitae gravida nisi elementum. Integer a eros et elit aliquet vestibulum. Nullam pretium elit non eleifend ultrices.
-        </p>
-        <div class="d-flex justify-content-between">
-            <div class="mt-1">
-                <label>264</label>
-                <i class="far fa-thumbs-up mr-3"></i>
-                <label>15</label>
-                <i class="far fa-thumbs-down"></i>
-            </div>
-            <div class="mr-3">
-                <button class="btn btn-success">Like</button>
-                <button class="btn btn-danger">Dislike</button>
-            </div>
-        </div>
-    </div>
+    }
 </section>
