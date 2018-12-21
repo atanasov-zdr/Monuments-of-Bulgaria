@@ -10,8 +10,6 @@
 
         void Create(int monumentId, string content, string username);
 
-        void Like(int commentId);
-
-        void Dislike(int commentId);
+        void Like(int commentId, string username);
     }
 }

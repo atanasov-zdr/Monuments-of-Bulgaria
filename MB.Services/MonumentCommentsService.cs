@@ -41,25 +41,24 @@
             this.dbContext.SaveChanges();
         }
 
-        public void Like(int commentId)
+        public void Like(int commentId, string username)
         {
             MonumentComment comment = this.dbContext.MonumentComments.FirstOrDefault(x => x.Id == commentId);
-
             if (comment == null)
                 throw new ArgumentNullException(nameof(comment));
 
-            comment.Likes += 1;
-            this.dbContext.SaveChanges();
-        }
+            username = "aaa";
+            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
 
-        public void Dislike(int commentId)
-        {
-            MonumentComment comment = this.dbContext.MonumentComments.FirstOrDefault(x => x.Id == commentId);
+            var like = new MonumentCommentLike
+            {
+                MonumentCommentId = commentId,
+                UserId = user.Id,
+            };
 
-            if (comment == null)
-                throw new ArgumentNullException(nameof(comment));
-
-            comment.Dislikes += 1;
+            this.dbContext.MonumentCommentLikes.Add(like);
             this.dbContext.SaveChanges();
         }
     }

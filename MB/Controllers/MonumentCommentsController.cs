@@ -28,13 +28,7 @@
 
         public IActionResult Like(int monumentId, int commentId)
         {
-            this.monumentCommentsService.Like(commentId);
-            return base.RedirectToAction("Details", "Monuments", new { monumentId });
-        }
-
-        public IActionResult Dislike(int monumentId, int commentId)
-        {
-            this.monumentCommentsService.Dislike(commentId);
+            this.monumentCommentsService.Like(commentId, this.User.Identity.Name);
             return base.RedirectToAction("Details", "Monuments", new { monumentId });
         }
     }

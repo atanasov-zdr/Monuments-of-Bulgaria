@@ -185,14 +185,11 @@
             <p>@comment.Content</p>
             <div class="d-flex justify-content-between">
                 <div class="mt-1">
-                    <label>@comment.Likes</label>
+                    <label>@comment.LikesCount</label>
                     <i class="far fa-thumbs-up mr-3"></i>
-                    <label>@comment.Dislikes</label>
-                    <i class="far fa-thumbs-down"></i>
                 </div>
                 <div class="mr-3">
                     <a asp-controller="MonumentComments" asp-action="Like" asp-route-monumentId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success">Like</a>
-                    <a asp-controller="MonumentComments" asp-action="Dislike" asp-route-monumentId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-danger">Dislike</a>
                 </div>
             </div>
         </div>

@@ -10,6 +10,7 @@
         {
             this.MonumentReviews = new HashSet<MonumentReview>();
             this.MonumentComments = new HashSet<MonumentComment>();
+            this.MonumentCommentLikes = new HashSet<MonumentCommentLike>();
             this.HotelReviews = new HashSet<HotelReview>();
             this.HotelComments = new HashSet<HotelComment>();
         }
@@ -21,6 +22,8 @@
         public virtual IEnumerable<MonumentReview> MonumentReviews { get; set; }
 
         public virtual IEnumerable<MonumentComment> MonumentComments { get; set; }
+
+        public virtual IEnumerable<MonumentCommentLike> MonumentCommentLikes { get; set; }
 
         public virtual IEnumerable<HotelReview> HotelReviews { get; set; }
 

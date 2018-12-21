@@ -176,10 +176,6 @@ namespace MB.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("Dislikes");
-
-                    b.Property<int>("Likes");
-
                     b.Property<int>("MonumentId");
 
                     b.Property<string>("UserId");
@@ -191,6 +187,25 @@ namespace MB.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("MonumentComments");
+                });
+
+            modelBuilder.Entity("MB.Models.MonumentCommentLike", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MonumentCommentId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MonumentCommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("MonumentCommentLikes");
                 });
 
             modelBuilder.Entity("MB.Models.MonumentReview", b =>
@@ -402,6 +417,18 @@ namespace MB.Data.Migrations
 
                     b.HasOne("MB.Models.MbUser", "User")
                         .WithMany("MonumentComments")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("MB.Models.MonumentCommentLike", b =>
+                {
+                    b.HasOne("MB.Models.MonumentComment", "MonumentComment")
+                        .WithMany("Likes")
+                        .HasForeignKey("MonumentCommentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MB.Models.MbUser", "User")
+                        .WithMany("MonumentCommentLikes")
                         .HasForeignKey("UserId");
                 });
 

@@ -22,6 +22,8 @@
 
         public DbSet<MonumentComment> MonumentComments { get; set; }
 
+        public DbSet<MonumentCommentLike> MonumentCommentLikes { get; set; }
+
         public DbSet<Hotel> Hotels { get; set; }
 
         public DbSet<HotelReview> HotelReviews { get; set; }
