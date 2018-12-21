@@ -174,3 +174,7 @@ nav.pager {
     width: 3rem;
     height: 3rem;
 }
+
+body nav {
+    letter-spacing: 0.0625em;
+}

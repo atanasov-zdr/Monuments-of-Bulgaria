@@ -21,21 +21,14 @@
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <partial name="_LoginPartial" />
                 <ul class="navbar-nav ml-3">
                     <li class="nav-item">
                         <a asp-controller="Oblasts" asp-action="All" class="nav-link js-scroll-trigger">Oblasts</a>
                     </li>
                     <li class="nav-item">
                         <a asp-controller="Monuments" asp-action="All" class="nav-link js-scroll-trigger">Monuments</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a asp-area="Identity" asp-page="/Account/Login" class="nav-link js-scroll-trigger">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="Identity" asp-page="/Account/Register" class="nav-link js-scroll-trigger">Register</a>
                     </li>
                 </ul>
             </div>

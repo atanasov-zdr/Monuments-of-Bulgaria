@@ -157,19 +157,25 @@
         </section>
     </div>
 
-    <div class="mt-4 d-flex justify-content-center">
-        <a asp-controller="MonumentReviews" asp-action="Write" asp-route-monumentId="@Model.Id" id="writeReview" class="btn btn-outline-dark">Write Review</a>
-    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="mt-4 d-flex justify-content-center">
+            <a asp-controller="MonumentReviews" asp-action="Write" asp-route-monumentId="@Model.Id" id="writeReview" class="btn btn-outline-dark">Write Review</a>
+        </div>
+    }
 </section>
 
 <section class="m-5 w-75 mx-auto bg-light p-4 text-dark">
     <h3 class="text-center">Comments (@Model.Comments.Count())</h3>
-    
-    <form asp-controller="MonumentComments" asp-action="Write" method="post" class="form-inline mt-5 d-flex justify-content-around">
-        <input type="hidden" name="monumentId" value="@Model.Id" />
-        <textarea type="text" name="content" class="form-control col-9" rows="3"></textarea>
-        <button type="submit" class="btn btn-dark col-2">Write Comment</button>
-    </form>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-controller="MonumentComments" asp-action="Write" method="post" class="form-inline mt-5 d-flex justify-content-around">
+            <input type="hidden" name="monumentId" value="@Model.Id" />
+            <textarea type="text" name="content" class="form-control col-9" rows="3"></textarea>
+            <button type="submit" class="btn btn-dark col-2">Write Comment</button>
+        </form>
+    }
 
     @foreach (var comment in Model.Comments)
     {
