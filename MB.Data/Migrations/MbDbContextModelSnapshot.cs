@@ -52,11 +52,7 @@ namespace MB.Data.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("Dislikes");
-
                     b.Property<int>("HotelId");
-
-                    b.Property<int>("Likes");
 
                     b.Property<string>("UserId");
 
@@ -67,6 +63,25 @@ namespace MB.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("HotelComments");
+                });
+
+            modelBuilder.Entity("MB.Models.HotelCommentLike", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("HotelCommentId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelCommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HotelCommentLikes");
                 });
 
             modelBuilder.Entity("MB.Models.HotelReview", b =>
@@ -385,6 +400,18 @@ namespace MB.Data.Migrations
 
                     b.HasOne("MB.Models.MbUser", "User")
                         .WithMany("HotelComments")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("MB.Models.HotelCommentLike", b =>
+                {
+                    b.HasOne("MB.Models.HotelComment", "HotelComment")
+                        .WithMany("Likes")
+                        .HasForeignKey("HotelCommentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MB.Models.MbUser", "User")
+                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 

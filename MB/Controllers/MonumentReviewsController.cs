@@ -3,10 +3,11 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using ViewModels.MonumentReviews;
-    using Services.Contracts;
+    using Base;
+    using ViewModels.Monuments.MonumentReviews;
+    using Services.Contracts.Monuments;
 
-    public class MonumentReviewsController : Controller
+    public class MonumentReviewsController : BaseController
     {
         private readonly IMonumentReviewsService monumentReviewsService;
 

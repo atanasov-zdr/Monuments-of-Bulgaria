@@ -4,6 +4,7 @@
     ViewData["Title"] = "All Monuments for " + Model[0].OblastName;
     Model.Action = "AllForOblast";
     ViewData["OblastId"] = Model[0].OblastId;
+    ViewData["Controller"] = "Monuments";
 }
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>

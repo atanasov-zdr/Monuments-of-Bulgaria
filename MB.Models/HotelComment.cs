@@ -1,6 +1,7 @@
 ﻿namespace MB.Models
 {
     using System;
+    using System.Collections.Generic;
 
     using Base;
 
@@ -9,14 +10,11 @@
         public HotelComment()
         {
             this.CreatedOn = DateTime.UtcNow;
+            this.Likes = new HashSet<HotelCommentLike>();
         }
 
         public string Content { get; set; }
-
-        public int Likes { get; set; }
-
-        public int Dislikes { get; set; }
-
+        
         public DateTime CreatedOn { get; set; }
 
         public int HotelId { get; set; }
@@ -24,5 +22,7 @@
 
         public string UserId { get; set; }
         public virtual MbUser User { get; set; }
+
+        public virtual IEnumerable<HotelCommentLike> Likes { get; set; }
     }
 }

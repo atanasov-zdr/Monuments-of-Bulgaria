@@ -1,0 +1,42 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<MB.ViewModels.Hotels.HotelAllViewModel>
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "All Hotels for " + Model[0].OblastName;
+    Model.Action = "AllForOblast";
+    ViewData["OblastId"] = Model[0].OblastId;
+    ViewData["Controller"] = "Hotels";
+}
+
+<h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+@* black magic *@
+<div class="container-fluid mx-auto mt-5 mb-5 text-center text-dark monuments">
+    @{ int counter = 0; }
+    @for (int i = 0; i < Math.Ceiling(Model.Count / 4.0); i++)
+     {
+        <div class="row d-flex justify-content-around mb-5 mt-5">
+            @for (int j = 0; j < 4; j++)
+             {
+                @if (counter <= Model.Count - 1)
+                {
+                    var hotel = Model[counter++];
+                    <section class="col-2 border border-dark rounded-top p-0">
+                        <h4 class="pt-2">@hotel.Name</h4>
+                        <hr class="bg-dark mt-0" />
+                        <img src="~/img/hotel.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
+                        <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@hotel.Id"
+                           class="btn btn btn-outline-dark btn-sm m-3">View Details</a>
+                    </section>
+                 }
+                else
+                {
+                    <section class="col-2"></section>
+                }
+             }
+        </div>
+     }
+</div>
+
+<nav class="pager">
+    <vc:pager paging-list="@Model" />
+</nav>

@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     
-    using ViewModels.MonumentComments;
-    using ViewModels.MonumentReviews;
+    using ViewModels.Monuments.MonumentComments;
+    using ViewModels.Monuments.MonumentReviews;
 
     public class MonumentDetailsViewModel
     {

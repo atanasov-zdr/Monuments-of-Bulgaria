@@ -17,11 +17,15 @@
     using Data;
     using Mapping;
     using Models;
-    using Services;
-    using Services.Contracts;
+    using Services.Contracts.Hotels;
+    using Services.Contracts.Monuments;
+    using Services.Contracts.Oblasts;
+    using Services.Hotels;
+    using Services.Monuments;
+    using Services.Oblasts;
     using Utilities;
     using ViewModels.Monuments;
-    using ViewModels.MonumentComments;
+    using ViewModels.Monuments.MonumentComments;
     using ViewModels.Oblasts;
 
     public class Startup
@@ -87,6 +91,9 @@
             services.AddScoped<IMonumentsService, MonumentsService>();
             services.AddScoped<IMonumentReviewsService, MonumentReviewsService>();
             services.AddScoped<IMonumentCommentsService, MonumentCommentsService>();
+            services.AddScoped<IHotelsService, HotelsService>();
+            services.AddScoped<IHotelReviewsService, HotelReviewsService>();
+            services.AddScoped<IHotelCommentsService, HotelCommentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

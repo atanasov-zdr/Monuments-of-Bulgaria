@@ -1493,12 +1493,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Hotels\Controllers\" />
+    <Folder Include="Areas\Hotels\Data\" />
+    <Folder Include="Areas\Hotels\Models\" />
+    <Folder Include="Areas\Hotels\Views\" />
     <Folder Include="Areas\Identity\Services\" />
-    <Folder Include="Views\MonumentComments\" />
+    <Folder Include="Areas\Monuments\Controllers\" />
+    <Folder Include="Areas\Monuments\Views\" />
     <Folder Include="Views\Shared\Components\Pager\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Hotels\All.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Hotels\AllForOblast.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Monuments\All.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

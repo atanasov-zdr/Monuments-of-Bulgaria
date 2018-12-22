@@ -3,9 +3,10 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using Services.Contracts;
+    using Base;
+    using Services.Contracts.Monuments;
 
-    public class MonumentCommentsController : Controller
+    public class MonumentCommentsController : BaseController
     {
         private readonly IMonumentCommentsService monumentCommentsService;
 
@@ -26,6 +27,7 @@
             return base.RedirectToAction("Details", "Monuments", new { monumentId });
         }
 
+        [Authorize]
         public IActionResult Like(int monumentId, int commentId)
         {
             this.monumentCommentsService.Like(commentId, this.User.Identity.Name);

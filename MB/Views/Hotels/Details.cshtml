@@ -1,0 +1,126 @@
+﻿@model MB.ViewModels.Hotels.HotelDetailsViewModel
+@{ ViewData["Title"] = Model.Name; }
+
+<h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+<section class="d-flex justify-content-around text-dark mt-5">
+    <section class="col-lg-5 bg-light p-4">
+        <h3 class="text-center">Description</h3>
+        <p>@Model.Description</p>
+    </section>
+    <section class="col-lg-5 mt-5">
+        <div class="mt-1">
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+        </div>
+        <div class="mt-1">
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+        </div>
+        <div class="mt-1">
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+            <img src="~/img/hotel.jpg" style="width: 24%;" />
+        </div>
+    </section>
+</section>
+
+<section class="mx-auto text-dark mt-5 mb-5 bg-light p-4">
+    <h3 class="text-center">Reviews (@Model.ReviewsCount)</h3>
+
+    <section class="w-50 mx-auto mt-5">
+        <h5 class="text-center">Overall Rating: @Model.OverallRating</h5>
+        <div class="row">
+            @{ var excellentPercent = Model.Reviews.RatingExcellent / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Excellent (5)</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @excellentPercent%"></div>
+            </div>
+            <label class="col-2 text-right">@excellentPercent% (@Model.Reviews.RatingExcellent)</label>
+        </div>
+        <div class="row">
+            @{ var veryGoodPercent = Model.Reviews.RatingVeryGood / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Very Good (4)</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @veryGoodPercent%"></div>
+            </div>
+            <label class="col-2 text-right">@veryGoodPercent% (@Model.Reviews.RatingVeryGood)</label>
+        </div>
+        <div class="row">
+            @{ var averagePercent = Model.Reviews.RatingAverage / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Average (3)</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @averagePercent%"></div>
+            </div>
+            <label class="col-2 text-right">@averagePercent% (@Model.Reviews.RatingAverage)</label>
+        </div>
+        <div class="row">
+            @{ var poorPercent = Model.Reviews.RatingPoor / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Poor (2)</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @poorPercent%"></div>
+            </div>
+            <label class="col-2 text-right">@poorPercent% (@Model.Reviews.RatingPoor)</label>
+        </div>
+        <div class="row">
+            @{ var terriblePercent = Model.Reviews.RatingTerrible / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
+            <label class="col-2">Terrible (1)</label>
+            <div class="progress mt-1 col-8 p-0">
+                <div class="progress-bar bg-dark" role="progressbar" style="width: @terriblePercent%"></div>
+            </div>
+            <label class="col-2 text-right">@terriblePercent% (@Model.Reviews.RatingTerrible)</label>
+        </div>
+    </section>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="mt-4 d-flex justify-content-center">
+            <a asp-controller="HotelReviews" asp-action="Write" asp-route-hotelId="@Model.Id" id="writeReview" class="btn btn-outline-dark">Write Review</a>
+        </div>
+    }
+</section>
+
+<section class="m-5 w-75 mx-auto bg-light p-4 text-dark">
+    <h3 class="text-center">Comments (@Model.Comments.Count())</h3>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-controller="HotelComments" asp-action="Write" method="post" class="form-inline mt-5 d-flex justify-content-around">
+            <input type="hidden" name="hotelId" value="@Model.Id" />
+            <textarea type="text" name="content" class="form-control col-9" rows="3"></textarea>
+            <button type="submit" class="btn btn-dark col-2">Write Comment</button>
+        </form>
+    }
+
+    @foreach (var comment in Model.Comments)
+    {
+        <hr class="bg-dark mt-5" />
+        <div>
+            <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex justify-content-between p-0">
+                    <img src="~/images/user.png" alt="user-photo" class="mr-3 rounded userPhoto" />
+                    <div class="mt-3">@comment.UserUsername</div>
+                </div>
+                <div class="mr-3">@comment.CreatedOn</div>
+            </div>
+            <p>@comment.Content</p>
+            <div class="d-flex justify-content-between">
+                <div class="mt-1">
+                    <label>@comment.LikesCount</label>
+                    <i class="far fa-thumbs-up mr-3"></i>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="mr-3">
+                        <a asp-controller="HotelComments" asp-action="Like" asp-route-hotelId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success">Like</a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</section>

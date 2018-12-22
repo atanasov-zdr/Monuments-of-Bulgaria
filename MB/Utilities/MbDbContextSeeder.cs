@@ -26,6 +26,8 @@
             SeedOblasts(dbContext);
 
             SeedMonuments(dbContext);
+
+            SeedHotels(dbContext);
         }
 
         private static void SeedRoles(RoleManager<IdentityRole> roleManager)
@@ -72,6 +74,25 @@
                 };
 
                 dbContext.Monuments.Add(monument);
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        private static void SeedHotels(MbDbContext dbContext)
+        {
+            if (dbContext.Hotels.Any())
+                return;
+
+            for (int i = 89; i <= 116; i++)
+            {
+                var hotel = new Hotel
+                {
+                    Name = "name" + i,
+                    OblastId = i,
+                };
+
+                dbContext.Hotels.Add(hotel);
             }
 
             dbContext.SaveChanges();

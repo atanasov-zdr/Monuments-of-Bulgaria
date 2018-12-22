@@ -7,7 +7,7 @@
 
     using Base;
     using Mapping;
-    using Services.Contracts;
+    using Services.Contracts.Oblasts;
     using ViewModels.Oblasts;
 
     public class OblastsController : BaseController

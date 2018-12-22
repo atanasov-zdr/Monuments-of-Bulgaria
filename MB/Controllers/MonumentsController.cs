@@ -13,10 +13,10 @@
     using Base;
     using Mapping;
     using Models;
-    using Services.Contracts;
+    using Services.Contracts.Monuments;
     using ViewModels.Monuments;
-    using ViewModels.MonumentComments;
-    using ViewModels.MonumentReviews;
+    using ViewModels.Monuments.MonumentComments;
+    using ViewModels.Monuments.MonumentReviews;
 
     public class MonumentsController : BaseController
     {
@@ -43,7 +43,7 @@
 
             int pageSize = 12;
             IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, pageSize, page);
-            return View(viewModel);            
+            return View(viewModel);         
         }
 
         public IActionResult AllForOblast(int oblastId, int page = 1)

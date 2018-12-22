@@ -194,9 +194,12 @@
                     <label>@comment.LikesCount</label>
                     <i class="far fa-thumbs-up mr-3"></i>
                 </div>
-                <div class="mr-3">
-                    <a asp-controller="MonumentComments" asp-action="Like" asp-route-monumentId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success">Like</a>
-                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="mr-3">
+                        <a asp-controller="MonumentComments" asp-action="Like" asp-route-monumentId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success">Like</a>
+                    </div>
+                }
             </div>
         </div>
     }

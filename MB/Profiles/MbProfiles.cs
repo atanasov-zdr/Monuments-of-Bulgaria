@@ -6,8 +6,10 @@
 
     using Models;
     using Models.Enums;
+    using ViewModels.Hotels;
+    using ViewModels.Hotels.HotelReviews;
     using ViewModels.Monuments;
-    using ViewModels.MonumentReviews;
+    using ViewModels.Monuments.MonumentReviews;
 
     public class MbProfiles : Profile
     {
@@ -48,6 +50,24 @@
                     opts => opts.MapFrom(x => x.MonumentReviews.Where(y => y.TravellerType == TravellerType.Business).Count()))
                 .ForMember(dest => dest.TravellerTypeFriends,
                     opts => opts.MapFrom(x => x.MonumentReviews.Where(y => y.TravellerType == TravellerType.Friends).Count()));
+            
+            base.CreateMap<Hotel, HotelDetailsViewModel>()
+                .ForMember(dest => dest.Comments, opts => opts.Ignore());
+
+            base.CreateMap<HotelReviewWriteViewModel, HotelReview>()
+                .ForMember(dest => dest.CreatedOn, opts => opts.Ignore());
+
+            base.CreateMap<Hotel, HotelReviewsViewModel>()
+                .ForMember(dest => dest.RatingExcellent,
+                    opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.Rating == Rating.Excellent).Count()))
+                .ForMember(dest => dest.RatingVeryGood,
+                    opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.Rating == Rating.VeryGood).Count()))
+                .ForMember(dest => dest.RatingAverage,
+                    opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.Rating == Rating.Average).Count()))
+                .ForMember(dest => dest.RatingPoor,
+                    opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.Rating == Rating.Poor).Count()))
+                .ForMember(dest => dest.RatingTerrible,
+                    opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.Rating == Rating.Terrible).Count()));
         }
     }
 }

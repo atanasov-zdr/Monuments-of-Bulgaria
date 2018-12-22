@@ -19,7 +19,7 @@
         @if (this.Model.PageIndex > 1)
         {
             <li class="page-item">
-                <a href="@Url.Action(Model.Action, new { oblastId = ViewData["OblastId"], page = Model.PageIndex - 1})" 
+                <a href="@Url.Action(Model.Action, new { page = Model.PageIndex - 1})" 
                    aria-label="Previous" class="page-link">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
@@ -28,7 +28,7 @@
         @for (int i = start; i <= stop; i++)
         {
             <li class="page-item @((Model.PageIndex == i) ? "active" : null)">
-                <a asp-controller="Monuments" asp-action="@Model.Action" asp-route-oblastId="@ViewData["OblastId"]" 
+                <a asp-controller="@ViewData["Controller"]" asp-action="@Model.Action" asp-route-oblastId="@ViewData["OblastId"]"
                    asp-route-page="@i" class="page-link">@i.ToString()</a>
             </li>
         }
