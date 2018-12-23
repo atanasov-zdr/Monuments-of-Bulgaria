@@ -19,7 +19,7 @@ namespace MB.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MB.Models.Hotel", b =>
+            modelBuilder.Entity("MB.Models.Hotels.Hotel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace MB.Data.Migrations
                     b.ToTable("Hotels");
                 });
 
-            modelBuilder.Entity("MB.Models.HotelComment", b =>
+            modelBuilder.Entity("MB.Models.Hotels.HotelComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace MB.Data.Migrations
                     b.ToTable("HotelComments");
                 });
 
-            modelBuilder.Entity("MB.Models.HotelCommentLike", b =>
+            modelBuilder.Entity("MB.Models.Hotels.HotelCommentLike", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace MB.Data.Migrations
                     b.ToTable("HotelCommentLikes");
                 });
 
-            modelBuilder.Entity("MB.Models.HotelReview", b =>
+            modelBuilder.Entity("MB.Models.Hotels.HotelReview", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,6 +95,10 @@ namespace MB.Data.Migrations
                     b.Property<int>("HotelId");
 
                     b.Property<string>("Rating");
+
+                    b.Property<int?>("TimeOfYear");
+
+                    b.Property<int?>("TravellerType");
 
                     b.Property<string>("UserId");
 
@@ -162,7 +166,7 @@ namespace MB.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MB.Models.Monument", b =>
+            modelBuilder.Entity("MB.Models.Monuments.Monument", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -181,7 +185,7 @@ namespace MB.Data.Migrations
                     b.ToTable("Monuments");
                 });
 
-            modelBuilder.Entity("MB.Models.MonumentComment", b =>
+            modelBuilder.Entity("MB.Models.Monuments.MonumentComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -204,7 +208,7 @@ namespace MB.Data.Migrations
                     b.ToTable("MonumentComments");
                 });
 
-            modelBuilder.Entity("MB.Models.MonumentCommentLike", b =>
+            modelBuilder.Entity("MB.Models.Monuments.MonumentCommentLike", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -223,7 +227,7 @@ namespace MB.Data.Migrations
                     b.ToTable("MonumentCommentLikes");
                 });
 
-            modelBuilder.Entity("MB.Models.MonumentReview", b =>
+            modelBuilder.Entity("MB.Models.Monuments.MonumentReview", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -250,7 +254,7 @@ namespace MB.Data.Migrations
                     b.ToTable("MonumentReviews");
                 });
 
-            modelBuilder.Entity("MB.Models.Oblast", b =>
+            modelBuilder.Entity("MB.Models.Oblasts.Oblast", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -383,17 +387,17 @@ namespace MB.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MB.Models.Hotel", b =>
+            modelBuilder.Entity("MB.Models.Hotels.Hotel", b =>
                 {
-                    b.HasOne("MB.Models.Oblast", "Oblast")
+                    b.HasOne("MB.Models.Oblasts.Oblast", "Oblast")
                         .WithMany("Hotels")
                         .HasForeignKey("OblastId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("MB.Models.HotelComment", b =>
+            modelBuilder.Entity("MB.Models.Hotels.HotelComment", b =>
                 {
-                    b.HasOne("MB.Models.Hotel", "Hotel")
+                    b.HasOne("MB.Models.Hotels.Hotel", "Hotel")
                         .WithMany("HotelComments")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -403,9 +407,9 @@ namespace MB.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MB.Models.HotelCommentLike", b =>
+            modelBuilder.Entity("MB.Models.Hotels.HotelCommentLike", b =>
                 {
-                    b.HasOne("MB.Models.HotelComment", "HotelComment")
+                    b.HasOne("MB.Models.Hotels.HotelComment", "HotelComment")
                         .WithMany("Likes")
                         .HasForeignKey("HotelCommentId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -415,9 +419,9 @@ namespace MB.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MB.Models.HotelReview", b =>
+            modelBuilder.Entity("MB.Models.Hotels.HotelReview", b =>
                 {
-                    b.HasOne("MB.Models.Hotel", "Hotel")
+                    b.HasOne("MB.Models.Hotels.Hotel", "Hotel")
                         .WithMany("HotelReviews")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -427,17 +431,17 @@ namespace MB.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MB.Models.Monument", b =>
+            modelBuilder.Entity("MB.Models.Monuments.Monument", b =>
                 {
-                    b.HasOne("MB.Models.Oblast", "Oblast")
+                    b.HasOne("MB.Models.Oblasts.Oblast", "Oblast")
                         .WithMany("Monuments")
                         .HasForeignKey("OblastId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("MB.Models.MonumentComment", b =>
+            modelBuilder.Entity("MB.Models.Monuments.MonumentComment", b =>
                 {
-                    b.HasOne("MB.Models.Monument", "Monument")
+                    b.HasOne("MB.Models.Monuments.Monument", "Monument")
                         .WithMany("MonumentComments")
                         .HasForeignKey("MonumentId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -447,9 +451,9 @@ namespace MB.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MB.Models.MonumentCommentLike", b =>
+            modelBuilder.Entity("MB.Models.Monuments.MonumentCommentLike", b =>
                 {
-                    b.HasOne("MB.Models.MonumentComment", "MonumentComment")
+                    b.HasOne("MB.Models.Monuments.MonumentComment", "MonumentComment")
                         .WithMany("Likes")
                         .HasForeignKey("MonumentCommentId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -459,9 +463,9 @@ namespace MB.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MB.Models.MonumentReview", b =>
+            modelBuilder.Entity("MB.Models.Monuments.MonumentReview", b =>
                 {
-                    b.HasOne("MB.Models.Monument", "Monument")
+                    b.HasOne("MB.Models.Monuments.Monument", "Monument")
                         .WithMany("MonumentReviews")
                         .HasForeignKey("MonumentId")
                         .OnDelete(DeleteBehavior.Cascade);

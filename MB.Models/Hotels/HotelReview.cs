@@ -14,6 +14,10 @@
 
         public Rating? Rating { get; set; }
 
+        public Season? TimeOfYear { get; set; }
+
+        public TravellerType? TravellerType { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public int HotelId { get; set; }

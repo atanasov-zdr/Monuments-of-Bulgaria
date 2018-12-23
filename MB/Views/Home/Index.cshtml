@@ -36,6 +36,12 @@
                 <li class="nav-item">
                     <a asp-controller="Hotels" asp-action="All" class="nav-link">Hotels</a>
                 </li>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a asp-controller="" asp-action="" class="nav-link">Create own trip</a>
+                    </li>
+                }
             </ul>
         </div>
     </nav>
