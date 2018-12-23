@@ -1,5 +1,7 @@
 ﻿@model MB.ViewModels.Monuments.MonumentDetailsViewModel
-@{ ViewData["Title"] = Model.Name; }
+@{ 
+    ViewData["Title"] = Model.Name;
+}
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
 
@@ -41,7 +43,7 @@
             <div class="progress mt-1 col-8 p-0">
                 <div class="progress-bar bg-dark" role="progressbar" style="width: @excellentPercent%"></div>
             </div>
-            <label class="col-2 text-right">@excellentPercent% (@Model.Reviews.RatingExcellent)</label>
+            <label class="col-2 text-right">@excellentPercent.ToString("f2")% (@Model.Reviews.RatingExcellent)</label>
         </div>
         <div class="row">
             @{ var veryGoodPercent = Model.Reviews.RatingVeryGood / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -49,7 +51,7 @@
             <div class="progress mt-1 col-8 p-0">
                 <div class="progress-bar bg-dark" role="progressbar" style="width: @veryGoodPercent%"></div>
             </div>
-            <label class="col-2 text-right">@veryGoodPercent% (@Model.Reviews.RatingVeryGood)</label>
+            <label class="col-2 text-right">@veryGoodPercent.ToString("f2")% (@Model.Reviews.RatingVeryGood)</label>
         </div>
         <div class="row">
             @{ var averagePercent = Model.Reviews.RatingAverage / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -57,7 +59,7 @@
             <div class="progress mt-1 col-8 p-0">
                 <div class="progress-bar bg-dark" role="progressbar" style="width: @averagePercent%"></div>
             </div>
-            <label class="col-2 text-right">@averagePercent% (@Model.Reviews.RatingAverage)</label>
+            <label class="col-2 text-right">@averagePercent.ToString("f2")% (@Model.Reviews.RatingAverage)</label>
         </div>
         <div class="row">
             @{ var poorPercent = Model.Reviews.RatingPoor / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -65,7 +67,7 @@
             <div class="progress mt-1 col-8 p-0">
                 <div class="progress-bar bg-dark" role="progressbar" style="width: @poorPercent%"></div>
             </div>
-            <label class="col-2 text-right">@poorPercent% (@Model.Reviews.RatingPoor)</label>
+            <label class="col-2 text-right">@poorPercent.ToString("f2")% (@Model.Reviews.RatingPoor)</label>
         </div>
         <div class="row">
             @{ var terriblePercent = Model.Reviews.RatingTerrible / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -73,7 +75,7 @@
             <div class="progress mt-1 col-8 p-0">
                 <div class="progress-bar bg-dark" role="progressbar" style="width: @terriblePercent%"></div>
             </div>
-            <label class="col-2 text-right">@terriblePercent% (@Model.Reviews.RatingTerrible)</label>
+            <label class="col-2 text-right">@terriblePercent.ToString("f2")% (@Model.Reviews.RatingTerrible)</label>
         </div>
     </section>
     <div class="d-flex justify-content-around mt-5">
@@ -85,7 +87,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @springPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@springPercent% (@Model.Reviews.TimeOfYearSpring)</label>
+                <label class="col-3 text-right">@springPercent.ToString("f2")% (@Model.Reviews.TimeOfYearSpring)</label>
             </div>
             <div class="row">
                 @{ var summerPercent = Model.Reviews.TimeOfYearSummer / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -93,7 +95,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @summerPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@summerPercent% (@Model.Reviews.TimeOfYearSummer)</label>
+                <label class="col-3 text-right">@summerPercent.ToString("f2")% (@Model.Reviews.TimeOfYearSummer)</label>
             </div>
             <div class="row">
                 @{ var autumnPercent = Model.Reviews.TimeOfYearAutumn / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -101,7 +103,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @autumnPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@autumnPercent% (@Model.Reviews.TimeOfYearAutumn)</label>
+                <label class="col-3 text-right">@autumnPercent.ToString("f2")% (@Model.Reviews.TimeOfYearAutumn)</label>
             </div>
             <div class="row">
                 @{ var winterPercent = Model.Reviews.TimeOfYearWinter / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -109,7 +111,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @winterPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@winterPercent% (@Model.Reviews.TimeOfYearWinter)</label>
+                <label class="col-3 text-right">@winterPercent.ToString("f2")% (@Model.Reviews.TimeOfYearWinter)</label>
             </div>
         </section>
         <section class="col-lg-5">
@@ -120,7 +122,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @familiesPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@familiesPercent% (@Model.Reviews.TravellerTypeFamilies)</label>
+                <label class="col-3 text-right">@familiesPercent.ToString("f2")% (@Model.Reviews.TravellerTypeFamilies)</label>
             </div>
             <div class="row">
                 @{ var couplesPercent = Model.Reviews.TravellerTypeCouples / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -128,7 +130,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @couplesPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@couplesPercent% (@Model.Reviews.TravellerTypeCouples)</label>
+                <label class="col-3 text-right">@couplesPercent.ToString("f2")% (@Model.Reviews.TravellerTypeCouples)</label>
             </div>
             <div class="row">
                 @{ var soloPercent = Model.Reviews.TravellerTypeSolo / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -136,7 +138,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @soloPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@soloPercent% (@Model.Reviews.TravellerTypeSolo)</label>
+                <label class="col-3 text-right">@soloPercent.ToString("f2")% (@Model.Reviews.TravellerTypeSolo)</label>
             </div>
             <div class="row">
                 @{ var businessPercent = Model.Reviews.TravellerTypeBusiness / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -144,7 +146,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @businessPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@businessPercent% (@Model.Reviews.TravellerTypeBusiness)</label>
+                <label class="col-3 text-right">@businessPercent.ToString("f2")% (@Model.Reviews.TravellerTypeBusiness)</label>
             </div>
             <div class="row">
                 @{ var friendsPercent = Model.Reviews.TravellerTypeFriends / (double)(Model.ReviewsCount == 0 ? 1 : Model.ReviewsCount) * 100; }
@@ -152,7 +154,7 @@
                 <div class="progress mt-1 col-7 p-0">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: @friendsPercent%"></div>
                 </div>
-                <label class="col-3 text-right">@friendsPercent% (@Model.Reviews.TravellerTypeFriends)</label>
+                <label class="col-3 text-right">@friendsPercent.ToString("f2")% (@Model.Reviews.TravellerTypeFriends)</label>
             </div>
         </section>
     </div>

@@ -1,7 +1,7 @@
 ﻿namespace MB.ViewModels.Oblasts
 {
     using Mapping.Contracts;
-    using Models;
+    using Models.Oblasts;
 
     public class OblastSeedViewModel : IMapTo<Oblast>
     {

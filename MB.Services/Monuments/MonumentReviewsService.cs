@@ -8,6 +8,7 @@
     using Contracts.Monuments;
     using Data;
     using Models;
+    using Models.Monuments;
     using ViewModels.Monuments.MonumentReviews;
 
     public class MonumentReviewsService : IMonumentReviewsService

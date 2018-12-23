@@ -8,6 +8,7 @@
     using Contracts.Hotels;
     using Data;
     using Models;
+    using Models.Hotels;
     using ViewModels.Hotels.HotelReviews;
 
     public class HotelReviewsService : IHotelReviewsService

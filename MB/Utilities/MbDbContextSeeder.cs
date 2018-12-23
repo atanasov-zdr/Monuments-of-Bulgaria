@@ -13,7 +13,9 @@
     using Common;
     using Data;
     using Mapping;
-    using Models;
+    using Models.Hotels;
+    using Models.Monuments;
+    using Models.Oblasts;
     using ViewModels.Oblasts;
 
     public static class MbDbContextSeeder

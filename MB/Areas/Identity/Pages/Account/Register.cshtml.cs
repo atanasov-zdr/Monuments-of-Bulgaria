@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -74,9 +72,9 @@ namespace MB.Areas.Identity.Pages.Account
                 var user = new MbUser
                 {
                     UserName = Input.UserName,
-                    Email = Input.Email,  
+                    Email = Input.Email,
                 };
-                
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

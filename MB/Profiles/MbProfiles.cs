@@ -3,9 +3,10 @@
     using System.Linq;
 
     using AutoMapper;
-
-    using Models;
+    
     using Models.Enums;
+    using Models.Hotels;
+    using Models.Monuments;
     using ViewModels.Hotels;
     using ViewModels.Hotels.HotelReviews;
     using ViewModels.Monuments;

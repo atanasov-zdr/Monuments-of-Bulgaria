@@ -4,7 +4,7 @@
 
     using Contracts.Monuments;
     using Data;
-    using Models;
+    using Models.Monuments;
 
     public class MonumentsService : IMonumentsService
     {

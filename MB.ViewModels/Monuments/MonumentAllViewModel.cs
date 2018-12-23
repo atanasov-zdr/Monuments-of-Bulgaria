@@ -1,7 +1,7 @@
 ﻿namespace MB.ViewModels.Monuments
 {
     using Mapping.Contracts;
-    using Models;
+    using Models.Monuments;
 
     public class MonumentAllViewModel : IMapFrom<Monument>
     {

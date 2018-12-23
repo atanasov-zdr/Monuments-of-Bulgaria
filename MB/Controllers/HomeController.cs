@@ -3,10 +3,8 @@
     using System;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using Base;
-
-    public class HomeController : BaseController
+    
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {

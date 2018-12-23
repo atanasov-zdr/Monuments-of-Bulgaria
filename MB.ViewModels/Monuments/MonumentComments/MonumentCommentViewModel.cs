@@ -6,7 +6,7 @@
     using AutoMapper;
 
     using Mapping.Contracts;
-    using Models;
+    using Models.Monuments;
 
     public class MonumentCommentViewModel : IHaveCustomMappings
     {

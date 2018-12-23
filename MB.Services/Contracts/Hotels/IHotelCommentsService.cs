@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    using Models;
+    using Models.Hotels;
 
     public interface IHotelCommentsService
     {

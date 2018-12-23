@@ -4,6 +4,9 @@
 
     using Microsoft.AspNetCore.Identity;
 
+    using Hotels;
+    using Monuments;
+
     public class MbUser : IdentityUser
     {
         public MbUser()

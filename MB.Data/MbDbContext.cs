@@ -7,6 +7,9 @@
 
     using Models;
     using Models.Enums;
+    using Models.Hotels;
+    using Models.Monuments;
+    using Models.Oblasts;
 
     public class MbDbContext : IdentityDbContext<MbUser>
     {

@@ -1,0 +1,27 @@
+﻿@model MB.ViewModels.Hotels.HotelReviews.HotelReviewWriteViewModel
+@using MB.Models.Enums;
+@{
+    ViewData["Title"] = "Write Review";
+}
+
+<h1 class="text-center text-dark">@ViewData["Title"] for @Model.HotelName</h1>
+
+<form asp-controller="HotelReviews" asp-action="Write" method="post" class="container text-dark mt-5">
+    <input type="hidden" name="HotelId" value="@Model.HotelId" />
+    <div class="d-flex justify-content-around">
+        <div class="form-check">
+            <h3>Rating:</h3>
+            @foreach (var rating in Enum.GetValues(typeof(Rating)))
+            {
+                <div class="mt-2">
+                    <input asp-for="@Model.Rating" type="radio" value="@rating" class="form-check-input" id="@rating" />
+                    <label for="@rating" class="form-check-label">@rating (@((int)rating))</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-dark mt-5">Send Review</button>
+    </div>
+</form>

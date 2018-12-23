@@ -6,6 +6,7 @@
     using Contracts.Hotels;
     using Data;
     using Models;
+    using Models.Hotels;
 
     public class HotelCommentsService : IHotelCommentsService
     {

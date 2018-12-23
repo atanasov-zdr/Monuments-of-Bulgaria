@@ -4,7 +4,7 @@
     
     using Contracts.Oblasts;
     using Data;
-    using Models;
+    using Models.Oblasts;
 
     public class OblastsService : IOblastsService
     {

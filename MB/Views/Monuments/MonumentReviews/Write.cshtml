@@ -1,0 +1,47 @@
+﻿@model MB.ViewModels.Monuments.MonumentReviews.MonumentReviewWriteViewModel
+@using MB.Models.Enums;
+@{
+    ViewData["Title"] = "Write Review";
+}
+
+<h1 class="text-center text-dark">@ViewData["Title"] for @Model.MonumentName</h1>
+
+<form asp-controller="MonumentReviews" asp-action="Write" method="post" class="container text-dark mt-5">
+    <input type="hidden" name="MonumentId" value="@Model.MonumentId" />
+    <div class="d-flex justify-content-around">
+        <div class="form-check">
+            <h3>Rating:</h3>
+            @foreach (var rating in Enum.GetValues(typeof(Rating)))
+            {
+                <div class="mt-2">
+                    <input asp-for="@Model.Rating" type="radio" value="@rating" class="form-check-input" id="@rating" />
+                    <label for="@rating" class="form-check-label">@rating (@((int)rating))</label>
+                </div>
+            }
+        </div>
+        <div class="form-check">
+            <h3>Time of Year:</h3>
+            @foreach (var season in Enum.GetValues(typeof(Season)))
+            {
+                <div class="mt-2">
+                    <input asp-for="@Model.TimeOfYear" type="radio" value="@season" class="form-check-input" id="@season" />
+                    <label for="@season" class="form-check-label">@season</label>
+                </div>
+            }
+        </div>
+        <div class="form-check">
+            <h3>Traveller Type:</h3>
+            @foreach (var travellerType in Enum.GetValues(typeof(TravellerType)))
+            {
+                <div class="mt-2">
+                    <input asp-for="@Model.TravellerType" type="radio" value="@travellerType" class="form-check-input" id="@travellerType" />
+                    <label for="@travellerType" class="form-check-label">@travellerType</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-dark mt-5">Send Review</button>
+    </div>
+</form>
