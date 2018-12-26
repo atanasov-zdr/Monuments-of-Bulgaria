@@ -15,44 +15,47 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
-            <a class="navbar-brand js-scroll-trigger pl-3" href="/">Home</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <partial name="_LoginPartial" />
-                <ul class="navbar-nav ml-3">
-                    <li class="nav-item">
-                        <a asp-controller="Oblasts" asp-action="All" class="nav-link">Oblasts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Monuments" asp-action="All" class="nav-link">Monuments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Hotels" asp-action="All" class="nav-link">Hotels</a>
-                    </li>
-                    @if (this.User.Identity.IsAuthenticated)
-                    {
+    <cache>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
+                <a class="navbar-brand js-scroll-trigger pl-3" href="/">Home</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav ml-3">
                         <li class="nav-item">
-                            <a asp-controller="Trips" asp-action="Create" class="nav-link">Create Trip</a>
+                            <a asp-controller="Oblasts" asp-action="All" class="nav-link">Oblasts</a>
                         </li>
-                    }
-                </ul>
-            </div>
-        </nav>
-    </header>
+                        <li class="nav-item">
+                            <a asp-controller="Monuments" asp-action="All" class="nav-link">Monuments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Hotels" asp-action="All" class="nav-link">Hotels</a>
+                        </li>
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Trips" asp-action="Create" class="nav-link">Create Trip</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </cache>
 
     <main class="mt-5">
         @RenderBody()
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-center text-white-50 w-100">
-        <div class="container p-3">Copyright &copy; Monuments of Bulgaria - @DateTime.Now.Year</div>
-    </footer>
+    <cache>
+        <footer class="bg-dark text-center text-white-50 w-100">
+            <div class="container p-3">Copyright &copy; Monuments of Bulgaria - @DateTime.Now.Year</div>
+        </footer>
+    </cache>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
