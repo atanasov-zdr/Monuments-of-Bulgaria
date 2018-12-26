@@ -33,6 +33,8 @@ namespace MB.Data.Migrations
 
                     b.Property<int>("OblastId");
 
+                    b.Property<string>("PhoneNumber");
+
                     b.Property<int>("Stars");
 
                     b.HasKey("Id");
@@ -96,9 +98,9 @@ namespace MB.Data.Migrations
 
                     b.Property<string>("Rating");
 
-                    b.Property<int?>("TimeOfYear");
+                    b.Property<string>("TimeOfYear");
 
-                    b.Property<int?>("TravellerType");
+                    b.Property<string>("TravellerType");
 
                     b.Property<string>("UserId");
 
@@ -117,6 +119,8 @@ namespace MB.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<int>("Age");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -277,6 +281,33 @@ namespace MB.Data.Migrations
                     b.ToTable("Oblasts");
                 });
 
+            modelBuilder.Entity("MB.Models.Trips.Trip", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("HotelId");
+
+                    b.Property<int>("MonumentId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("MonumentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Trips");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -415,7 +446,7 @@ namespace MB.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MB.Models.MbUser", "User")
-                        .WithMany()
+                        .WithMany("HotelCommentLikes")
                         .HasForeignKey("UserId");
                 });
 
@@ -472,6 +503,23 @@ namespace MB.Data.Migrations
 
                     b.HasOne("MB.Models.MbUser", "User")
                         .WithMany("MonumentReviews")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("MB.Models.Trips.Trip", b =>
+                {
+                    b.HasOne("MB.Models.Hotels.Hotel", "Hotel")
+                        .WithMany("Trips")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MB.Models.Monuments.Monument", "Monument")
+                        .WithMany("Trips")
+                        .HasForeignKey("MonumentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("MB.Models.MbUser", "User")
+                        .WithMany("Trips")
                         .HasForeignKey("UserId");
                 });
 

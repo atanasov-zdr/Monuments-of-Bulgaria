@@ -7,5 +7,7 @@
         string GetNameById(int hotelId);
 
         void Create(HotelReviewWriteViewModel model, string username);
+
+        bool CheckForExistingReview(int hotelId, string username);
     }
 }

@@ -5,6 +5,7 @@
 
     using Base;
     using Oblasts;
+    using Trips;
 
     public class Monument : BaseModel<int>
     {
@@ -12,6 +13,7 @@
         {
             this.MonumentReviews = new HashSet<MonumentReview>();
             this.MonumentComments = new HashSet<MonumentComment>();
+            this.Trips = new HashSet<Trip>();
         }
 
         public string Name { get; set; }
@@ -30,5 +32,7 @@
         public virtual IEnumerable<MonumentReview> MonumentReviews { get; set; }
 
         public virtual IEnumerable<MonumentComment> MonumentComments { get; set; }
+
+        public virtual IEnumerable<Trip> Trips { get; set; }
     }
 }

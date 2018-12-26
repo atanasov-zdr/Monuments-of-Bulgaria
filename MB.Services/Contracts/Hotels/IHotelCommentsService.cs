@@ -6,7 +6,7 @@
 
     public interface IHotelCommentsService
     {
-        IQueryable<HotelComment> GetAllForHotel(int hotelId);
+        IQueryable<HotelComment> GetAllForHotelOrderedByDateDescending(int hotelId);
 
         void Create(int hotelId, string content, string username);
 

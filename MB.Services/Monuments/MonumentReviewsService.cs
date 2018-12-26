@@ -54,5 +54,16 @@
             this.dbContext.MonumentReviews.Add(monumentReview);
             this.dbContext.SaveChanges();
         }
+
+        public bool CheckForExistingReview(int monumentId, string username)
+        {
+            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            bool result = this.dbContext.MonumentReviews.Any(x => x.MonumentId == monumentId && x.User == user);
+            return result;
+        }
     }
 }

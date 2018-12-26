@@ -66,7 +66,7 @@
             var reviews = this.mapper.Map<HotelReviewsViewModel>(hotel);
             viewModel.Reviews = reviews;
 
-            var comments = this.hotelCommentsService.GetAllForHotel(hotelId)
+            var comments = this.hotelCommentsService.GetAllForHotelOrderedByDateDescending(hotelId)
                 .To<HotelCommentViewModel>()
                 .ToList();
             viewModel.Comments = comments;

@@ -11,8 +11,10 @@
                 $('#oblastMunicipalitiesCount').html(oblast.MunicipalitiesCount);
                 $('#oblastDescription').html(oblast.Description);
                 $('#viewMonuments').attr('href', '/Monuments/AllForOblast?oblastId=' + oblastId);
+                $('#viewHotels').attr('href', '/Hotels/AllForOblast?oblastId=' + oblastId);
 
                 $('#viewMonuments').removeClass('disabled');
+                $('#viewHotels').removeClass('disabled');
                 $(window).scrollTop(0);                
             }
         }

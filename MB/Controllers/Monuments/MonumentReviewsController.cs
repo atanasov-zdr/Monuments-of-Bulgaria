@@ -18,6 +18,9 @@
         [Authorize]
         public IActionResult Write(int monumentId)
         {
+            //if (this.monumentReviewsService.CheckForExistingReview(monumentId, this.User.Identity.Name))
+            //    return this.RedirectToAction("Details", "Monuments", new { monumentId });
+
             string monumentName = this.monumentReviewsService.GetNameById(monumentId);
             var viewModel = new MonumentReviewWriteViewModel { MonumentId = monumentId, MonumentName = monumentName };
             return base.View(viewModel);

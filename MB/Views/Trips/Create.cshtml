@@ -1,0 +1,48 @@
+﻿@model MB.ViewModels.Trips.TripCreateViewModel
+@{ ViewData["Title"] = "Create Trip"; }
+
+<h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+<div class="mt-5 mb-5 d-flex justify-content-center">
+    <form asp-controller="Trips" asp-action="Create" method="post" class="col-6 text-dark">
+        <div class="form-group">
+            <label asp-for="@Model.Name"></label>
+            <input asp-for="@Model.Name" class="form-control" placeholder="Name..." />
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description"></label>
+            <textarea asp-for="@Model.Description" rows="4" class="form-control" placeholder="Description..."></textarea>
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="col-5 p-0">
+                <label asp-for="@Model.Monuments"></label>
+                <select class="form-control single-select" asp-for="@Model.SelectedMonumentId" 
+                    asp-items="@Model.Monuments">
+                    <option disabled selected>Choose monument</option>
+                </select>
+                <span asp-validation-for="@Model.SelectedMonumentId" class="text-danger"></span>
+            </div>
+            <div class="col-5 p-0">
+                <label asp-for="@Model.Hotels"></label>
+                <select class="form-control single-select" asp-for="@Model.SelectedHotelId" 
+                    asp-items="@Model.Hotels">
+                    <option disabled selected>Choose hotel</option>
+                </select>
+                <span asp-validation-for="@Model.SelectedHotelId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <button type="submit" class="btn btn-dark">Create Trip</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@section JavaScript {
+    <script src="~/js/singleSelect.js"></script>
+}

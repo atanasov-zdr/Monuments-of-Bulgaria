@@ -54,5 +54,16 @@
             this.dbContext.HotelReviews.Add(hotelReview);
             this.dbContext.SaveChanges();
         }
+
+        public bool CheckForExistingReview(int hotelId, string username)
+        {
+            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            bool result = this.dbContext.HotelReviews.Any(x => x.HotelId == hotelId && x.User == user);
+            return result;
+        }
     }
 }

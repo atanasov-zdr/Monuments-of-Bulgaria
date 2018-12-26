@@ -20,13 +20,16 @@
     using Services.Contracts.Hotels;
     using Services.Contracts.Monuments;
     using Services.Contracts.Oblasts;
+    using Services.Contracts.Trips;
     using Services.Hotels;
     using Services.Monuments;
     using Services.Oblasts;
+    using Services.Trips;
     using Utilities;
     using ViewModels.Monuments;
     using ViewModels.Monuments.MonumentComments;
     using ViewModels.Oblasts;
+    using ViewModels.Trips;
 
     public class Startup
     {
@@ -77,7 +80,8 @@
             AutoMapperConfig.RegisterMappings(
                 typeof(OblastSeedViewModel).Assembly,
                 typeof(MonumentAllViewModel).Assembly,
-                typeof(MonumentCommentViewModel).Assembly);
+                typeof(MonumentCommentViewModel).Assembly,
+                typeof(TripMyViewModel).Assembly);
             
             services.AddPaging(opt => opt.ViewName = "Pager");
 
@@ -94,6 +98,7 @@
             services.AddScoped<IHotelsService, HotelsService>();
             services.AddScoped<IHotelReviewsService, HotelReviewsService>();
             services.AddScoped<IHotelCommentsService, HotelCommentsService>();
+            services.AddScoped<ITripsService, TripsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

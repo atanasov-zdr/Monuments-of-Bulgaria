@@ -18,6 +18,9 @@
         [Authorize]
         public IActionResult Write(int hotelId)
         {
+            if (this.hotelReviewsService.CheckForExistingReview(hotelId, this.User.Identity.Name))
+                return this.RedirectToAction("Details", "Hotels", new { hotelId });
+
             string hotelName = this.hotelReviewsService.GetNameById(hotelId);
             var viewModel = new HotelReviewWriteViewModel { HotelId = hotelId, HotelName = hotelName };
             return base.View(viewModel);

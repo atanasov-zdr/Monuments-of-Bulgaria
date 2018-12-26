@@ -17,9 +17,9 @@
             this.dbContext = dbContext;
         }
 
-        public IQueryable<HotelComment> GetAllForHotel(int hotelId)
+        public IQueryable<HotelComment> GetAllForHotelOrderedByDateDescending(int hotelId)
         {
-            return this.dbContext.HotelComments.Where(x => x.HotelId == hotelId);
+            return this.dbContext.HotelComments.Where(x => x.HotelId == hotelId).OrderByDescending(x => x.CreatedOn);
         }
 
         public void Create(int hotelId, string content, string username)

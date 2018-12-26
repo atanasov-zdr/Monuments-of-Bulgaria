@@ -10,12 +10,15 @@
     using Models.Hotels;
     using Models.Monuments;
     using Models.Oblasts;
+    using Models.Trips;
 
     public class MbDbContext : IdentityDbContext<MbUser>
     {
         public MbDbContext(DbContextOptions<MbDbContext> options)
             : base(options)
         { }
+
+        public DbSet<Trip> Trips { get; set; }
 
         public DbSet<Oblast> Oblasts { get; set; }
 
@@ -60,6 +63,28 @@
                 .HasConversion(
                     v => v.ToString(),
                     v => (Rating)Enum.Parse(typeof(Rating), v));
+
+            builder.Entity<HotelReview>()
+                .Property(e => e.TravellerType)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (TravellerType)Enum.Parse(typeof(TravellerType), v));
+
+            builder.Entity<HotelReview>()
+                .Property(e => e.TimeOfYear)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (Season)Enum.Parse(typeof(Season), v));
+
+            builder.Entity<Trip>()
+                .HasOne(x => x.Monument)
+                .WithMany(x => x.Trips)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Trip>()
+                .HasOne(x => x.Hotel)
+                .WithMany(x => x.Trips)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

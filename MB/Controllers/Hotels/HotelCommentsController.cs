@@ -18,8 +18,8 @@
         [Authorize]
         public IActionResult Write(int hotelId, string content)
         {
-            if (string.IsNullOrWhiteSpace(content))
-                return base.RedirectToAction("Details", "Hotels", new { hotelId });
+            //if (string.IsNullOrWhiteSpace(content))
+            //    return base.RedirectToAction("Details", "Hotels", new { hotelId });
 
             this.hotelCommentsService.Create(hotelId, content, this.User.Identity.Name);
 

@@ -69,7 +69,7 @@
             var reviews = this.mapper.Map<MonumentReviewsViewModel>(monument);
             viewModel.Reviews = reviews;
 
-            var comments = this.monumentCommentsService.GetAllForMonument(monumentId)
+            var comments = this.monumentCommentsService.GetAllForMonumentOrderedByDateDescending(monumentId)
                 .To<MonumentCommentViewModel>()
                 .ToList();
             viewModel.Comments = comments;

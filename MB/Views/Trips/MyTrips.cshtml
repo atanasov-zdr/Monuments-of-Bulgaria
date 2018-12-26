@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MB.ViewModels.Trips.TripMyViewModel>;
+@{
+    ViewData["Title"] = "My Trips";
+}
+
+<h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+<div class="container mt-5">
+    <table id="myTripsTable" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Monument Name</th>
+                <th>Hotel Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var trip in Model)
+            {
+                <tr>
+                    <td>@trip.Name</td>
+                    <td>@trip.MonumentName</td>
+                    <td>@trip.HotelName</td>
+                    <td>
+                        <a asp-controller="Trips" asp-action="Details" asp-route-tripId="@trip.Id" class="btn btn-outline-dark">
+                            View Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section JavaScript {
+    <script src="~/js/myTrips.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+}

@@ -6,7 +6,7 @@
 
     public interface IMonumentCommentsService
     {
-        IQueryable<MonumentComment> GetAllForMonument(int monumentId);
+        IQueryable<MonumentComment> GetAllForMonumentOrderedByDateDescending(int monumentId);
 
         void Create(int monumentId, string content, string username);
 

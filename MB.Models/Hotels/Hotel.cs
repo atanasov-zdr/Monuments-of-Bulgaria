@@ -5,6 +5,7 @@
 
     using Base;
     using Oblasts;
+    using Trips;
 
     public class Hotel : BaseModel<int>
     {
@@ -12,6 +13,7 @@
         {
             this.HotelReviews = new HashSet<HotelReview>();
             this.HotelComments = new HashSet<HotelComment>();
+            this.Trips = new HashSet<Trip>();
         }
 
         public string Name { get; set; }
@@ -21,6 +23,8 @@
         public string Address { get; set; }
 
         public string Description { get; set; }
+
+        public string PhoneNumber { get; set; }
 
         public double OverallRating => this.HotelReviews.Any() ? this.HotelReviews.Average(x => (int)x.Rating) : 0;
 
@@ -34,5 +38,7 @@
         public virtual IEnumerable<HotelReview> HotelReviews { get; set; }
 
         public virtual IEnumerable<HotelComment> HotelComments { get; set; }
+
+        public virtual IEnumerable<Trip> Trips { get; set; }
     }
 }

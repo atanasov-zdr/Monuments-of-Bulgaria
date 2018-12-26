@@ -7,10 +7,12 @@
     using Models.Enums;
     using Models.Hotels;
     using Models.Monuments;
+    using Models.Trips;
     using ViewModels.Hotels;
     using ViewModels.Hotels.HotelReviews;
     using ViewModels.Monuments;
     using ViewModels.Monuments.MonumentReviews;
+    using ViewModels.Trips;
 
     public class MbProfiles : Profile
     {
@@ -87,6 +89,10 @@
                     opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.TravellerType == TravellerType.Business).Count()))
                 .ForMember(dest => dest.TravellerTypeFriends,
                     opts => opts.MapFrom(x => x.HotelReviews.Where(y => y.TravellerType == TravellerType.Friends).Count()));
+
+            base.CreateMap<TripCreateViewModel, Trip>()
+                .ForMember(dest => dest.HotelId, opts => opts.MapFrom(x => x.SelectedHotelId))
+                .ForMember(dest => dest.MonumentId, opts => opts.MapFrom(x => x.SelectedMonumentId));
         }
     }
 }
