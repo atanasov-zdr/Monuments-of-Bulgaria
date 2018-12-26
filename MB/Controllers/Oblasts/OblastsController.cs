@@ -24,6 +24,7 @@
                 .GetAllOrderedByName()
                 .To<OblastAllViewModel>()
                 .ToList();
+
             return base.View(viewModel);
         }
     }

@@ -1,6 +1,5 @@
 ﻿namespace MB.Controllers.Hotels
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -22,6 +21,7 @@
         private readonly IHotelsService hotelsService;
         private readonly IHotelCommentsService hotelCommentsService;
         private readonly IMapper mapper;
+        private const int PageSize = 12;
 
         public HotelsController(IHotelsService hotelsService, IHotelCommentsService hotelCommentsService, IMapper mapper)
         {
@@ -36,9 +36,8 @@
                 .GetAllOrderedByName()
                 .To<HotelAllViewModel>()
                 .ToList();
-
-            int pageSize = 12;
-            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, pageSize, page);
+            
+            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, PageSize, page);
             return View(viewModel);
         }
 
@@ -48,19 +47,15 @@
                 .GetAllForOblastOrderedByName(oblastId)
                 .To<HotelAllViewModel>()
                 .ToList();
-
-            int pageSize = 12;
-            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, pageSize, page);
+            
+            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, PageSize, page);
             return base.View(viewModel);
         }
 
         public IActionResult Details(int hotelId)
         {
             Hotel hotel = this.hotelsService.GetById(hotelId);
-
-            if (hotel == null)
-                throw new ArgumentNullException(nameof(hotel));
-
+            
             var viewModel = this.mapper.Map<HotelDetailsViewModel>(hotel);
 
             var reviews = this.mapper.Map<HotelReviewsViewModel>(hotel);

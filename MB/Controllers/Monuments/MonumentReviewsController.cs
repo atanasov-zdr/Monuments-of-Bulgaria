@@ -7,6 +7,7 @@
     using ViewModels.Monuments.MonumentReviews;
     using Services.Contracts.Monuments;
     
+    [Authorize]
     public class MonumentReviewsController : Controller
     {
         private readonly IMonumentReviewsService monumentReviewsService;
@@ -15,8 +16,7 @@
         {
             this.monumentReviewsService = monumentReviewsService;
         }
-
-        [Authorize]
+        
         public IActionResult Write(int monumentId)
         {
             if (this.monumentReviewsService.CheckForExistingReview(monumentId, this.User.Identity.Name))
@@ -31,14 +31,12 @@
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult Write(MonumentReviewWriteViewModel model)
         {
             if (!ModelState.IsValid)
-                return base.RedirectToAction("Write", "MonumentReviews", new { model.MonumentId });
+                return this.Write(model.MonumentId);
 
             this.monumentReviewsService.Create(model, this.User.Identity.Name);
-
             return base.RedirectToAction("Details", "Monuments", new { model.MonumentId });
         }
     }

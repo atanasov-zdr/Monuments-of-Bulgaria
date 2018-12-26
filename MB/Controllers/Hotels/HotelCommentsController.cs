@@ -6,6 +6,7 @@
     using Common;
     using Services.Contracts.Hotels;
     
+    [Authorize]
     public class HotelCommentsController : Controller
     {
         private readonly IHotelCommentsService hotelCommentsService;
@@ -16,7 +17,6 @@
         }
         
         [HttpPost]
-        [Authorize]
         public IActionResult Write(int hotelId, string content)
         {
             if (string.IsNullOrWhiteSpace(content))
@@ -26,11 +26,9 @@
             }
 
             this.hotelCommentsService.Create(hotelId, content, this.User.Identity.Name);
-
             return base.RedirectToAction("Details", "Hotels", new { hotelId });
         }
-
-        [Authorize]
+        
         public IActionResult Like(int hotelId, int commentId)
         {
             if (this.hotelCommentsService.CheckForExistingLike(commentId, this.User.Identity.Name))

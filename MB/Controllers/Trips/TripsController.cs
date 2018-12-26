@@ -55,7 +55,6 @@
                 return this.Create();
             
             this.tripsService.Create(model, this.User.Identity.Name);
-
             return base.RedirectToAction("MyTrips", "Trips");
         }
         

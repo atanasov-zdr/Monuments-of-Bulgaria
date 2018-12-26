@@ -1,5 +1,6 @@
 ﻿namespace MB.Services.Monuments
 {
+    using System;
     using System.Linq;
 
     using Contracts.Monuments;
@@ -27,7 +28,12 @@
 
         public Monument GetById(int monumentId)
         {
-            return this.dbContext.Monuments.FirstOrDefault(x => x.Id == monumentId);
+            Monument monument = this.dbContext.Monuments.FirstOrDefault(x => x.Id == monumentId);
+
+            if (monument == null)
+                throw new ArgumentNullException(nameof(monument));
+
+            return monument;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace MB.Controllers.Monuments
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -22,6 +21,7 @@
         private readonly IMonumentsService monumentsService;
         private readonly IMonumentCommentsService monumentCommentsService;
         private readonly IMapper mapper;
+        private const int PageSize = 12;
 
         public MonumentsController(
             IMonumentsService monumentsService, 
@@ -39,9 +39,8 @@
                 .GetAllOrderedByName()
                 .To<MonumentAllViewModel>()
                 .ToList();
-
-            int pageSize = 12;
-            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, pageSize, page);
+            
+            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, PageSize, page);
             return View(viewModel);         
         }
 
@@ -53,16 +52,13 @@
                 .ToList();
 
             int pageSize = 12;
-            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, pageSize, page);
+            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, PageSize, page);
             return base.View(viewModel);
         }        
 
         public IActionResult Details(int monumentId)
         {
             Monument monument = this.monumentsService.GetById(monumentId);
-
-            if (monument == null)
-                throw new ArgumentNullException(nameof(monument));
 
             var viewModel = this.mapper.Map<MonumentDetailsViewModel>(monument);
 

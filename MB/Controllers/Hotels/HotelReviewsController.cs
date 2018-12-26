@@ -7,6 +7,7 @@
     using ViewModels.Hotels.HotelReviews;
     using Services.Contracts.Hotels;
     
+    [Authorize]
     public class HotelReviewsController : Controller
     {
         private readonly IHotelReviewsService hotelReviewsService;
@@ -15,8 +16,7 @@
         {
             this.hotelReviewsService = hotelReviewsService;
         }
-
-        [Authorize]
+        
         public IActionResult Write(int hotelId)
         {
             if (this.hotelReviewsService.CheckForExistingReview(hotelId, this.User.Identity.Name))
@@ -31,11 +31,10 @@
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult Write(HotelReviewWriteViewModel model)
         {
             if (!ModelState.IsValid)
-                return base.RedirectToAction("Write", "HotelReviews", new { model.HotelId });
+                return this.Write(model.HotelId);
 
             this.hotelReviewsService.Create(model, this.User.Identity.Name);
 

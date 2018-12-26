@@ -1,5 +1,6 @@
 ﻿namespace MB.Services.Hotels
 {
+    using System;
     using System.Linq;
 
     using Contracts.Hotels;
@@ -27,7 +28,12 @@
 
         public Hotel GetById(int hotelId)
         {
-            return this.dbContext.Hotels.FirstOrDefault(x => x.Id == hotelId);
+            Hotel hotel = this.dbContext.Hotels.FirstOrDefault(x => x.Id == hotelId);
+
+            if (hotel == null)
+                throw new ArgumentNullException(nameof(hotel));
+
+            return hotel;
         }
     }
 }
