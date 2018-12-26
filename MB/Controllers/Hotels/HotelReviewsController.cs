@@ -2,7 +2,8 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    
+
+    using Common;
     using ViewModels.Hotels.HotelReviews;
     using Services.Contracts.Hotels;
     
@@ -19,7 +20,10 @@
         public IActionResult Write(int hotelId)
         {
             if (this.hotelReviewsService.CheckForExistingReview(hotelId, this.User.Identity.Name))
-                return this.RedirectToAction("Details", "Hotels", new { hotelId });
+            {
+                string errorMsg = "You already write a review for this hotel!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
 
             string hotelName = this.hotelReviewsService.GetNameById(hotelId);
             var viewModel = new HotelReviewWriteViewModel { HotelId = hotelId, HotelName = hotelName };

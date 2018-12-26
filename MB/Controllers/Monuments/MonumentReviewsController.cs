@@ -2,7 +2,8 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    
+
+    using Common;
     using ViewModels.Monuments.MonumentReviews;
     using Services.Contracts.Monuments;
     
@@ -18,8 +19,11 @@
         [Authorize]
         public IActionResult Write(int monumentId)
         {
-            //if (this.monumentReviewsService.CheckForExistingReview(monumentId, this.User.Identity.Name))
-            //    return this.RedirectToAction("Details", "Monuments", new { monumentId });
+            if (this.monumentReviewsService.CheckForExistingReview(monumentId, this.User.Identity.Name))
+            {
+                string errorMsg = "You already write a review for this monument!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
 
             string monumentName = this.monumentReviewsService.GetNameById(monumentId);
             var viewModel = new MonumentReviewWriteViewModel { MonumentId = monumentId, MonumentName = monumentName };

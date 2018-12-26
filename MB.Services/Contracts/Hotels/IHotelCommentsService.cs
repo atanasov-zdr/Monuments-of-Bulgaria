@@ -11,5 +11,7 @@
         void Create(int hotelId, string content, string username);
 
         void Like(int commentId, string username);
+
+        bool CheckForExistingLike(int commentId, string username);
     }
 }

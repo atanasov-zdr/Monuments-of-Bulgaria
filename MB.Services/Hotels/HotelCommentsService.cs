@@ -61,5 +61,16 @@
             this.dbContext.HotelCommentLikes.Add(like);
             this.dbContext.SaveChanges();
         }
+
+        public bool CheckForExistingLike(int commentId, string username)
+        {
+            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            bool result = this.dbContext.HotelComments.Any(x => x.Id == commentId && x.User == user);
+            return result;
+        }
     }
 }
