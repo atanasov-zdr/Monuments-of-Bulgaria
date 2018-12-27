@@ -50,8 +50,7 @@
                 .GetAllForOblastOrderedByName(oblastId)
                 .To<MonumentAllViewModel>()
                 .ToList();
-
-            int pageSize = 12;
+            
             IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, PageSize, page);
             return base.View(viewModel);
         }        

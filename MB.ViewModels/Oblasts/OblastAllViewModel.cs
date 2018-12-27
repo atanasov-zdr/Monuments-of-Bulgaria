@@ -1,6 +1,9 @@
 ﻿namespace MB.ViewModels.Oblasts
 {
-    public class OblastAllViewModel
+    using Mapping.Contracts;
+    using Models.Oblasts;
+
+    public class OblastAllViewModel : IMapFrom<Oblast>
     {
         public int Id { get; set; }
 

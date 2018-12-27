@@ -12,5 +12,11 @@
         IQueryable<Trip> GetAllForUser(string username);
 
         Trip GetById(int tripId);
+
+        bool CheckForTripOwn(int tripId, string username);
+
+        void Delete(int tripId);
+
+        void Update(TripEditViewModel model);
     }
 }

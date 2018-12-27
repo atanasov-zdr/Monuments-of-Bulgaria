@@ -1,9 +1,11 @@
 ﻿@model MB.ViewModels.Hotels.HotelDetailsViewModel
+@using MB.Models.Enums;
 @{ 
     ViewData["Title"] = Model.Name;
 }
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
+<p class="text-center">Phone Number: @Model.PhoneNumber</p>
 
 <section class="d-flex justify-content-around text-dark mt-5">
     <section class="col-lg-5 bg-light p-4">

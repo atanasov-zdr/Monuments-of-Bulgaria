@@ -291,6 +291,8 @@ namespace MB.Data.Migrations
 
                     b.Property<int>("HotelId");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<int>("MonumentId");
 
                     b.Property<string>("Name");

@@ -62,6 +62,7 @@
 
             dbContext.SaveChanges();
         }
+
         private static void SeedMonuments(MbDbContext dbContext)
         {
             if (dbContext.Monuments.Any())

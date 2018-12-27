@@ -12,6 +12,11 @@
             base.CreateMap<TripCreateViewModel, Trip>()
                 .ForMember(dest => dest.HotelId, opts => opts.MapFrom(x => x.SelectedHotelId))
                 .ForMember(dest => dest.MonumentId, opts => opts.MapFrom(x => x.SelectedMonumentId));
+
+            base.CreateMap<Trip, TripEditViewModel>()
+                .ForMember(dest => dest.SelectedHotelId, opts => opts.MapFrom(x => x.HotelId))
+                .ForMember(dest => dest.SelectedMonumentId, opts => opts.MapFrom(x => x.MonumentId))
+                .ReverseMap();
         }
     }
 }

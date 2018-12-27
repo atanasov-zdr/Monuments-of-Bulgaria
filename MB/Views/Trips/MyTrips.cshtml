@@ -12,7 +12,7 @@
                 <th>Name</th>
                 <th>Monument Name</th>
                 <th>Hotel Name</th>
-                <th>Actions</th>
+                <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,9 +22,16 @@
                     <td>@trip.Name</td>
                     <td>@trip.MonumentName</td>
                     <td>@trip.HotelName</td>
-                    <td>
+                    <td class="d-flex justify-content-around">
                         <a asp-controller="Trips" asp-action="Details" asp-route-tripId="@trip.Id" class="btn btn-outline-dark">
                             View Details
+                        </a>
+                        <a asp-controller="Trips" asp-action="Edit" asp-route-tripId="@trip.Id" class="btn btn-outline-dark">
+                            Edit
+                        </a>
+                        <a asp-controller="Trips" asp-action="Delete" asp-route-tripId="@trip.Id" class="btn btn-outline-danger"
+                            onclick="throwAlert(event)">
+                            Delete
                         </a>
                     </td>
                 </tr>
@@ -34,6 +41,7 @@
 </div>
 
 @section JavaScript {
+    <script src="~/js/alert.js"></script>
     <script src="~/js/myTrips.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 }

@@ -44,17 +44,48 @@
 
         public IQueryable<Trip> GetAllForUser(string username)
         {
-            return this.dbContext.Trips.Where(x => x.User.UserName == username);
+            return this.dbContext.Trips.Where(x => x.User.UserName == username).Where(x => x.IsDeleted == false);
         }
 
         public Trip GetById(int tripId)
         {
             Trip trip = this.dbContext.Trips.FirstOrDefault(x => x.Id == tripId);
 
+            if (trip.IsDeleted == true)
+                trip = null;
+
             if (trip == null)
                 throw new ArgumentNullException(nameof(trip));
 
             return trip;
+        }
+
+        public bool CheckForTripOwn(int tripId, string username)
+        {
+            Trip trip = this.GetById(tripId);
+            bool result = trip.User.UserName == username;
+            return result;
+        }
+
+        public void Delete(int tripId)
+        {
+            Trip trip = this.GetById(tripId);
+            trip.IsDeleted = true;
+            this.dbContext.SaveChanges();
+        }
+
+        public void Update(TripEditViewModel model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            Trip trip = this.GetById(model.Id);
+            trip.Name = model.Name;
+            trip.Description = model.Description;
+            trip.MonumentId = model.SelectedMonumentId;
+            trip.HotelId = model.SelectedHotelId;
+
+            this.dbContext.SaveChanges();
         }
     }
 }

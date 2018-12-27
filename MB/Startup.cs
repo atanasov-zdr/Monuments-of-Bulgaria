@@ -26,6 +26,8 @@
     using Services.Oblasts;
     using Services.Trips;
     using Utilities;
+    using ViewModels.Hotels;
+    using ViewModels.Hotels.HotelComments;
     using ViewModels.Monuments;
     using ViewModels.Monuments.MonumentComments;
     using ViewModels.Oblasts;
@@ -81,15 +83,13 @@
                 typeof(OblastSeedViewModel).Assembly,
                 typeof(MonumentAllViewModel).Assembly,
                 typeof(MonumentCommentViewModel).Assembly,
+                typeof(HotelAllViewModel).Assembly,
+                typeof(HotelCommentViewModel).Assembly,
                 typeof(TripMyViewModel).Assembly);
             
             services.AddPaging(opt => opt.ViewName = "Pager");
 
             services.AddScoped<UserStore<MbUser>>();
-            //services.AddScoped<RoleManager<IdentityRole>>();
-            //services.AddScoped<IRoleStore<IdentityRole>, RoleStore<IdentityRole>>();
-            //services.AddScoped<SignInManager<MbUser>>();
-            //services.AddScoped<UserManager<MbUser>>();
 
             services.AddScoped<IOblastsService, OblastsService>();
             services.AddScoped<IMonumentsService, MonumentsService>();

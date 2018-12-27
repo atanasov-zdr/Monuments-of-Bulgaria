@@ -4,6 +4,13 @@
 }
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
+<section class="d-flex justify-content-center mt-3">
+    <a asp-controller="Trips" asp-action="Edit" asp-route-tripId="@Model.Id" class="btn btn-outline-dark mr-5">Edit</a>
+    <a asp-controller="Trips" asp-action="Delete" asp-route-tripId="@Model.Id" class="btn btn-outline-danger" 
+        onclick="throwAlert(event)">
+        Delete
+    </a>
+</section>
 
 <section class="d-flex justify-content-around text-dark mt-5">
     <section class="col-lg-5 bg-light p-4">
@@ -36,27 +43,31 @@
     <div class="row d-flex justify-content-around mb-5 mt-5">
         <section class="col-2 border border-dark rounded-top p-0">
             <h3 class="text-center">Monument:</h3>
-            <h4 class="pt-2">@Model.MonumentName</h4>
+            <h4>@Model.MonumentName</h4>
             <hr class="bg-dark mt-0" />
             <img src="~/img/bg-masthead.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
             <p class="pt-3">
                 Oblast: <a asp-controller="Monuments" asp-action="AllForOblast"
                            asp-route-oblastId="@Model.MonumentOblastId">@Model.MonumentOblastName</a>
-            </p>
-            <a asp-controller="Monuments" asp-action="Details" asp-route-monumentId="@Model.MonumentId"
-               class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
-        </section>
-        <section class="col-2 border border-dark rounded-top p-0">
-            <h3 class="text-center">Hotel:</h3>
-            <h4 class="pt-2">@Model.HotelName</h4>
-            <hr class="bg-dark mt-0" />
-            <img src="~/img/hotel.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
-            <p class="pt-3">
-                Oblast: <a asp-controller="Hotels" asp-action="AllForOblast"
-                           asp-route-oblastId="@Model.HotelOblastId">@Model.HotelOblastName</a>
-            </p>
-            <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@Model.HotelId"
-               class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
-        </section>
-    </div>
-</section>
+                    </p>
+                    <a asp-controller="Monuments" asp-action="Details" asp-route-monumentId="@Model.MonumentId"
+                       class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
+                </section>
+                <section class="col-2 border border-dark rounded-top p-0">
+                    <h3 class="text-center">Hotel:</h3>
+                    <h4>@Model.HotelName</h4>
+                    <hr class="bg-dark mt-0" />
+                    <img src="~/img/hotel.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
+                    <p class="pt-3">
+                        Oblast: <a asp-controller="Hotels" asp-action="AllForOblast"
+                                   asp-route-oblastId="@Model.HotelOblastId">@Model.HotelOblastName</a>
+                            </p>
+                            <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@Model.HotelId"
+                               class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
+                        </section>
+                    </div>
+                </section>
+
+                @section JavaScript {
+                    <script src="~/js/alert.js"></script>
+                }

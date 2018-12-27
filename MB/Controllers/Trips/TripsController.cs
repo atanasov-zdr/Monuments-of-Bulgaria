@@ -8,6 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
+    using Common;
     using Mapping;
     using Models.Trips;
     using Services.Contracts.Hotels;
@@ -52,7 +53,7 @@
         public IActionResult Create(TripCreateViewModel model)
         {
             if (!this.ModelState.IsValid)
-                return this.Create();
+                return base.View(model);
             
             this.tripsService.Create(model, this.User.Identity.Name);
             return base.RedirectToAction("MyTrips", "Trips");
@@ -69,9 +70,69 @@
         
         public IActionResult Details(int tripId)
         {
+            if (!this.tripsService.CheckForTripOwn(tripId, this.User.Identity.Name))
+            {
+                string errorMsg = $"Trip with id {tripId} is not your trip!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
+
             Trip trip = this.tripsService.GetById(tripId);
             var model = this.mapper.Map<TripDetailsViewModel>(trip);
             return base.View(model);
+        }
+
+        public IActionResult Edit(int tripId)
+        {
+            if (!this.tripsService.CheckForTripOwn(tripId, this.User.Identity.Name))
+            {
+                string errorMsg = $"Trip with id {tripId} is not your trip!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
+
+            Trip trip = this.tripsService.GetById(tripId);
+            var viewModel = this.mapper.Map<TripEditViewModel>(trip);
+
+            var hotels = this.hotelsService.GetAllOrderedByName()
+                .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
+                .ToList();
+
+            viewModel.Hotels = hotels;
+            var monuments = this.monumentsService.GetAllOrderedByName()
+                .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
+                .ToList();
+            viewModel.Monuments = monuments;
+
+            return base.View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(TripEditViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+                return base.RedirectToAction("Edit", new { tripId = model.Id });
+            
+            if (!this.tripsService.CheckForTripOwn(model.Id, this.User.Identity.Name))
+            {
+                string errorMsg = $"Trip with id {model.Id} is not your trip!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
+
+            this.tripsService.Update(model);
+
+            return base.RedirectToAction("Details", new { tripId = model.Id });
+        }
+
+        public IActionResult Delete(int tripId)
+        {
+            if (!this.tripsService.CheckForTripOwn(tripId, this.User.Identity.Name))
+            {
+                string errorMsg = $"Trip with id {tripId} is not your trip!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
+
+            this.tripsService.Delete(tripId);
+
+            return base.RedirectToAction("MyTrips");
         }
     }
 }

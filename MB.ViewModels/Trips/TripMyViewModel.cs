@@ -1,6 +1,9 @@
 ﻿namespace MB.ViewModels.Trips
 {
-    public class TripMyViewModel
+    using Mapping.Contracts;
+    using Models.Trips;
+
+    public class TripMyViewModel : IMapFrom<Trip>
     {
         public int Id { get; set; }
 

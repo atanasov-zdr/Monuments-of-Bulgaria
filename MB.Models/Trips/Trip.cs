@@ -9,7 +9,9 @@
         public string Name { get; set; }
 
         public string Description { get; set; }
-        
+
+        public bool IsDeleted { get; set; }
+
         public string UserId { get; set; }
         public virtual MbUser User { get; set; }
 
