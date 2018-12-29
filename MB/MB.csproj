@@ -1479,6 +1479,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="ReflectionIT.Mvc.Paging" Version="3.3.0" />
@@ -1493,18 +1494,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Shared\Components\Pager\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Hotels\Add.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Hotels\All.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Hotels\AllForOblast.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Monuments\Add.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Monuments\All.cshtml">

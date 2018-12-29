@@ -13,6 +13,9 @@
     {
         public HotelsProfile()
         {
+            base.CreateMap<HotelAddViewModel, Hotel>()
+                .ForMember(dest => dest.OblastId, opts => opts.MapFrom(x => x.SelectedOblastId));
+
             base.CreateMap<Hotel, HotelDetailsViewModel>()
                 .ForMember(dest => dest.Comments, opts => opts.Ignore());
 

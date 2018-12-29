@@ -8,6 +8,8 @@
 
         public string Description { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public int MonumentId { get; set; }
 
         public string MonumentName { get; set; }

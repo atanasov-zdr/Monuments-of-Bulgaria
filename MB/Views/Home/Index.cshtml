@@ -42,6 +42,21 @@
                         <a asp-controller="Trips" asp-action="Create" class="nav-link">Create Trip</a>
                     </li>
                 }
+                @if (this.User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
+                {
+                    <li>
+                        <div class="dropdown show">
+                            <a class="nav-link dropdown-toggle" role="button" id="administration" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                Administration
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="administration">
+                                <a asp-controller="Monuments" asp-action="Add" class="dropdown-item">Add Monument</a>
+                                <a asp-controller="Hotels" asp-action="Add" class="dropdown-item">Add Hotel</a>
+                            </div>
+                        </div>
+                    </li>
+                }
             </ul>
         </div>
     </nav>

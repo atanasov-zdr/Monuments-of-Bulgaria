@@ -13,6 +13,8 @@
         
         public string Description { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public double OverallRating { get; set; }
 
         public int ReviewsCount { get; set; }

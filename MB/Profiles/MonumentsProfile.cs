@@ -13,6 +13,9 @@
     {
         public MonumentsProfile()
         {
+            base.CreateMap<MonumentAddViewModel, Monument>()
+                .ForMember(dest => dest.OblastId, opts => opts.MapFrom(x => x.SelectedOblastId));
+
             base.CreateMap<Monument, MonumentDetailsViewModel>()
                 .ForMember(dest => dest.Comments, opts => opts.Ignore());
 

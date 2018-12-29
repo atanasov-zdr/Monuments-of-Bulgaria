@@ -1,0 +1,60 @@
+﻿@model MB.ViewModels.Hotels.HotelAddViewModel
+@{ ViewData["Title"] = "Add Hotel"; }
+
+<h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+<div class="mt-4 mb-5 d-flex justify-content-center">
+    <form asp-controller="Hotels" asp-action="Add" method="post" class="col-6 text-dark" enctype="multipart/form-data">
+        <div class="d-flex justify-content-between">
+            <div class="form-group col-5 p-0">
+                <label asp-for="@Model.Name"></label>
+                <input asp-for="@Model.Name" class="form-control" placeholder="Name..." />
+                <span asp-validation-for="@Model.Name" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group col-5 p-0">
+                <label asp-for="@Model.Stars"></label>
+                <input asp-for="@Model.Stars" min="1" max="5" step="1" class="form-control" placeholder="1 to 5..." />
+                <span asp-validation-for="@Model.Stars" class="text-danger font-weight-bold"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Description"></label>
+            <textarea asp-for="@Model.Description" rows="2" class="form-control" placeholder="Description..."></textarea>
+            <span asp-validation-for="@Model.Description" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="form-group col-5 p-0">
+                <label asp-for="@Model.Address"></label>
+                <input asp-for="@Model.Address" class="form-control" placeholder="Address..." />
+                <span asp-validation-for="@Model.Address" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group col-5 p-0">
+                <label asp-for="@Model.PhoneNumber"></label>
+                <input asp-for="@Model.PhoneNumber" class="form-control" placeholder="Phone number..." />
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger font-weight-bold"></span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="col-5 p-0">
+                <label asp-for="@Model.SelectedOblastId"></label>
+                <select class="form-control single-select" asp-for="@Model.SelectedOblastId"
+                        asp-items="@Model.Oblasts">
+                    <option disabled selected>Choose oblast</option>
+                </select>
+                <span asp-validation-for="@Model.SelectedOblastId" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="@Model.Photo">Upload Photo</label>
+                <input asp-for="@Model.Photo" type="file" class="form-control-file" />
+                <span asp-validation-for="@Model.Photo" class="text-danger font-weight-bold"></span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-dark">@ViewData["Title"]</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

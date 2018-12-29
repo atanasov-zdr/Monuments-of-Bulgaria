@@ -2,7 +2,8 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class TripCreateViewModel
@@ -21,5 +22,8 @@
         [Display(Name = "Hotels")]
         public int SelectedHotelId { get; set; }
         public IEnumerable<SelectListItem> Hotels { get; set; }
+
+        [Required]
+        public IFormFile Photo { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace MB.Controllers.Trips
 {
+    using System.IO;
     using System.Linq;
 
     using AutoMapper;

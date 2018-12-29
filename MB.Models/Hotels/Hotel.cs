@@ -26,6 +26,8 @@
 
         public string PhoneNumber { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public double OverallRating => this.HotelReviews.Any() ? this.HotelReviews.Average(x => (int)x.Rating) : 0;
 
         public int ReviewsCount => this.HotelReviews.Count();

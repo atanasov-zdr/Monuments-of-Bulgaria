@@ -3,6 +3,7 @@
     using System.Linq;
 
     using Models.Monuments;
+    using ViewModels.Monuments;
 
     public interface IMonumentsService
     {
@@ -11,5 +12,7 @@
         IQueryable<Monument> GetAllForOblastOrderedByName(int oblastId);
 
         Monument GetById(int monumentId);
+
+        int Add(MonumentAddViewModel model);
     }
 }

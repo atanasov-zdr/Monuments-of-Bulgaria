@@ -20,6 +20,8 @@
 
         public string  Description { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public double OverallRating => this.MonumentReviews.Any() ? this.MonumentReviews.Average(x => (int)x.Rating) : 0;
 
         public int ReviewsCount => this.MonumentReviews.Count();

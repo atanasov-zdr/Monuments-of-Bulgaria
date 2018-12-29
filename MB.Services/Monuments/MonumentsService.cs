@@ -3,17 +3,22 @@
     using System;
     using System.Linq;
 
+    using AutoMapper;
+
     using Contracts.Monuments;
     using Data;
     using Models.Monuments;
+    using ViewModels.Monuments;
 
     public class MonumentsService : IMonumentsService
     {
         private readonly MbDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public MonumentsService(MbDbContext dbContext)
+        public MonumentsService(MbDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public IQueryable<Monument> GetAllOrderedByName()
@@ -34,6 +39,19 @@
                 throw new ArgumentNullException(nameof(monument));
 
             return monument;
+        }
+
+        public int Add(MonumentAddViewModel model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            Monument monument = this.mapper.Map<Monument>(model);
+
+            this.dbContext.Monuments.Add(monument);
+            this.dbContext.SaveChanges();
+
+            return monument.Id;
         }
     }
 }

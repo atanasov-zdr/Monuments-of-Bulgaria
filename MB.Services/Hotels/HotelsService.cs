@@ -3,17 +3,22 @@
     using System;
     using System.Linq;
 
+    using AutoMapper;
+
     using Contracts.Hotels;
     using Data;
     using Models.Hotels;
+    using ViewModels.Hotels;
 
     public class HotelsService : IHotelsService
     {
         private readonly MbDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public HotelsService(MbDbContext dbContext)
+        public HotelsService(MbDbContext dbContext, IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public IQueryable<Hotel> GetAllOrderedByName()
@@ -34,6 +39,19 @@
                 throw new ArgumentNullException(nameof(hotel));
 
             return hotel;
+        }
+
+        public int Add(HotelAddViewModel model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            Hotel hotel = this.mapper.Map<Hotel>(model);
+
+            this.dbContext.Hotels.Add(hotel);
+            this.dbContext.SaveChanges();
+
+            return hotel.Id;
         }
     }
 }

@@ -29,6 +29,8 @@ namespace MB.Data.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("ImageUrl");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("OblastId");
@@ -178,6 +180,8 @@ namespace MB.Data.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("ImageUrl");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("OblastId");
@@ -290,6 +294,8 @@ namespace MB.Data.Migrations
                     b.Property<string>("Description");
 
                     b.Property<int>("HotelId");
+
+                    b.Property<string>("ImageUrl");
 
                     b.Property<bool>("IsDeleted");
 

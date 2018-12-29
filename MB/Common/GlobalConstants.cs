@@ -4,6 +4,8 @@
     {
         public static string[] Roles = { "Administrator", "User" };
 
+        public const string AdminRoleName = "Administrator";
+
         public const string OblastsInfoViewPath = "wwwroot/json/oblastsInfo.json";
 
         public const string ErrorViewName = "Error";
