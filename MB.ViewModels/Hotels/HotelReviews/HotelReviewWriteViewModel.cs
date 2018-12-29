@@ -14,9 +14,11 @@
         public Rating? Rating { get; set; }
 
         [Required]
+        [Display(Name = "Time of Year")]
         public Season? TimeOfYear { get; set; }
 
         [Required]
+        [Display(Name = "Traveller Type")]
         public TravellerType? TravellerType { get; set; }
     }
 }

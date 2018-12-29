@@ -108,5 +108,38 @@
 
             return base.RedirectToAction("Details", new { monumentId });
         }
+
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
+        public IActionResult Edit(int monumentId)
+        {
+            Monument monument = this.monumentsService.GetById(monumentId);
+            var viewModel = this.mapper.Map<MonumentEditViewModel>(monument);
+
+            var oblasts = this.oblastsService.GetAllOrderedByName()
+                .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
+                .ToList();
+            viewModel.Oblasts = oblasts;
+
+            return base.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
+        public IActionResult Edit(MonumentEditViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+                return base.RedirectToAction("Edit", new { monumentId = model.Id });
+            
+            this.monumentsService.Update(model);
+
+            return base.RedirectToAction("Details", new { monumentId = model.Id });
+        }
+
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
+        public IActionResult Delete(int monumentId)
+        {
+            this.monumentsService.Delete(monumentId);
+            return base.RedirectToAction("All");
+        }
     }
 }

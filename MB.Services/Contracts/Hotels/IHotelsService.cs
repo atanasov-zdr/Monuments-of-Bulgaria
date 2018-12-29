@@ -14,5 +14,9 @@
         Hotel GetById(int hotelId);
 
         int Add(HotelAddViewModel model);
+
+        void Delete(int hotelId);
+
+        void Update(HotelEditViewModel model);
     }
 }

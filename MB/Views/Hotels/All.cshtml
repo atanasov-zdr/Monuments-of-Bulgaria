@@ -23,17 +23,26 @@
                         <hr class="bg-dark mt-0" />
                         <img src="~/img/hotel.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
                         <p class="pt-3">
-                            Oblast: <a asp-controller="Hotels" asp-action="AllForOblast" 
-                                asp-route-oblastId="@hotel.OblastId">@hotel.OblastName</a>
-                        </p>
-                        <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@hotel.Id" 
-                            class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
-                    </section>
-                }
-                else
-                {
-                    <section class="col-2"></section>
-                }
+                            Oblast: <a asp-controller="Hotels" asp-action="AllForOblast"
+                                       asp-route-oblastId="@hotel.OblastId">@hotel.OblastName</a>
+                                </p>
+                                <a asp-controller="Hotels" asp-action="Details" asp-route-hotelId="@hotel.Id"
+                                   class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
+                                @if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
+                                {
+                                    <div class="d-flex justify-content-around mb-3 mt-3">
+                                        <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@hotel.Id" 
+                                            class="btn btn-outline-dark">Edit</a>
+                                        <a asp-controller="Hotels" asp-action="Delete" asp-route-hotelId="@hotel.Id" 
+                                            class="btn btn-outline-danger" onclick="throwAlert(event, 'hotel')">Delete</a>
+                                    </div>
+                                }
+                            </section>
+                        }
+                        else
+                        {
+                            <section class="col-2"></section>
+                        }
             }
         </div>
     }
@@ -42,3 +51,7 @@
 <nav class="pager">
     <vc:pager paging-list="@Model" />
 </nav>
+
+@section Scripts {
+    <script src="~/js/alert.js"></script>
+}

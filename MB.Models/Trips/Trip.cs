@@ -10,9 +10,9 @@
 
         public string Description { get; set; }
 
-        public bool IsDeleted { get; set; }
-        
         public string ImageUrl { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public string UserId { get; set; }
         public virtual MbUser User { get; set; }

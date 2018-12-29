@@ -51,10 +51,10 @@
         {
             Trip trip = this.dbContext.Trips.FirstOrDefault(x => x.Id == tripId);
 
-            if (trip.IsDeleted == true)
-                trip = null;
-
             if (trip == null)
+                throw new ArgumentNullException(nameof(trip));
+
+            if (trip.IsDeleted == true)
                 throw new ArgumentNullException(nameof(trip));
 
             return trip;

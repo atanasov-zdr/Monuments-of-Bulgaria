@@ -108,5 +108,38 @@
 
             return base.RedirectToAction("Details", new { hotelId } );
         }
+
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
+        public IActionResult Edit(int hotelId)
+        {
+            Hotel hotel = this.hotelsService.GetById(hotelId);
+            var viewModel = this.mapper.Map<HotelEditViewModel>(hotel);
+
+            var oblasts = this.oblastsService.GetAllOrderedByName()
+                .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
+                .ToList();
+            viewModel.Oblasts = oblasts;
+
+            return base.View(viewModel);           
+        }
+
+        [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
+        public IActionResult Edit(HotelEditViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+                return base.RedirectToAction("Edit", new { hotelId = model.Id });
+            
+            this.hotelsService.Update(model);
+
+            return base.RedirectToAction("Details", new { hotelId = model.Id });
+        }
+
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
+        public IActionResult Delete(int hotelId)
+        {
+            this.hotelsService.Delete(hotelId);
+            return base.RedirectToAction("All");
+        }
     }
 }

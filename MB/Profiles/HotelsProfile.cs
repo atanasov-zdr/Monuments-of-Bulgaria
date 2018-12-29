@@ -13,6 +13,10 @@
     {
         public HotelsProfile()
         {
+            base.CreateMap<Hotel, HotelEditViewModel>()
+                .ForMember(dest => dest.SelectedOblastId, opts => opts.MapFrom(x => x.OblastId))
+                .ReverseMap();
+
             base.CreateMap<HotelAddViewModel, Hotel>()
                 .ForMember(dest => dest.OblastId, opts => opts.MapFrom(x => x.SelectedOblastId));
 

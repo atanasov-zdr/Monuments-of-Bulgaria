@@ -1,9 +1,20 @@
 ﻿@model MB.ViewModels.Monuments.MonumentDetailsViewModel
-@{ 
+@{
     ViewData["Title"] = Model.Name;
 }
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+@if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
+{
+    <section class="d-flex justify-content-center mt-3">
+        <a asp-controller="Monuments" asp-action="Edit" asp-route-monumentId="@Model.Id" class="btn btn-outline-dark mr-5">Edit</a>
+        <a asp-controller="Monuments" asp-action="Delete" asp-route-monumentId="@Model.Id" class="btn btn-outline-danger"
+           onclick="throwAlert(event, 'monument')">
+            Delete
+        </a>
+    </section>
+}
 
 <section class="d-flex justify-content-around text-dark mt-5">
     <section class="col-lg-5 bg-light p-4">
@@ -189,3 +200,7 @@
         </div>
     }
 </section>
+
+@section Scripts {
+    <script src="~/js/alert.js"></script>
+}

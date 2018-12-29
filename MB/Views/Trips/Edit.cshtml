@@ -19,14 +19,12 @@
         <div class="d-flex justify-content-between">
             <div class="col-5 p-0">
                 <label asp-for="@Model.SelectedMonumentId"></label>
-                <select class="form-control single-select" asp-for="@Model.SelectedMonumentId" asp-items="@Model.Monuments">
-                </select>
+                <select class="form-control single-select" asp-for="@Model.SelectedMonumentId" asp-items="@Model.Monuments"></select>
                 <span asp-validation-for="@Model.SelectedMonumentId" class="text-danger"></span>
             </div>
             <div class="col-5 p-0">
                 <label asp-for="@Model.SelectedHotelId"></label>
-                <select class="form-control single-select" asp-for="@Model.SelectedHotelId" asp-items="@Model.Hotels">
-                </select>
+                <select class="form-control single-select" asp-for="@Model.SelectedHotelId" asp-items="@Model.Hotels"></select>
                 <span asp-validation-for="@Model.SelectedHotelId" class="text-danger"></span>
             </div>
         </div>
@@ -37,9 +35,6 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-@section JavaScript {
+    <partial name="_ValidationScriptsPartial" />
     <script src="~/js/singleSelect.js"></script>
 }

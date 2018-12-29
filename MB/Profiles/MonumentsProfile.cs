@@ -13,6 +13,10 @@
     {
         public MonumentsProfile()
         {
+            base.CreateMap<Monument, MonumentEditViewModel>()
+                .ForMember(dest => dest.SelectedOblastId, opts => opts.MapFrom(x => x.OblastId))
+                .ReverseMap();
+
             base.CreateMap<MonumentAddViewModel, Monument>()
                 .ForMember(dest => dest.OblastId, opts => opts.MapFrom(x => x.SelectedOblastId));
 

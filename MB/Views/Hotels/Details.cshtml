@@ -1,10 +1,20 @@
 ﻿@model MB.ViewModels.Hotels.HotelDetailsViewModel
-@using MB.Models.Enums;
 @{
     ViewData["Title"] = Model.Name;
 }
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
+@if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
+{
+    <section class="d-flex justify-content-center mt-3 mb-3">
+        <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@Model.Id" class="btn btn-outline-dark mr-5">Edit</a>
+        <a asp-controller="Hotels" asp-action="Delete" asp-route-hotelId="@Model.Id" class="btn btn-outline-danger"
+           onclick="throwAlert(event, 'hotel')">
+            Delete
+        </a>
+    </section>
+}
 
 <section class="d-flex justify-content-center">
     <div>
@@ -204,3 +214,7 @@
         </div>
     }
 </section>
+
+@section Scripts {
+    <script src="~/js/alert.js"></script>
+}

@@ -18,6 +18,7 @@
                     <label for="@rating" class="form-check-label">@rating (@((int)rating))</label>
                 </div>
             }
+            <span asp-validation-for="@Model.Rating" class="text-danger font-weight-bold"></span>
         </div>
         <div class="form-check">
             <h3>Time of Year:</h3>
@@ -28,6 +29,7 @@
                     <label for="@season" class="form-check-label">@season</label>
                 </div>
             }
+            <span asp-validation-for="@Model.TimeOfYear" class="text-danger font-weight-bold"></span>
         </div>
         <div class="form-check">
             <h3>Traveller Type:</h3>
@@ -38,6 +40,7 @@
                     <label for="@travellerType" class="form-check-label">@travellerType</label>
                 </div>
             }
+            <span asp-validation-for="@Model.TravellerType" class="text-danger font-weight-bold"></span>
         </div>
     </div>
 
@@ -45,3 +48,7 @@
         <button type="submit" class="btn btn-dark mt-5">Send Review</button>
     </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

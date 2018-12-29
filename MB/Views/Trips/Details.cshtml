@@ -4,10 +4,11 @@
 }
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
+
 <section class="d-flex justify-content-center mt-3">
     <a asp-controller="Trips" asp-action="Edit" asp-route-tripId="@Model.Id" class="btn btn-outline-dark mr-5">Edit</a>
     <a asp-controller="Trips" asp-action="Delete" asp-route-tripId="@Model.Id" class="btn btn-outline-danger" 
-        onclick="throwAlert(event)">
+        onclick="throwAlert(event, 'trip')">
         Delete
     </a>
 </section>
@@ -51,6 +52,6 @@
                     </div>
                 </section>
 
-                @section JavaScript {
+                @section Scripts {
                     <script src="~/js/alert.js"></script>
                 }

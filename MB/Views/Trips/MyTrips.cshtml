@@ -30,7 +30,7 @@
                             Edit
                         </a>
                         <a asp-controller="Trips" asp-action="Delete" asp-route-tripId="@trip.Id" class="btn btn-outline-danger"
-                            onclick="throwAlert(event)">
+                            onclick="throwAlert(event, 'trip')">
                             Delete
                         </a>
                     </td>
@@ -40,7 +40,7 @@
     </table>
 </div>
 
-@section JavaScript {
+@section Scripts {
     <script src="~/js/alert.js"></script>
     <script src="~/js/myTrips.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

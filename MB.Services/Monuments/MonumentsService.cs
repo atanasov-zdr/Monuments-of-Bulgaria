@@ -23,12 +23,12 @@
 
         public IQueryable<Monument> GetAllOrderedByName()
         {
-            return this.dbContext.Monuments.OrderBy(x => x.Name);
+            return this.dbContext.Monuments.Where(x => x.IsDeleted == false).OrderBy(x => x.Name);
         }
 
         public IQueryable<Monument> GetAllForOblastOrderedByName(int oblastId)
         {
-            return this.dbContext.Monuments.Where(x => x.OblastId == oblastId).OrderBy(x => x.Name);
+            return this.dbContext.Monuments.Where(x => x.OblastId == oblastId).Where(x => x.IsDeleted == false).OrderBy(x => x.Name);
         }
 
         public Monument GetById(int monumentId)
@@ -36,6 +36,9 @@
             Monument monument = this.dbContext.Monuments.FirstOrDefault(x => x.Id == monumentId);
 
             if (monument == null)
+                throw new ArgumentNullException(nameof(monument));
+
+            if (monument.IsDeleted == true)
                 throw new ArgumentNullException(nameof(monument));
 
             return monument;
@@ -52,6 +55,26 @@
             this.dbContext.SaveChanges();
 
             return monument.Id;
+        }
+
+        public void Delete(int monumentId)
+        {
+            Monument monument = this.GetById(monumentId);
+            monument.IsDeleted = true;
+            this.dbContext.SaveChanges();
+        }
+
+        public void Update(MonumentEditViewModel model)
+        {
+            if (model == null)
+                throw new ArgumentNullException(nameof(model));
+
+            Monument monument = this.GetById(model.Id);
+            monument.Name = model.Name;
+            monument.Description = model.Description;
+            monument.OblastId = model.SelectedOblastId;
+
+            this.dbContext.SaveChanges();
         }
     }
 }

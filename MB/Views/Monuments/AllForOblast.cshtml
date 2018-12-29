@@ -12,12 +12,12 @@
 <div class="container-fluid mx-auto mt-5 mb-5 text-center text-dark monuments">
     @{ int counter = 0; }
     @for (int i = 0; i < Math.Ceiling(Model.Count / 4.0); i++)
-     {
+    {
         <div class="row d-flex justify-content-around mb-5 mt-5">
             @for (int j = 0; j < 4; j++)
-             {
+            {
                 @if (counter <= Model.Count - 1)
-                 {
+                {
                     var monument = Model[counter++];
                     <section class="col-2 border border-dark rounded-top p-0">
                         <h4 class="pt-2">@monument.Name</h4>
@@ -25,17 +25,30 @@
                         <img src="~/img/bg-masthead.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
                         <a asp-controller="Monuments" asp-action="Details" asp-route-monumentId="@monument.Id"
                            class="btn btn btn-outline-dark btn-sm m-3">View Details</a>
+                        @if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
+                        {
+                            <div class="d-flex justify-content-around mb-3 mt-3">
+                                <a asp-controller="Monuments" asp-action="Edit" asp-route-monumentId="@monument.Id"
+                                   class="btn btn-outline-dark">Edit</a>
+                                <a asp-controller="Monuments" asp-action="Delete" asp-route-monumentId="@monument.Id"
+                                   class="btn btn-outline-danger" onclick="throwAlert(event, 'monument')">Delete</a>
+                            </div>
+                        }
                     </section>
-                 }
+                }
                 else
                 {
                     <section class="col-2"></section>
                 }
-             }
+            }
         </div>
-     }
+    }
 </div>
 
 <nav class="pager">
     <vc:pager paging-list="@Model" />
 </nav>
+
+@section Scripts {
+    <script src="~/js/alert.js"></script>
+}
