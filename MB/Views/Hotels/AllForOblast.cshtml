@@ -28,10 +28,15 @@
                         @if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
                         {
                             <div class="d-flex justify-content-around mb-3 mt-3">
-                                <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@hotel.Id" 
-                                    class="btn btn-outline-dark">Edit</a>
-                                <a asp-controller="Hotels" asp-action="Delete" asp-route-hotelId="@hotel.Id" 
-                                    class="btn btn-outline-danger" onclick="throwAlert(event, 'hotel')">Delete</a>
+                                <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@hotel.Id"
+                                   class="btn btn-outline-dark">Edit</a>
+                                <form asp-controller="Hotels" asp-action="Delete" method="post">
+                                    <input type="hidden" name="hotelId" value="@hotel.Id" />
+                                    <button type="submit" class="btn btn-outline-danger"
+                                            onclick="throwAlert(event, 'hotel')">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         }
                     </section>

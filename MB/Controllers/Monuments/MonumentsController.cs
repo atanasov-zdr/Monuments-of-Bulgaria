@@ -135,6 +135,7 @@
             return base.RedirectToAction("Details", new { monumentId = model.Id });
         }
 
+        [HttpPost]
         [Authorize(Roles = GlobalConstants.AdminRoleName)]
         public IActionResult Delete(int monumentId)
         {

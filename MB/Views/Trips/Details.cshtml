@@ -7,10 +7,10 @@
 
 <section class="d-flex justify-content-center mt-3">
     <a asp-controller="Trips" asp-action="Edit" asp-route-tripId="@Model.Id" class="btn btn-outline-dark mr-5">Edit</a>
-    <a asp-controller="Trips" asp-action="Delete" asp-route-tripId="@Model.Id" class="btn btn-outline-danger" 
-        onclick="throwAlert(event, 'trip')">
-        Delete
-    </a>
+    <form asp-controller="Trips" asp-action="Delete" method="post">
+        <input type="hidden" name="tripId" value="@Model.Id" />
+        <button type="submit" class="btn btn-outline-danger" onclick="throwAlert(event, 'trip')">Delete</button>
+    </form>
 </section>
 
 <section class="d-flex justify-content-around text-dark mt-5">

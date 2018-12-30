@@ -19,7 +19,10 @@
 
         public IQueryable<MonumentComment> GetAllForMonumentOrderedByDateDescending(int monumentId)
         {
-            return this.dbContext.MonumentComments.Where(x => x.MonumentId == monumentId).OrderByDescending(x => x.CreatedOn);
+            return this.dbContext.MonumentComments
+                .Where(x => x.MonumentId == monumentId)
+                .Where(x => x.IsDeleted == false)
+                .OrderByDescending(x => x.CreatedOn);
         }
 
         public void Create(int monumentId, string content, string username)

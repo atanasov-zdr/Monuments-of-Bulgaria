@@ -33,8 +33,13 @@
                                     <div class="d-flex justify-content-around mb-3 mt-3">
                                         <a asp-controller="Monuments" asp-action="Edit" asp-route-monumentId="@monument.Id"
                                            class="btn btn-outline-dark">Edit</a>
-                                        <a asp-controller="Monuments" asp-action="Delete" asp-route-monumentId="@monument.Id"
-                                           class="btn btn-outline-danger" onclick="throwAlert(event, 'monument')">Delete</a>
+                                        <form asp-controller="Monuments" asp-action="Delete" method="post">
+                                            <input type="hidden" name="monumentId" value="@monument.Id" />
+                                            <button type="submit" class="btn btn-outline-danger"
+                                                    onclick="throwAlert(event, 'monument')">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 }
                             </section>

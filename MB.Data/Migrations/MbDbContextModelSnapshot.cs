@@ -60,6 +60,8 @@ namespace MB.Data.Migrations
 
                     b.Property<int>("HotelId");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
@@ -206,6 +208,8 @@ namespace MB.Data.Migrations
                     b.Property<string>("Content");
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<int>("MonumentId");
 

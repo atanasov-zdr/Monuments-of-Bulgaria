@@ -78,7 +78,11 @@
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
             
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(opts => 
+            {
+                opts.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddAutoMapper();
 

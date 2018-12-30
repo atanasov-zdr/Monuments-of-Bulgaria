@@ -9,10 +9,13 @@
 {
     <section class="d-flex justify-content-center mt-3 mb-3">
         <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@Model.Id" class="btn btn-outline-dark mr-5">Edit</a>
-        <a asp-controller="Hotels" asp-action="Delete" asp-route-hotelId="@Model.Id" class="btn btn-outline-danger"
-           onclick="throwAlert(event, 'hotel')">
-            Delete
-        </a>
+        <form asp-controller="Hotels" asp-action="Delete" method="post">
+            <input type="hidden" name="hotelId" value="@Model.Id" />
+            <button type="submit" class="btn btn-outline-danger"
+                    onclick="throwAlert(event, 'hotel')">
+                Delete
+            </button>
+        </form>
     </section>
 }
 

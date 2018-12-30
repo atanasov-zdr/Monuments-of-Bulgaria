@@ -123,6 +123,7 @@
             return base.RedirectToAction("Details", new { tripId = model.Id });
         }
 
+        [HttpPost]
         public IActionResult Delete(int tripId)
         {
             if (!this.tripsService.CheckForTripOwn(tripId, this.User.Identity.Name))

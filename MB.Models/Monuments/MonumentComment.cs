@@ -16,7 +16,9 @@
         public string Content { get; set; }
         
         public DateTime CreatedOn { get; set; }
-        
+
+        public bool IsDeleted { get; set; }
+
         public int MonumentId { get; set; }
         public virtual Monument Monument { get; set; }
 

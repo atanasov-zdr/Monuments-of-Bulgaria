@@ -17,6 +17,8 @@
         
         public DateTime CreatedOn { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public int HotelId { get; set; }
         public virtual Hotel Hotel { get; set; }
 
