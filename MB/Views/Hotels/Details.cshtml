@@ -209,8 +209,18 @@
                 </div>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <div class="mr-3">
-                        <a asp-controller="HotelComments" asp-action="Like" asp-route-hotelId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success">Like</a>
+                    <div class="mr-3 row">
+                        <a asp-controller="HotelComments" asp-action="Like" asp-route-hotelId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success mr-2">Like</a>
+                        @if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
+                        {
+                            <form asp-controller="HotelComments" asp-action="Delete" method="post">
+                                <input type="hidden" name="commentId" value="@comment.Id" />
+                                <input type="hidden" name="hotelId" value="@Model.Id" />
+                                <button type="submit" class="btn btn-outline-danger" onclick="throwAlert(event, 'comment')">
+                                    Delete
+                                </button>
+                            </form>
+                        }
                     </div>
                 }
             </div>

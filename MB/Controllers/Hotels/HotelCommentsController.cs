@@ -40,5 +40,12 @@
             this.hotelCommentsService.Like(commentId, this.User.Identity.Name);
             return base.RedirectToAction("Details", "Hotels", new { hotelId });
         }
+
+        [HttpPost]
+        public IActionResult Delete (int commentId, int hotelId)
+        {
+            this.hotelCommentsService.Delete(commentId);
+            return base.RedirectToAction("Details", "Hotels", new { hotelId });
+        }
     }
 }

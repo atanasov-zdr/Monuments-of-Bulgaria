@@ -40,5 +40,12 @@
             this.monumentCommentsService.Like(commentId, this.User.Identity.Name);
             return base.RedirectToAction("Details", "Monuments", new { monumentId });
         }
+
+        [HttpPost]
+        public IActionResult Delete(int commentId, int monumentId)
+        {
+            this.monumentCommentsService.Delete(commentId);
+            return base.RedirectToAction("Details", "Monuments", new { monumentId });
+        }
     }
 }

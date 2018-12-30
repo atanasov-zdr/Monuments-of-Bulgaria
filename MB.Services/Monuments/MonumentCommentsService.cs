@@ -17,6 +17,19 @@
             this.dbContext = dbContext;
         }
 
+        public MonumentComment GetById(int commentId)
+        {
+            MonumentComment comment = this.dbContext.MonumentComments.FirstOrDefault(x => x.Id == commentId);
+
+            if (comment == null)
+                throw new ArgumentNullException(nameof(comment));
+
+            if (comment.IsDeleted == true)
+                throw new ArgumentNullException(nameof(comment));
+
+            return comment;
+        }
+
         public IQueryable<MonumentComment> GetAllForMonumentOrderedByDateDescending(int monumentId)
         {
             return this.dbContext.MonumentComments
@@ -47,10 +60,8 @@
 
         public void Like(int commentId, string username)
         {
-            MonumentComment comment = this.dbContext.MonumentComments.FirstOrDefault(x => x.Id == commentId);
-            if (comment == null)
-                throw new ArgumentNullException(nameof(comment));
-            
+            MonumentComment comment = this.GetById(commentId);
+
             MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
@@ -74,6 +85,13 @@
 
             bool result = this.dbContext.MonumentComments.Any(x => x.Id == commentId && x.User == user);
             return result;
+        }
+
+        public void Delete(int commentId)
+        {
+            MonumentComment comment = this.GetById(commentId);
+            comment.IsDeleted = true;
+            this.dbContext.SaveChanges();
         }
     }
 }

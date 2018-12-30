@@ -27,7 +27,7 @@
                            class="btn btn btn-outline-dark btn-sm m-3">View Details</a>
                         @if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
                         {
-                            <div class="d-flex justify-content-around mb-3 mt-3">
+                            <div class="d-flex justify-content-around mb-3 mt-1">
                                 <a asp-controller="Hotels" asp-action="Edit" asp-route-hotelId="@hotel.Id"
                                    class="btn btn-outline-dark">Edit</a>
                                 <form asp-controller="Hotels" asp-action="Delete" method="post">
