@@ -41,6 +41,18 @@
             return base.RedirectToAction("Details", "Hotels", new { hotelId });
         }
 
+        public IActionResult Dislike(int hotelId, int commentId)
+        {
+            if (!this.hotelCommentsService.CheckForExistingLike(commentId, this.User.Identity.Name))
+            {
+                string errorMsg = "You are not liked this comment!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
+
+            this.hotelCommentsService.Dislike(commentId, this.User.Identity.Name);
+            return base.RedirectToAction("Details", "Hotels", new { hotelId });
+        }
+
         [HttpPost]
         public IActionResult Delete (int commentId, int hotelId)
         {

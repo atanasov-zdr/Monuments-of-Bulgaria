@@ -205,12 +205,19 @@
             <div class="d-flex justify-content-between">
                 <div class="mt-1">
                     <label>@comment.LikesCount</label>
-                    <i class="far fa-thumbs-up mr-3"></i>
+                    <i class="far fa-thumbs-up mr-3 @(comment.IsLiked == true ? "text-success" : "text-dark")"></i>
                 </div>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="mr-3 row">
-                        <a asp-controller="HotelComments" asp-action="Like" asp-route-hotelId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success mr-2">Like</a>
+                        @if (comment.IsLiked)
+                        {
+                            <a asp-controller="HotelComments" asp-action="Dislike" asp-route-hotelId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-secondary mr-2">Dislike</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="HotelComments" asp-action="Like" asp-route-hotelId="@Model.Id" asp-route-commentId="@comment.Id" class="btn btn-success mr-2">Like</a>
+                        }
                         @if (User.IsInRole(MB.Common.GlobalConstants.AdminRoleName))
                         {
                             <form asp-controller="HotelComments" asp-action="Delete" method="post">

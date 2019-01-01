@@ -71,9 +71,15 @@
             var reviews = this.mapper.Map<MonumentReviewsViewModel>(monument);
             viewModel.Reviews = reviews;
 
-            var comments = this.monumentCommentsService.GetAllForMonumentOrderedByDateDescending(monumentId)
-                .To<MonumentCommentViewModel>()
-                .ToList();
+            List<MonumentComment> dbComments = 
+                this.monumentCommentsService.GetAllForMonumentOrderedByDateDescending(monumentId).ToList();
+            var comments = new List<MonumentCommentViewModel>();
+            foreach (MonumentComment comment in dbComments)
+            {
+                var commentModel = this.mapper.Map<MonumentCommentViewModel>(comment);
+                commentModel.IsLiked = comment.Likes.Any(x => x.User.UserName == this.User.Identity.Name);
+                comments.Add(commentModel);
+            }
             viewModel.Comments = comments;
 
             return base.View(viewModel);

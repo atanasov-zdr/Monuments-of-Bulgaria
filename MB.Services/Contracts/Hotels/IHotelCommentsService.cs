@@ -14,6 +14,8 @@
 
         void Like(int commentId, string username);
 
+        void Dislike(int commentId, string username);
+
         bool CheckForExistingLike(int commentId, string username);
 
         void Delete(int commentId);

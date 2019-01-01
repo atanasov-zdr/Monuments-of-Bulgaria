@@ -76,6 +76,22 @@
             this.dbContext.SaveChanges();
         }
 
+        public void Dislike(int commentId, string username)
+        {
+            MonumentComment comment = this.GetById(commentId);
+
+            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            var like = this.dbContext.MonumentCommentLikes.SingleOrDefault(x => x.MonumentComment == comment && x.User == user);
+            if (like == null)
+                throw new ArgumentNullException(nameof(like));
+
+            this.dbContext.MonumentCommentLikes.Remove(like);
+            this.dbContext.SaveChanges();
+        }
+
         public bool CheckForExistingLike(int commentId, string username)
         {
             MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
@@ -83,7 +99,7 @@
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            bool result = this.dbContext.MonumentComments.Any(x => x.Id == commentId && x.User == user);
+            bool result = this.dbContext.MonumentCommentLikes.Any(x => x.MonumentCommentId == commentId && x.User == user);
             return result;
         }
 

@@ -41,6 +41,18 @@
             return base.RedirectToAction("Details", "Monuments", new { monumentId });
         }
 
+        public IActionResult Dislike(int monumentId, int commentId)
+        {
+            if (!this.monumentCommentsService.CheckForExistingLike(commentId, this.User.Identity.Name))
+            {
+                string errorMsg = "You are not liked this comment!";
+                return base.View(GlobalConstants.ErrorViewName, errorMsg);
+            }
+
+            this.monumentCommentsService.Dislike(commentId, this.User.Identity.Name);
+            return base.RedirectToAction("Details", "Monuments", new { monumentId });
+        }
+
         [HttpPost]
         public IActionResult Delete(int commentId, int monumentId)
         {

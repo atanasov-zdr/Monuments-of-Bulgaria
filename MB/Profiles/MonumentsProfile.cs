@@ -7,12 +7,16 @@
     using Models.Enums;
     using Models.Monuments;
     using ViewModels.Monuments;
+    using ViewModels.Monuments.MonumentComments;
     using ViewModels.Monuments.MonumentReviews;
 
     public class MonumentsProfile : Profile
     {
         public MonumentsProfile()
         {
+            base.CreateMap<MonumentComment, MonumentCommentViewModel>()
+                .ForMember(dest => dest.IsLiked, opts => opts.Ignore());
+
             base.CreateMap<Monument, MonumentEditViewModel>()
                 .ForMember(dest => dest.SelectedOblastId, opts => opts.MapFrom(x => x.OblastId))
                 .ReverseMap();

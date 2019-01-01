@@ -1,14 +1,8 @@
 ﻿namespace MB.ViewModels.Hotels.HotelComments
 {
     using System;
-    using System.Linq;
 
-    using AutoMapper;
-
-    using Mapping.Contracts;
-    using Models.Hotels;
-
-    public class HotelCommentViewModel : IHaveCustomMappings
+    public class HotelCommentViewModel
     {
         public int Id { get; set; }
 
@@ -20,10 +14,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public void CreateMappings(IMapperConfigurationExpression configuration)
-        {
-            configuration.CreateMap<HotelComment, HotelCommentViewModel>()
-                .ForMember(dest => dest.LikesCount, opts => opts.MapFrom(x => x.Likes.Count()));
-        }
+        public bool IsLiked { get; set; }
     }
 }

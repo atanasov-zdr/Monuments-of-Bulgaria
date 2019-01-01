@@ -7,12 +7,16 @@
     using Models.Enums;
     using Models.Hotels;
     using ViewModels.Hotels;
+    using ViewModels.Hotels.HotelComments;
     using ViewModels.Hotels.HotelReviews;
 
     public class HotelsProfile : Profile
     {
         public HotelsProfile()
         {
+            base.CreateMap<HotelComment, HotelCommentViewModel>()
+                .ForMember(dest => dest.IsLiked, opts => opts.Ignore());
+
             base.CreateMap<Hotel, HotelEditViewModel>()
                 .ForMember(dest => dest.SelectedOblastId, opts => opts.MapFrom(x => x.OblastId))
                 .ReverseMap();

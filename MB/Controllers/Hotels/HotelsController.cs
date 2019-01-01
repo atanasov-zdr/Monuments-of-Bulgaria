@@ -64,16 +64,20 @@
 
         public IActionResult Details(int hotelId)
         {
-            Hotel hotel = this.hotelsService.GetById(hotelId);
-            
+            Hotel hotel = this.hotelsService.GetById(hotelId); 
             var viewModel = this.mapper.Map<HotelDetailsViewModel>(hotel);
 
             var reviews = this.mapper.Map<HotelReviewsViewModel>(hotel);
             viewModel.Reviews = reviews;
 
-            var comments = this.hotelCommentsService.GetAllForHotelOrderedByDateDescending(hotelId)
-                .To<HotelCommentViewModel>()
-                .ToList();
+            List<HotelComment> dbComments = this.hotelCommentsService.GetAllForHotelOrderedByDateDescending(hotelId).ToList();
+            var comments = new List<HotelCommentViewModel>();
+            foreach (HotelComment comment in dbComments)
+            {
+                var commentModel = this.mapper.Map<HotelCommentViewModel>(comment);
+                commentModel.IsLiked = comment.Likes.Any(x => x.User.UserName == this.User.Identity.Name);
+                comments.Add(commentModel);
+            }
             viewModel.Comments = comments;
 
             return base.View(viewModel);

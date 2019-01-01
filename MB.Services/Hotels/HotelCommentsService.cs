@@ -76,6 +76,22 @@
             this.dbContext.SaveChanges();
         }
 
+        public void Dislike(int commentId, string username)
+        {
+            HotelComment comment = this.GetById(commentId);
+
+            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            var like = this.dbContext.HotelCommentLikes.SingleOrDefault(x => x.HotelComment == comment && x.User == user);
+            if (like == null)
+                throw new ArgumentNullException(nameof(like));
+
+            this.dbContext.HotelCommentLikes.Remove(like);
+            this.dbContext.SaveChanges();
+        }
+
         public bool CheckForExistingLike(int commentId, string username)
         {
             MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
@@ -83,7 +99,7 @@
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            bool result = this.dbContext.HotelComments.Any(x => x.Id == commentId && x.User == user);
+            bool result = this.dbContext.HotelCommentLikes.Any(x => x.HotelCommentId == commentId && x.User == user);
             return result;
         }
 
