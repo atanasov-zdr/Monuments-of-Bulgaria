@@ -5,6 +5,7 @@
 
     using AutoMapper;
 
+    using Common.Utilities;
     using Contracts.Trips;
     using Data;
     using Models;
@@ -13,13 +14,18 @@
 
     public class TripsService : ITripsService
     {
+        private const string ImagesDirectory = "wwwroot/images/trips/";
+        private const string ImagesFolderName = "trips";
+
         private readonly MbDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly ImagesUploader imagesUploader;
 
-        public TripsService(MbDbContext dbContext, IMapper mapper)
+        public TripsService(MbDbContext dbContext, IMapper mapper, ImagesUploader imagesUploader)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.imagesUploader = imagesUploader;
         }
 
         public void Create(TripCreateViewModel model, string username)
@@ -37,6 +43,7 @@
 
             Trip trip = this.mapper.Map<Trip>(model);
             trip.UserId = user.Id;
+            trip.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
 
             this.dbContext.Trips.Add(trip);
             this.dbContext.SaveChanges();

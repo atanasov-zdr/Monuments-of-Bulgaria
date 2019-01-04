@@ -1,7 +1,5 @@
 ﻿namespace MB
 {
-    using System.IO;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,12 +9,13 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.FileProviders;
 
     using AutoMapper;
 
     using ReflectionIT.Mvc.Paging;
 
+    using Common;
+    using Common.Utilities;
     using Data;
     using Mapping;
     using Models;
@@ -28,13 +27,13 @@
     using Services.Monuments;
     using Services.Oblasts;
     using Services.Trips;
-    using Utilities;
     using ViewModels.Hotels;
     using ViewModels.Hotels.HotelComments;
     using ViewModels.Monuments;
     using ViewModels.Monuments.MonumentComments;
     using ViewModels.Oblasts;
     using ViewModels.Trips;
+    using CloudinaryDotNet;
 
     public class Startup
     {
@@ -97,6 +96,11 @@
             services.AddPaging(opt => opt.ViewName = "Pager");
 
             services.AddScoped<UserStore<MbUser>>();
+            
+            var account = new Account(GlobalConstants.CloudinaryName,
+                GlobalConstants.CloudinaryKey, GlobalConstants.CloudinarySecret);
+            services.AddScoped(x => new Cloudinary(account));
+            services.AddScoped<ImagesUploader>();
 
             services.AddScoped<IOblastsService, OblastsService>();
             services.AddScoped<IMonumentsService, MonumentsService>();

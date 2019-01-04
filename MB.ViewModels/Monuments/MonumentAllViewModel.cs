@@ -12,5 +12,7 @@
         public int OblastId { get; set; }
 
         public string OblastName { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

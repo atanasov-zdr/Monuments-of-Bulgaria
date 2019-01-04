@@ -14,6 +14,8 @@ namespace MB.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
+        private const string UserDefaultImageUrl = "https://res.cloudinary.com/dpoafu9y0/image/upload/v1546637480/users/user.png";
+
         private readonly SignInManager<MbUser> _signInManager;
         private readonly UserManager<MbUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
@@ -73,6 +75,7 @@ namespace MB.Areas.Identity.Pages.Account
                 {
                     UserName = Input.UserName,
                     Email = Input.Email,
+                    ImageUrl = UserDefaultImageUrl,
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

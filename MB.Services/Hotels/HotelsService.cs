@@ -5,6 +5,7 @@
 
     using AutoMapper;
 
+    using Common.Utilities;
     using Contracts.Hotels;
     using Data;
     using Models.Hotels;
@@ -12,13 +13,18 @@
 
     public class HotelsService : IHotelsService
     {
+        private const string ImagesDirectory = "wwwroot/images/hotels/";
+        private const string ImagesFolderName = "hotels";
+
         private readonly MbDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly ImagesUploader imagesUploader;
 
-        public HotelsService(MbDbContext dbContext, IMapper mapper)
+        public HotelsService(MbDbContext dbContext, IMapper mapper, ImagesUploader imagesUploader)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.imagesUploader = imagesUploader;
         }
 
         public IQueryable<Hotel> GetAllOrderedByName()
@@ -50,10 +56,11 @@
                 throw new ArgumentNullException(nameof(model));
 
             Hotel hotel = this.mapper.Map<Hotel>(model);
+            hotel.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
 
             this.dbContext.Hotels.Add(hotel);
             this.dbContext.SaveChanges();
-
+            
             return hotel.Id;
         }
 

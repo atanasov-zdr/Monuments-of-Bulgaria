@@ -5,6 +5,7 @@
 
     using AutoMapper;
 
+    using Common.Utilities;
     using Contracts.Monuments;
     using Data;
     using Models.Monuments;
@@ -12,13 +13,18 @@
 
     public class MonumentsService : IMonumentsService
     {
+        private const string ImagesDirectory = "wwwroot/images/monuments/";
+        private const string ImagesFolderName = "monuments";
+
         private readonly MbDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly ImagesUploader imagesUploader;
 
-        public MonumentsService(MbDbContext dbContext, IMapper mapper)
+        public MonumentsService(MbDbContext dbContext, IMapper mapper, ImagesUploader imagesUploader)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.imagesUploader = imagesUploader;
         }
 
         public IQueryable<Monument> GetAllOrderedByName()
@@ -50,6 +56,7 @@
                 throw new ArgumentNullException(nameof(model));
 
             Monument monument = this.mapper.Map<Monument>(model);
+            monument.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
 
             this.dbContext.Monuments.Add(monument);
             this.dbContext.SaveChanges();

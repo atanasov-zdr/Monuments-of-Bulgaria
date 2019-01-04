@@ -138,6 +138,8 @@ namespace MB.Data.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<string>("ImageUrl");
+
                     b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");

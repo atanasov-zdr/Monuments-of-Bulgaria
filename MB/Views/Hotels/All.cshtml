@@ -21,7 +21,7 @@
                     <section class="col-2 border border-dark rounded-top p-0">
                         <h4 class="pt-2">@hotel.Name</h4>
                         <hr class="bg-dark mt-0" />
-                        <img src="~/img/hotel.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
+                        <img src="@hotel.ImageUrl" alt="" class="w-100 rounded-circle pr-3 pl-3" />
                         <p class="pt-3">
                             Oblast: <a asp-controller="Hotels" asp-action="AllForOblast"
                                        asp-route-oblastId="@hotel.OblastId">@hotel.OblastName</a>
