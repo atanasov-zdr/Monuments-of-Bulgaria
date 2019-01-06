@@ -25,7 +25,8 @@
                 .ForMember(dest => dest.OblastId, opts => opts.MapFrom(x => x.SelectedOblastId));
 
             base.CreateMap<Monument, MonumentDetailsViewModel>()
-                .ForMember(dest => dest.Comments, opts => opts.Ignore());
+                .ForMember(dest => dest.Comments, opts => opts.Ignore())
+                .ForMember(dest => dest.HasReview, opts => opts.Ignore());
 
             base.CreateMap<MonumentReviewWriteViewModel, MonumentReview>()
                 .ForMember(dest => dest.CreatedOn, opts => opts.Ignore());

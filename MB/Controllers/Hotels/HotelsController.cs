@@ -23,6 +23,7 @@
     public class HotelsController : Controller
     {
         private readonly IHotelsService hotelsService;
+        private readonly IHotelReviewsService hotelReviewsService;
         private readonly IHotelCommentsService hotelCommentsService;
         private readonly IOblastsService oblastsService;
         private readonly IMapper mapper;
@@ -30,11 +31,13 @@
 
         public HotelsController(
             IHotelsService hotelsService,
+            IHotelReviewsService hotelReviewsService,
             IHotelCommentsService hotelCommentsService,
             IOblastsService oblastsService,
             IMapper mapper)
         {
             this.hotelsService = hotelsService;
+            this.hotelReviewsService = hotelReviewsService;
             this.hotelCommentsService = hotelCommentsService;
             this.oblastsService = oblastsService;
             this.mapper = mapper;
@@ -66,6 +69,7 @@
         {
             Hotel hotel = this.hotelsService.GetById(hotelId); 
             var viewModel = this.mapper.Map<HotelDetailsViewModel>(hotel);
+            viewModel.HasReview = this.hotelReviewsService.CheckForExistingReview(hotel.Id, this.User.Identity.Name);
 
             var reviews = this.mapper.Map<HotelReviewsViewModel>(hotel);
             viewModel.Reviews = reviews;

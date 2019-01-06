@@ -21,6 +21,8 @@
 
         public int CommentsCount { get; set; }
 
+        public bool HasReview { get; set; }
+
         public MonumentReviewsViewModel Reviews { get; set; }
 
         public IEnumerable<MonumentCommentViewModel> Comments { get; set; }

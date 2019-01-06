@@ -25,7 +25,8 @@
                 .ForMember(dest => dest.OblastId, opts => opts.MapFrom(x => x.SelectedOblastId));
 
             base.CreateMap<Hotel, HotelDetailsViewModel>()
-                .ForMember(dest => dest.Comments, opts => opts.Ignore());
+                .ForMember(dest => dest.Comments, opts => opts.Ignore())
+                .ForMember(dest => dest.HasReview, opts => opts.Ignore());
 
             base.CreateMap<HotelReviewWriteViewModel, HotelReview>()
                 .ForMember(dest => dest.CreatedOn, opts => opts.Ignore());

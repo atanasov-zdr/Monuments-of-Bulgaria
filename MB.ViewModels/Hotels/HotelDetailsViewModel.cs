@@ -27,6 +27,8 @@
 
         public int CommentsCount { get; set; }
 
+        public bool HasReview { get; set; }
+
         public HotelReviewsViewModel Reviews { get; set; }
 
         public IEnumerable<HotelCommentViewModel> Comments { get; set; }

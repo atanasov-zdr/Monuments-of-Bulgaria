@@ -23,18 +23,21 @@
     public class MonumentsController : Controller
     {
         private readonly IMonumentsService monumentsService;
+        private readonly IMonumentReviewsService monumentReviewsService;
         private readonly IMonumentCommentsService monumentCommentsService;
         private readonly IOblastsService oblastsService;
         private readonly IMapper mapper;
         private const int PageSize = 12;
 
         public MonumentsController(
-            IMonumentsService monumentsService, 
+            IMonumentsService monumentsService,
+            IMonumentReviewsService monumentReviewsService,
             IMonumentCommentsService monumentCommentsService,
             IOblastsService oblastsService,
             IMapper mapper)
         {
             this.monumentsService = monumentsService;
+            this.monumentReviewsService = monumentReviewsService;
             this.monumentCommentsService = monumentCommentsService;
             this.oblastsService = oblastsService;
             this.mapper = mapper;
@@ -65,8 +68,8 @@
         public IActionResult Details(int monumentId)
         {
             Monument monument = this.monumentsService.GetById(monumentId);
-
             var viewModel = this.mapper.Map<MonumentDetailsViewModel>(monument);
+            viewModel.HasReview = this.monumentReviewsService.CheckForExistingReview(monument.Id, this.User.Identity.Name);
 
             var reviews = this.mapper.Map<MonumentReviewsViewModel>(monument);
             viewModel.Reviews = reviews;
