@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using MB.Common;
 
 namespace MB.Areas.Identity.Pages.Account
 {
@@ -92,6 +94,11 @@ namespace MB.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    if (_userManager.Users.Count() == 1)
+                        _userManager.AddToRoleAsync(user, GlobalConstants.AdminRoleName).GetAwaiter().GetResult();
+                    else
+                        _userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName).GetAwaiter().GetResult();
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);

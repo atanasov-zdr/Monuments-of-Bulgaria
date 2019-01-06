@@ -6,6 +6,8 @@
 
         public const string AdminRoleName = "Administrator";
 
+        public const string UserRoleName = "User";
+
         public const string OblastsInfoViewPath = "wwwroot/json/oblastsInfo.json";
 
         public const string ErrorViewName = "Error";
