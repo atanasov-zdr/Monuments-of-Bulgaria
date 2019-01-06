@@ -7,11 +7,6 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\grayscale.css" />
-    <None Include="wwwroot\img\bg-masthead.jpg" />
-    <None Include="wwwroot\img\bg-signup.jpg" />
-    <None Include="wwwroot\img\demo-image-01.jpg" />
-    <None Include="wwwroot\img\demo-image-02.jpg" />
-    <None Include="wwwroot\img\ipad.png" />
     <None Include="wwwroot\js\grayscale.js" />
     <None Include="wwwroot\js\grayscale.min.js" />
     <None Include="wwwroot\scss\grayscale.scss" />

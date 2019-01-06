@@ -31,7 +31,7 @@
             <h3 class="text-center">Monument:</h3>
             <h4>@Model.MonumentName</h4>
             <hr class="bg-dark mt-0" />
-            <img src="~/img/bg-masthead.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
+            <img src="@Model.MonumentImageUrl" alt="" class="w-100 rounded-circle pr-3 pl-3" />
             <p class="pt-3">
                 Oblast: <a asp-controller="Monuments" asp-action="AllForOblast"
                            asp-route-oblastId="@Model.MonumentOblastId">@Model.MonumentOblastName</a>
@@ -43,7 +43,7 @@
                     <h3 class="text-center">Hotel:</h3>
                     <h4>@Model.HotelName</h4>
                     <hr class="bg-dark mt-0" />
-                    <img src="~/img/hotel.jpg" alt="" class="w-100 rounded-circle pr-3 pl-3" />
+                    <img src="@Model.HotelImageUrl" alt="" class="w-100 rounded-circle pr-3 pl-3" />
                     <p class="pt-3">
                         Oblast: <a asp-controller="Hotels" asp-action="AllForOblast"
                                    asp-route-oblastId="@Model.HotelOblastId">@Model.HotelOblastName</a>
