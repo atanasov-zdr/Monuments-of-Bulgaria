@@ -11,10 +11,12 @@
     public class HotelReviewsController : Controller
     {
         private readonly IHotelReviewsService hotelReviewsService;
+        private readonly IHotelsService hotelsService;
 
-        public HotelReviewsController(IHotelReviewsService hotelReviewsService)
+        public HotelReviewsController(IHotelReviewsService hotelReviewsService, IHotelsService hotelsService)
         {
             this.hotelReviewsService = hotelReviewsService;
+            this.hotelsService = hotelsService;
         }
         
         public IActionResult Write(int hotelId)
@@ -25,7 +27,7 @@
                 return base.View(GlobalConstants.ErrorViewName, errorMsg);
             }
 
-            string hotelName = this.hotelReviewsService.GetNameById(hotelId);
+            string hotelName = this.hotelsService.GetNameById(hotelId);
             var viewModel = new HotelReviewWriteViewModel { HotelId = hotelId, HotelName = hotelName };
             return base.View(viewModel);
         }

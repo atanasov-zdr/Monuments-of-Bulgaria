@@ -13,10 +13,14 @@
 
         Monument GetById(int monumentId);
 
+        string GetNameById(int monumentId);
+
         int Add(MonumentAddViewModel model);
 
         void Delete(int monumentId);
 
         void Update(MonumentEditViewModel model);
+
+        bool CheckExistById(int monumentId);
     }
 }

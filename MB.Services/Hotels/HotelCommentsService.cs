@@ -3,7 +3,9 @@
     using System;
     using System.Linq;
 
+    using Common.Exceptions;
     using Contracts.Hotels;
+    using Contracts.Users;
     using Data;
     using Models;
     using Models.Hotels;
@@ -11,10 +13,14 @@
     public class HotelCommentsService : IHotelCommentsService
     {
         private readonly MbDbContext dbContext;
+        private readonly IUsersService usersService;
+        private readonly IHotelsService hotelsService;
 
-        public HotelCommentsService(MbDbContext dbContext)
+        public HotelCommentsService(MbDbContext dbContext, IUsersService usersService, IHotelsService hotelsService)
         {
             this.dbContext = dbContext;
+            this.usersService = usersService;
+            this.hotelsService = hotelsService;
         }
 
         public HotelComment GetById(int commentId)
@@ -22,10 +28,10 @@
             HotelComment comment = this.dbContext.HotelComments.FirstOrDefault(x => x.Id == commentId);
 
             if (comment == null)
-                throw new ArgumentNullException(nameof(comment));
+                throw new CommentNullException();
 
             if (comment.IsDeleted == true)
-                throw new ArgumentNullException(nameof(comment));
+                throw new CommentDeletedException();
 
             return comment;
         }
@@ -40,18 +46,17 @@
 
         public void Create(int hotelId, string content, string username)
         {
-            if (!this.dbContext.Hotels.Any(x => x.Id == hotelId))
-                throw new ArgumentNullException(nameof(hotelId));
+            if (string.IsNullOrWhiteSpace(content))
+                throw new ArgumentNullException(nameof(content));
 
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
+            MbUser user = this.usersService.GetByUsername(username);
+            Hotel hotel = this.hotelsService.GetById(hotelId);
 
             var hotelComment = new HotelComment
             {
                 Content = content,
-                HotelId = hotelId,
-                UserId = user.Id,
+                Hotel = hotel,
+                User = user,
             };
 
             this.dbContext.HotelComments.Add(hotelComment);
@@ -61,15 +66,12 @@
         public void Like(int commentId, string username)
         {
             HotelComment comment = this.GetById(commentId);
-
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
+            MbUser user = this.usersService.GetByUsername(username);
 
             var like = new HotelCommentLike
             {
-                HotelCommentId = commentId,
-                UserId = user.Id,
+                HotelComment = comment,
+                User = user,
             };
 
             this.dbContext.HotelCommentLikes.Add(like);
@@ -79,14 +81,11 @@
         public void Dislike(int commentId, string username)
         {
             HotelComment comment = this.GetById(commentId);
-
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
+            MbUser user = this.usersService.GetByUsername(username);
 
             var like = this.dbContext.HotelCommentLikes.SingleOrDefault(x => x.HotelComment == comment && x.User == user);
             if (like == null)
-                throw new ArgumentNullException(nameof(like));
+                throw new LikeNullException();
 
             this.dbContext.HotelCommentLikes.Remove(like);
             this.dbContext.SaveChanges();
@@ -94,12 +93,10 @@
 
         public bool CheckForExistingLike(int commentId, string username)
         {
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            HotelComment comment = this.GetById(commentId);
+            MbUser user = this.usersService.GetByUsername(username);
 
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
-
-            bool result = this.dbContext.HotelCommentLikes.Any(x => x.HotelCommentId == commentId && x.User == user);
+            bool result = this.dbContext.HotelCommentLikes.Any(x => x.HotelComment == comment && x.User == user);
             return result;
         }
 

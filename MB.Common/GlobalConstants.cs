@@ -17,5 +17,7 @@
         public const string CloudinarySecret = "4xswFAZ6C0Ru3wQHmkj-HkBIrww";
 
         public const string PhotoFileExtension = ".jpg";
+
+        public const string TestClassesCollectionName = "Sequential";
     }
 }

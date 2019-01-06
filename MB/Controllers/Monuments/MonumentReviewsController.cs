@@ -11,10 +11,12 @@
     public class MonumentReviewsController : Controller
     {
         private readonly IMonumentReviewsService monumentReviewsService;
+        private readonly IMonumentsService monumentsService;
 
-        public MonumentReviewsController(IMonumentReviewsService monumentReviewsService)
+        public MonumentReviewsController(IMonumentReviewsService monumentReviewsService, IMonumentsService monumentsService)
         {
             this.monumentReviewsService = monumentReviewsService;
+            this.monumentsService = monumentsService;
         }
         
         public IActionResult Write(int monumentId)
@@ -25,7 +27,7 @@
                 return base.View(GlobalConstants.ErrorViewName, errorMsg);
             }
 
-            string monumentName = this.monumentReviewsService.GetNameById(monumentId);
+            string monumentName = this.monumentsService.GetNameById(monumentId);
             var viewModel = new MonumentReviewWriteViewModel { MonumentId = monumentId, MonumentName = monumentName };
             return base.View(viewModel);
         }

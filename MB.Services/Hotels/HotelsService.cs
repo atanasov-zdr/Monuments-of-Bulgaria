@@ -5,8 +5,10 @@
 
     using AutoMapper;
 
+    using Common.Exceptions;
     using Common.Utilities;
     using Contracts.Hotels;
+    using Contracts.Oblasts;
     using Data;
     using Models.Hotels;
     using ViewModels.Hotels;
@@ -19,12 +21,17 @@
         private readonly MbDbContext dbContext;
         private readonly IMapper mapper;
         private readonly ImagesUploader imagesUploader;
+        private readonly IOblastsService oblastsService;
 
-        public HotelsService(MbDbContext dbContext, IMapper mapper, ImagesUploader imagesUploader)
+        public HotelsService(MbDbContext dbContext,
+            IMapper mapper,
+            ImagesUploader imagesUploader,
+            IOblastsService oblastsService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
             this.imagesUploader = imagesUploader;
+            this.oblastsService = oblastsService;
         }
 
         public IQueryable<Hotel> GetAllOrderedByName()
@@ -34,7 +41,10 @@
 
         public IQueryable<Hotel> GetAllForOblastOrderedByName(int oblastId)
         {
-            return this.dbContext.Hotels.Where(x => x.OblastId == oblastId).Where(x => x.IsDeleted == false).OrderBy(x => x.Name);
+            return this.dbContext.Hotels
+                .Where(x => x.OblastId == oblastId)
+                .Where(x => x.IsDeleted == false)
+                .OrderBy(x => x.Name);
         }
 
         public Hotel GetById(int hotelId)
@@ -42,18 +52,28 @@
             Hotel hotel = this.dbContext.Hotels.FirstOrDefault(x => x.Id == hotelId);
 
             if (hotel == null)
-                throw new ArgumentNullException(nameof(hotel));
+                throw new HotelNullException();
 
             if (hotel.IsDeleted == true)
-                throw new ArgumentNullException(nameof(hotel));
+                throw new HotelDeletedException();
 
             return hotel;
         }
 
+        public string GetNameById(int hotelId)
+        {
+            Hotel hotel = this.GetById(hotelId);
+
+            if (hotel.Name == null)
+                throw new ArgumentNullException(nameof(hotel.Name));
+
+            return hotel.Name;
+        }
+
         public int Add(HotelAddViewModel model)
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
+            if (!this.oblastsService.CheckExistById(model.SelectedOblastId))
+                throw new OblastNullException();
 
             Hotel hotel = this.mapper.Map<Hotel>(model);
             hotel.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
@@ -73,8 +93,8 @@
 
         public void Update(HotelEditViewModel model)
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
+            if (!this.oblastsService.CheckExistById(model.SelectedOblastId))
+                throw new OblastNullException();
 
             Hotel hotel = this.GetById(model.Id);
             hotel.Name = model.Name;
@@ -85,6 +105,12 @@
             hotel.OblastId = model.SelectedOblastId;
 
             this.dbContext.SaveChanges();
+        }
+
+        public bool CheckExistById(int hotelId)
+        {
+            bool result = this.dbContext.Hotels.Any(x => x.Id == hotelId);
+            return result;
         }
     }
 }

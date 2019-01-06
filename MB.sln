@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.ViewModels", "MB.ViewMod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Mapping", "MB.Mapper\MB.Mapping.csproj", "{D74DE3A4-0EA6-450F-AC84-2736F26B3F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Common", "MB.Common\MB.Common.csproj", "{DCF4ACB7-3651-4B36-9E78-A6307A5AD391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Common", "MB.Common\MB.Common.csproj", "{DCF4ACB7-3651-4B36-9E78-A6307A5AD391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Tests", "MB.Tests\MB.Tests.csproj", "{2076A6B4-796B-4F46-8F2E-A666D8A0889F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{DCF4ACB7-3651-4B36-9E78-A6307A5AD391}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCF4ACB7-3651-4B36-9E78-A6307A5AD391}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCF4ACB7-3651-4B36-9E78-A6307A5AD391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2076A6B4-796B-4F46-8F2E-A666D8A0889F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2076A6B4-796B-4F46-8F2E-A666D8A0889F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2076A6B4-796B-4F46-8F2E-A666D8A0889F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2076A6B4-796B-4F46-8F2E-A666D8A0889F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

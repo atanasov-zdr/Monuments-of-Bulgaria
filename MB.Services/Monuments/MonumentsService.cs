@@ -5,8 +5,10 @@
 
     using AutoMapper;
 
+    using Common.Exceptions;
     using Common.Utilities;
     using Contracts.Monuments;
+    using Contracts.Oblasts;
     using Data;
     using Models.Monuments;
     using ViewModels.Monuments;
@@ -19,12 +21,17 @@
         private readonly MbDbContext dbContext;
         private readonly IMapper mapper;
         private readonly ImagesUploader imagesUploader;
+        private readonly IOblastsService oblastsService;
 
-        public MonumentsService(MbDbContext dbContext, IMapper mapper, ImagesUploader imagesUploader)
+        public MonumentsService(MbDbContext dbContext,
+            IMapper mapper,
+            ImagesUploader imagesUploader,
+            IOblastsService oblastsService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
             this.imagesUploader = imagesUploader;
+            this.oblastsService = oblastsService;
         }
 
         public IQueryable<Monument> GetAllOrderedByName()
@@ -34,7 +41,10 @@
 
         public IQueryable<Monument> GetAllForOblastOrderedByName(int oblastId)
         {
-            return this.dbContext.Monuments.Where(x => x.OblastId == oblastId).Where(x => x.IsDeleted == false).OrderBy(x => x.Name);
+            return this.dbContext.Monuments
+                .Where(x => x.OblastId == oblastId)
+                .Where(x => x.IsDeleted == false)
+                .OrderBy(x => x.Name);
         }
 
         public Monument GetById(int monumentId)
@@ -42,18 +52,28 @@
             Monument monument = this.dbContext.Monuments.FirstOrDefault(x => x.Id == monumentId);
 
             if (monument == null)
-                throw new ArgumentNullException(nameof(monument));
+                throw new MonumentNullException();
 
             if (monument.IsDeleted == true)
-                throw new ArgumentNullException(nameof(monument));
+                throw new MonumentDeletedException();
 
             return monument;
         }
 
+        public string GetNameById(int monumentId)
+        {
+            Monument monument = this.GetById(monumentId);
+            
+            if (monument.Name == null)
+                throw new ArgumentNullException(nameof(monument.Name));
+
+            return monument.Name;
+        }
+
         public int Add(MonumentAddViewModel model)
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
+            if (!this.oblastsService.CheckExistById(model.SelectedOblastId))
+                throw new OblastNullException();
 
             Monument monument = this.mapper.Map<Monument>(model);
             monument.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
@@ -73,8 +93,8 @@
 
         public void Update(MonumentEditViewModel model)
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
+            if (!this.oblastsService.CheckExistById(model.SelectedOblastId))
+                throw new OblastNullException();
 
             Monument monument = this.GetById(model.Id);
             monument.Name = model.Name;
@@ -82,6 +102,12 @@
             monument.OblastId = model.SelectedOblastId;
 
             this.dbContext.SaveChanges();
+        }
+
+        public bool CheckExistById(int monumentId)
+        {
+            bool result = this.dbContext.Monuments.Any(x => x.Id == monumentId);
+            return result;
         }
     }
 }

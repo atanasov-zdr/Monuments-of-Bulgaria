@@ -19,5 +19,11 @@
         {
             return this.dbContext.Oblasts.OrderBy(x => x.Name);
         }
+
+        public bool CheckExistById(int oblastId)
+        {
+            bool result = this.dbContext.Oblasts.Any(x => x.Id == oblastId);
+            return result;
+        }
     }
 }

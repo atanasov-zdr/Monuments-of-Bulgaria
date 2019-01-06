@@ -7,5 +7,7 @@
     public interface IOblastsService
     {
         IQueryable<Oblast> GetAllOrderedByName();
+
+        bool CheckExistById(int oblastId);
     }
 }

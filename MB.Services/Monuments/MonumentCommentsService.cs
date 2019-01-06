@@ -2,8 +2,10 @@
 {
     using System;
     using System.Linq;
-    
+
+    using Common.Exceptions;
     using Contracts.Monuments;
+    using Contracts.Users;
     using Data;
     using Models;
     using Models.Monuments;
@@ -11,10 +13,14 @@
     public class MonumentCommentsService : IMonumentCommentsService
     {
         private readonly MbDbContext dbContext;
+        private readonly IMonumentsService monumentsService;
+        private readonly IUsersService usersService;
 
-        public MonumentCommentsService(MbDbContext dbContext)
+        public MonumentCommentsService(MbDbContext dbContext, IMonumentsService monumentsService, IUsersService usersService)
         {
             this.dbContext = dbContext;
+            this.monumentsService = monumentsService;
+            this.usersService = usersService;
         }
 
         public MonumentComment GetById(int commentId)
@@ -22,10 +28,10 @@
             MonumentComment comment = this.dbContext.MonumentComments.FirstOrDefault(x => x.Id == commentId);
 
             if (comment == null)
-                throw new ArgumentNullException(nameof(comment));
+                throw new CommentNullException();
 
             if (comment.IsDeleted == true)
-                throw new ArgumentNullException(nameof(comment));
+                throw new CommentDeletedException();
 
             return comment;
         }
@@ -40,18 +46,17 @@
 
         public void Create(int monumentId, string content, string username)
         {
-            if (!this.dbContext.Monuments.Any(x => x.Id == monumentId))
-                throw new ArgumentNullException(nameof(monumentId));
-            
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
+            if (string.IsNullOrWhiteSpace(content))
+                throw new ArgumentNullException(nameof(content));
+
+            MbUser user = this.usersService.GetByUsername(username);
+            Monument monument = this.monumentsService.GetById(monumentId);
 
             var monumentComment = new MonumentComment
             {
                 Content = content,
-                MonumentId = monumentId,
-                UserId = user.Id,
+                Monument = monument,
+                User = user,
             };
 
             this.dbContext.MonumentComments.Add(monumentComment);
@@ -61,15 +66,12 @@
         public void Like(int commentId, string username)
         {
             MonumentComment comment = this.GetById(commentId);
-
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
+            MbUser user = this.usersService.GetByUsername(username);
 
             var like = new MonumentCommentLike
             {
-                MonumentCommentId = commentId,
-                UserId = user.Id,
+                MonumentComment = comment,
+                User = user,
             };
 
             this.dbContext.MonumentCommentLikes.Add(like);
@@ -79,14 +81,11 @@
         public void Dislike(int commentId, string username)
         {
             MonumentComment comment = this.GetById(commentId);
-
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
+            MbUser user = this.usersService.GetByUsername(username);
 
             var like = this.dbContext.MonumentCommentLikes.SingleOrDefault(x => x.MonumentComment == comment && x.User == user);
             if (like == null)
-                throw new ArgumentNullException(nameof(like));
+                throw new LikeNullException();
 
             this.dbContext.MonumentCommentLikes.Remove(like);
             this.dbContext.SaveChanges();
@@ -94,12 +93,10 @@
 
         public bool CheckForExistingLike(int commentId, string username)
         {
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            MonumentComment comment = this.GetById(commentId);
+            MbUser user = this.usersService.GetByUsername(username);
 
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
-
-            bool result = this.dbContext.MonumentCommentLikes.Any(x => x.MonumentCommentId == commentId && x.User == user);
+            bool result = this.dbContext.MonumentCommentLikes.Any(x => x.MonumentComment == comment && x.User == user);
             return result;
         }
 

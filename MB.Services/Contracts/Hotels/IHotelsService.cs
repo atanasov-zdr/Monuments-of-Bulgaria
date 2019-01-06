@@ -13,10 +13,14 @@
 
         Hotel GetById(int hotelId);
 
+        string GetNameById(int hotelId);
+
         int Add(HotelAddViewModel model);
 
         void Delete(int hotelId);
 
         void Update(HotelEditViewModel model);
+
+        bool CheckExistById(int hotelId);
     }
 }

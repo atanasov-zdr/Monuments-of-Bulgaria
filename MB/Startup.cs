@@ -23,10 +23,12 @@
     using Services.Contracts.Monuments;
     using Services.Contracts.Oblasts;
     using Services.Contracts.Trips;
+    using Services.Contracts.Users;
     using Services.Hotels;
     using Services.Monuments;
     using Services.Oblasts;
     using Services.Trips;
+    using Services.Users;
     using ViewModels.Hotels;
     using ViewModels.Hotels.HotelComments;
     using ViewModels.Monuments;
@@ -110,6 +112,7 @@
             services.AddScoped<IHotelReviewsService, HotelReviewsService>();
             services.AddScoped<IHotelCommentsService, HotelCommentsService>();
             services.AddScoped<ITripsService, TripsService>();
+            services.AddScoped<IUsersService, UsersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

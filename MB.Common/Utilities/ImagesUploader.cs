@@ -19,7 +19,7 @@
             this.cloudinary = cloudinary;
         }
 
-        public string Upload(IFormFile photo, string imagesDirectory, string imagesFolderName)
+        public virtual string Upload(IFormFile photo, string imagesDirectory, string imagesFolderName)
         {
             Directory.CreateDirectory(imagesDirectory);
             string fileName = Guid.NewGuid().ToString() + GlobalConstants.PhotoFileExtension;

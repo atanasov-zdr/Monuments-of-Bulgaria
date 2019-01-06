@@ -1,11 +1,12 @@
 ﻿namespace MB.Services.Monuments
 {
-    using System;
     using System.Linq;
 
     using AutoMapper;
 
+    using Common.Exceptions;
     using Contracts.Monuments;
+    using Contracts.Users;
     using Data;
     using Models;
     using Models.Monuments;
@@ -15,41 +16,29 @@
     {
         private readonly MbDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly IUsersService usersService;
+        private readonly IMonumentsService monumentsService;
 
-        public MonumentReviewsService(MbDbContext dbContext, IMapper mapper)
+        public MonumentReviewsService(MbDbContext dbContext,
+            IMapper mapper,
+            IUsersService usersService,
+            IMonumentsService monumentsService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
-        }
-
-        public string GetNameById(int monumentId)
-        {
-            Monument monument = this.dbContext.Monuments.FirstOrDefault(x => x.Id == monumentId);
-
-            if (monument == null)
-                throw new ArgumentNullException(nameof(monument));
-
-            if (monument.Name == null)
-                throw new ArgumentNullException(nameof(monument.Name));
-
-            return monument.Name;
+            this.usersService = usersService;
+            this.monumentsService = monumentsService;
         }
 
         public void Create(MonumentReviewWriteViewModel model, string username)
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
+            if (!this.monumentsService.CheckExistById(model.MonumentId))
+                throw new MonumentNullException();
             
-            if (username == null)
-                throw new ArgumentNullException(nameof(username));
-
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
-
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
-
             MonumentReview monumentReview = this.mapper.Map<MonumentReview>(model);
-            monumentReview.UserId = user.Id;
+
+            MbUser user = this.usersService.GetByUsername(username);
+            monumentReview.User = user;
 
             this.dbContext.MonumentReviews.Add(monumentReview);
             this.dbContext.SaveChanges();
@@ -57,12 +46,10 @@
 
         public bool CheckForExistingReview(int monumentId, string username)
         {
-            MbUser user = this.dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            Monument monument = this.monumentsService.GetById(monumentId);
+            MbUser user = this.usersService.GetByUsername(username);
 
-            if (user == null)
-                throw new ArgumentNullException(nameof(user));
-
-            bool result = this.dbContext.MonumentReviews.Any(x => x.MonumentId == monumentId && x.User == user);
+            bool result = this.dbContext.MonumentReviews.Any(x => x.Monument == monument && x.User == user);
             return result;
         }
     }
