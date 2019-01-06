@@ -96,9 +96,9 @@ namespace MB.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Users.Count() == 1)
-                        _userManager.AddToRoleAsync(user, GlobalConstants.AdminRoleName).GetAwaiter().GetResult();
+                        await _userManager.AddToRoleAsync(user, GlobalConstants.AdminRoleName);
                     else
-                        _userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName).GetAwaiter().GetResult();
+                        await _userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);

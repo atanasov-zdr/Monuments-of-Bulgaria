@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using MB.Common;
 
 namespace MB.Areas.Identity.Pages.Account
 {
@@ -122,6 +123,11 @@ namespace MB.Areas.Identity.Pages.Account
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
+                        if (_userManager.Users.Count() == 1)
+                            await _userManager.AddToRoleAsync(user, GlobalConstants.AdminRoleName);
+                        else
+                            await _userManager.AddToRoleAsync(user, GlobalConstants.UserRoleName);
+
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return LocalRedirect(returnUrl);
