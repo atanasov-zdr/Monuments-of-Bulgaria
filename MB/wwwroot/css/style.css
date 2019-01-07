@@ -178,3 +178,7 @@ nav.pager {
 body nav {
     letter-spacing: 0.0625em;
 }
+
+.mainImg {
+    height: 20vh;
+}
