@@ -11,9 +11,7 @@
         public int LikesCount { get; set; }
         
         public string UserUsername { get; set; }
-
-        public string UserImageUrl { get; set; }
-
+        
         public DateTime CreatedOn { get; set; }
 
         public bool IsLiked { get; set; }

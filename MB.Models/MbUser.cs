@@ -20,15 +20,7 @@
             this.HotelCommentLikes = new HashSet<HotelCommentLike>();
             this.Trips = new HashSet<Trip>();
         }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public int Age { get; set; }
-
-        public string ImageUrl { get; set; }
-
+        
         public virtual IEnumerable<MonumentReview> MonumentReviews { get; set; }
 
         public virtual IEnumerable<MonumentComment> MonumentComments { get; set; }
