@@ -192,9 +192,8 @@
     }
 </section>
 
-<section class="m-5 w-75 mx-auto bg-light p-4 text-dark">
+<section class="w-75 mx-auto bg-light p-4 text-dark">
     <h3 class="text-center">Comments (@Model.Comments.Count())</h3>
-
     @if (User.Identity.IsAuthenticated)
     {
         <form asp-controller="HotelComments" asp-action="Write" method="post" class="form-inline mt-5 d-flex justify-content-around">
@@ -202,11 +201,12 @@
             <textarea type="text" name="content" class="form-control col-9" rows="3"></textarea>
             <button type="submit" class="btn btn-dark col-2">Write Comment</button>
         </form>
+        <hr class="bg-dark mt-5" />
     }
-
+</section>
+<section class="w-75 mx-auto bg-light p-4 text-dark comments">
     @foreach (var comment in Model.Comments)
     {
-        <hr class="bg-dark mt-5" />
         <div>
             <div class="d-flex justify-content-between mb-2">
                 <div class="d-flex justify-content-between p-0">
@@ -246,6 +246,7 @@
                 }
             </div>
         </div>
+        <hr class="bg-dark mb-5" />
     }
 </section>
 
