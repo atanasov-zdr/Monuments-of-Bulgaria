@@ -36,7 +36,7 @@
         public IActionResult Write(HotelReviewWriteViewModel model)
         {
             if (!ModelState.IsValid)
-                return this.Write(model.HotelId);
+                return base.RedirectToAction("Write", new { hotelId = model.HotelId });
 
             this.hotelReviewsService.Create(model, this.User.Identity.Name);
 

@@ -13,7 +13,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace MB.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
-    {
+    { 
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+        private const int MinPhoneNumberLength = 6;
+        private const int MaxPhoneNumberLength = 10;
+
         private readonly UserManager<MbUser> _userManager;
         private readonly SignInManager<MbUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -42,10 +47,12 @@ namespace MB.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
+            [MinLength(MinLength), MaxLength(MaxLength)]
             public string Email { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
+            [StringLength(MaxPhoneNumberLength, MinimumLength = MinPhoneNumberLength)]
             public string PhoneNumber { get; set; }
         }
 

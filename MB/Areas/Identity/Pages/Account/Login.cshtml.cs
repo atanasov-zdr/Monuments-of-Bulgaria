@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +15,9 @@ namespace MB.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+
         private readonly SignInManager<MbUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
@@ -38,10 +40,12 @@ namespace MB.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             public string Username { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]

@@ -12,6 +12,9 @@ namespace MB.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+
         private readonly UserManager<MbUser> _userManager;
         private readonly SignInManager<MbUser> _signInManager;
 
@@ -32,14 +35,14 @@ namespace MB.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             [DataType(DataType.Password)]
             [Display(Name = "New password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Compare("NewPassword")]
             public string ConfirmPassword { get; set; }
         }
 

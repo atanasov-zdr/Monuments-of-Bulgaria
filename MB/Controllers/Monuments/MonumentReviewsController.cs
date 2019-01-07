@@ -36,7 +36,7 @@
         public IActionResult Write(MonumentReviewWriteViewModel model)
         {
             if (!ModelState.IsValid)
-                return this.Write(model.MonumentId);
+                return base.RedirectToAction("Write", new { monumentId = model.MonumentId });
 
             this.monumentReviewsService.Create(model, this.User.Identity.Name);
             return base.RedirectToAction("Details", "Monuments", new { model.MonumentId });

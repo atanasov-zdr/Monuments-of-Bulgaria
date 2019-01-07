@@ -7,9 +7,13 @@
 
     public class MonumentEditViewModel
     {
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+
         public int Id { get; set; }
 
         [Required]
+        [StringLength(MaxLength, MinimumLength = MinLength)]
         public string Name { get; set; }
 
         public string Description { get; set; }

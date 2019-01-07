@@ -16,6 +16,9 @@ namespace MB.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+
         private const string UserDefaultImageUrl = "https://res.cloudinary.com/dpoafu9y0/image/upload/v1546637480/users/user.png";
 
         private readonly SignInManager<MbUser> _signInManager;
@@ -44,22 +47,23 @@ namespace MB.Areas.Identity.Pages.Account
         {
             [Required]
             [Display(Name = "Username")]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             public string UserName { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm Password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password")]
             public string ConfirmPassword { get; set; }
 
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             public string Email { get; set; }
         }
 

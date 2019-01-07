@@ -8,7 +8,11 @@
 
     public class MonumentAddViewModel
     {
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+
         [Required]
+        [StringLength(MaxLength, MinimumLength = MinLength)]
         public string Name { get; set; }
         
         public string Description { get; set; }

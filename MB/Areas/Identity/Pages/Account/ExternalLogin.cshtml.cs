@@ -17,6 +17,9 @@ namespace MB.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
+        private const int MinLength = 3;
+        private const int MaxLength = 100;
+
         private readonly SignInManager<MbUser> _signInManager;
         private readonly UserManager<MbUser> _userManager;
         private readonly ILogger<ExternalLoginModel> _logger;
@@ -45,6 +48,7 @@ namespace MB.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [StringLength(MaxLength, MinimumLength = MinLength)]
             public string Email { get; set; }
         }
 
