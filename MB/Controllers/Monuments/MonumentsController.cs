@@ -69,7 +69,9 @@
         {
             Monument monument = this.monumentsService.GetById(monumentId);
             var viewModel = this.mapper.Map<MonumentDetailsViewModel>(monument);
-            viewModel.HasReview = this.monumentReviewsService.CheckForExistingReview(monument.Id, this.User.Identity.Name);
+
+            if (this.User.Identity.IsAuthenticated)
+                viewModel.HasReview = this.monumentReviewsService.CheckForExistingReview(monument.Id, this.User.Identity.Name);
 
             var reviews = this.mapper.Map<MonumentReviewsViewModel>(monument);
             viewModel.Reviews = reviews;

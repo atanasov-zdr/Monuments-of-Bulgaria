@@ -69,7 +69,9 @@
         {
             Hotel hotel = this.hotelsService.GetById(hotelId); 
             var viewModel = this.mapper.Map<HotelDetailsViewModel>(hotel);
-            viewModel.HasReview = this.hotelReviewsService.CheckForExistingReview(hotel.Id, this.User.Identity.Name);
+
+            if (this.User.Identity.IsAuthenticated)
+                viewModel.HasReview = this.hotelReviewsService.CheckForExistingReview(hotel.Id, this.User.Identity.Name);
 
             var reviews = this.mapper.Map<HotelReviewsViewModel>(hotel);
             viewModel.Reviews = reviews;
