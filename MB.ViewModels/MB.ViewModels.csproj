@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MB.Common\MB.Common.csproj" />
     <ProjectReference Include="..\MB.Mapper\MB.Mapping.csproj" />
     <ProjectReference Include="..\MB.Models\MB.Models.csproj" />
   </ItemGroup>

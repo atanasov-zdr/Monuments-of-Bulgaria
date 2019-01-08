@@ -6,17 +6,15 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
+    using Common;
+
     public class HotelAddViewModel
     {
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
         private const int MinStars = 1;
         private const int MaxStars = 5;
-        private const int MinPhoneNumberLength = 6;
-        private const int MaxPhoneNumberLength = 10;
 
         [Required]
-        [StringLength(MaxLength, MinimumLength = MinLength)]
+        [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
         public string Name { get; set; }
 
         [Required]
@@ -26,13 +24,13 @@
         public string Description { get; set; }
 
         [Required]
-        [StringLength(MaxLength, MinimumLength = MinLength)]
+        [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
         public string Address { get; set; }
         
         [Required]
         [Display(Name = "Phone number")]
         [Phone]
-        [StringLength(MaxPhoneNumberLength, MinimumLength = MinPhoneNumberLength)]
+        [StringLength(GlobalConstants.MaxPhoneNumberLength, MinimumLength = GlobalConstants.MinPhoneNumberLength)]
         public string PhoneNumber { get; set; }
 
         [Required]

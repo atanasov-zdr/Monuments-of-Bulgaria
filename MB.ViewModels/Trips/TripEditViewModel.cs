@@ -5,15 +5,14 @@
     
     using Microsoft.AspNetCore.Mvc.Rendering;
 
+    using Common;
+
     public class TripEditViewModel
     {
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
-
         public int Id { get; set; }
 
         [Required]
-        [StringLength(MaxLength, MinimumLength = MinLength)]
+        [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
         public string Name { get; set; }
 
         public string Description { get; set; }

@@ -21,5 +21,13 @@
         public const string PhotoFileExtension = ".jpg";
 
         public const string TestClassesCollectionName = "Sequential";
+
+        public const int MinStringLength = 3;
+
+        public const int MaxStringLength = 100;
+
+        public const int MinPhoneNumberLength = 6;
+
+        public const int MaxPhoneNumberLength = 10;
     }
 }

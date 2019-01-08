@@ -12,7 +12,6 @@
     <ProjectReference Include="..\MB.Data\MB.Data.csproj" />
     <ProjectReference Include="..\MB.Mapper\MB.Mapping.csproj" />
     <ProjectReference Include="..\MB.Models\MB.Models.csproj" />
-    <ProjectReference Include="..\MB.ViewModels\MB.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

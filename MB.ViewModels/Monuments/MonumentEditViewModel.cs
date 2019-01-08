@@ -5,6 +5,8 @@
 
     using Microsoft.AspNetCore.Mvc.Rendering;
 
+    using Common;
+
     public class MonumentEditViewModel
     {
         private const int MinLength = 3;
@@ -13,7 +15,7 @@
         public int Id { get; set; }
 
         [Required]
-        [StringLength(MaxLength, MinimumLength = MinLength)]
+        [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
         public string Name { get; set; }
 
         public string Description { get; set; }

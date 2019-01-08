@@ -88,7 +88,6 @@
             services.AddAutoMapper();
 
             AutoMapperConfig.RegisterMappings(
-                typeof(OblastSeedViewModel).Assembly,
                 typeof(MonumentAllViewModel).Assembly,
                 typeof(MonumentCommentViewModel).Assembly,
                 typeof(HotelAllViewModel).Assembly,

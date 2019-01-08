@@ -16,9 +16,6 @@ namespace MB.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
-        
         private readonly SignInManager<MbUser> _signInManager;
         private readonly UserManager<MbUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
@@ -45,11 +42,11 @@ namespace MB.Areas.Identity.Pages.Account
         {
             [Required]
             [Display(Name = "Username")]
-            [StringLength(MaxLength, MinimumLength = MinLength)]
+            [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
             public string UserName { get; set; }
 
             [Required]
-            [StringLength(MaxLength, MinimumLength = MinLength)]
+            [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -61,7 +58,7 @@ namespace MB.Areas.Identity.Pages.Account
 
             [Required]
             [EmailAddress]
-            [StringLength(MaxLength, MinimumLength = MinLength)]
+            [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
             public string Email { get; set; }
         }
 

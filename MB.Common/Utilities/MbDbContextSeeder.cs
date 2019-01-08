@@ -12,11 +12,9 @@
 
     using Common;
     using Data;
-    using Mapping;
     using Models.Hotels;
     using Models.Monuments;
     using Models.Oblasts;
-    using ViewModels.Oblasts;
 
     public static class MbDbContextSeeder
     {
@@ -59,9 +57,8 @@
         private static void SeedOblasts(MbDbContext dbContext)
         {
             string fileContent = File.ReadAllText(GlobalConstants.OblastsInfoViewPath);
-            var oblastsModels = JsonConvert.DeserializeObject<List<OblastSeedViewModel>>(fileContent);
-
-            IQueryable<Oblast> oblasts = oblastsModels.AsQueryable().To<Oblast>();
+            var oblasts = JsonConvert.DeserializeObject<List<Oblast>>(fileContent);
+            
             foreach (var oblast in oblasts)
             {
                 if (!dbContext.Oblasts.Any(x => x.Name == oblast.Name))
@@ -83,15 +80,18 @@
             int counter = 1;
             for (int i = start; i <= end; i++)
             {
-                var monument = new Monument
+                if (dbContext.Oblasts.Any(x => x.Id == i))
                 {
-                    Name = MonumentDefaultName + counter++,
-                    OblastId = i,
-                    ImageUrl = MonumentDefaultImageUrl,
-                    Description = DefaultDescription,
-                };
+                    var monument = new Monument
+                    {
+                        Name = MonumentDefaultName + counter++,
+                        OblastId = i,
+                        ImageUrl = MonumentDefaultImageUrl,
+                        Description = DefaultDescription,
+                    };
 
-                dbContext.Monuments.Add(monument);
+                    dbContext.Monuments.Add(monument);
+                }
             }
 
             dbContext.SaveChanges();
@@ -107,20 +107,23 @@
             int counter = 1;
             for (int i = start; i <= end; i++)
             {
-                int stars = (counter % 5) + 1;
-                string address = DefaultHotelAddress + counter;
-                var hotel = new Hotel
+                if (dbContext.Oblasts.Any(x => x.Id == i))
                 {
-                    Name = HotelDefaultName + counter++,
-                    OblastId = i,
-                    ImageUrl = HotelDefaultImageUrl,
-                    Description = DefaultDescription,
-                    Address = address,
-                    PhoneNumber = DefaultHotelPhoneNumber,
-                    Stars = stars,
-                };
+                    int stars = (counter % 5) + 1;
+                    string address = DefaultHotelAddress + counter;
+                    var hotel = new Hotel
+                    {
+                        Name = HotelDefaultName + counter++,
+                        OblastId = i,
+                        ImageUrl = HotelDefaultImageUrl,
+                        Description = DefaultDescription,
+                        Address = address,
+                        PhoneNumber = DefaultHotelPhoneNumber,
+                        Stars = stars,
+                    };
 
-                dbContext.Hotels.Add(hotel);
+                    dbContext.Hotels.Add(hotel);
+                }
             }
 
             dbContext.SaveChanges();

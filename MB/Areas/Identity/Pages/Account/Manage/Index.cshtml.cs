@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using MB.Common;
 using MB.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,11 +13,6 @@ namespace MB.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     { 
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
-        private const int MinPhoneNumberLength = 6;
-        private const int MaxPhoneNumberLength = 10;
-
         private readonly UserManager<MbUser> _userManager;
         private readonly SignInManager<MbUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -47,12 +41,12 @@ namespace MB.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
-            [MinLength(MinLength), MaxLength(MaxLength)]
+            [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
             public string Email { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
-            [StringLength(MaxPhoneNumberLength, MinimumLength = MinPhoneNumberLength)]
+            [StringLength(GlobalConstants.MaxPhoneNumberLength, MinimumLength = GlobalConstants.MinPhoneNumberLength)]
             public string PhoneNumber { get; set; }
         }
 

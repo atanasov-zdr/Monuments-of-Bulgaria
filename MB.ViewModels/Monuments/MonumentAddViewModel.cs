@@ -6,13 +6,12 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
+    using Common;
+
     public class MonumentAddViewModel
     {
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
-
         [Required]
-        [StringLength(MaxLength, MinimumLength = MinLength)]
+        [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
         public string Name { get; set; }
         
         public string Description { get; set; }

@@ -9,15 +9,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using MB.Common;
 
 namespace MB.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
-
         private readonly SignInManager<MbUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
@@ -40,12 +38,12 @@ namespace MB.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(MaxLength, MinimumLength = MinLength)]
+            [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
             public string Username { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
-            [StringLength(MaxLength, MinimumLength = MinLength)]
+            [StringLength(GlobalConstants.MaxStringLength, MinimumLength = GlobalConstants.MinStringLength)]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
