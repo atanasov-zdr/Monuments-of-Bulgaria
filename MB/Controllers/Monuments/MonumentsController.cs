@@ -27,7 +27,6 @@
         private readonly IMonumentCommentsService monumentCommentsService;
         private readonly IOblastsService oblastsService;
         private readonly IMapper mapper;
-        private const int PageSize = 12;
 
         public MonumentsController(
             IMonumentsService monumentsService,
@@ -43,25 +42,25 @@
             this.mapper = mapper;
         }
 
-        public IActionResult All(int page = 1)
+        public IActionResult All(int page = GlobalConstants.DefaultStartPage)
         {
             IEnumerable<MonumentAllViewModel> monuments = this.monumentsService
                 .GetAllOrderedByName()
                 .To<MonumentAllViewModel>()
                 .ToList();
             
-            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, PageSize, page);
+            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, GlobalConstants.DefaultPageSize, page);
             return View(viewModel);         
         }
 
-        public IActionResult AllForOblast(int oblastId, int page = 1)
+        public IActionResult AllForOblast(int oblastId, int page = GlobalConstants.DefaultStartPage)
         {
             IEnumerable<MonumentAllViewModel> monuments = this.monumentsService
                 .GetAllForOblastOrderedByName(oblastId)
                 .To<MonumentAllViewModel>()
                 .ToList();
             
-            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, PageSize, page);
+            IPagingList<MonumentAllViewModel> viewModel = PagingList.Create(monuments, GlobalConstants.DefaultPageSize, page);
             return base.View(viewModel);
         }        
 

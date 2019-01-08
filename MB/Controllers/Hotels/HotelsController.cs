@@ -27,7 +27,6 @@
         private readonly IHotelCommentsService hotelCommentsService;
         private readonly IOblastsService oblastsService;
         private readonly IMapper mapper;
-        private const int PageSize = 12;
 
         public HotelsController(
             IHotelsService hotelsService,
@@ -43,25 +42,25 @@
             this.mapper = mapper;
         }
 
-        public IActionResult All(int page = 1)
+        public IActionResult All(int page = GlobalConstants.DefaultStartPage)
         {
             IEnumerable<HotelAllViewModel> hotels = this.hotelsService
                 .GetAllOrderedByName()
                 .To<HotelAllViewModel>()
                 .ToList();
             
-            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, PageSize, page);
+            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, GlobalConstants.DefaultPageSize, page);
             return View(viewModel);
         }
 
-        public IActionResult AllForOblast(int oblastId, int page = 1)
+        public IActionResult AllForOblast(int oblastId, int page = GlobalConstants.DefaultStartPage)
         {
             IEnumerable<HotelAllViewModel> hotels = this.hotelsService
                 .GetAllForOblastOrderedByName(oblastId)
                 .To<HotelAllViewModel>()
                 .ToList();
             
-            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, PageSize, page);
+            IPagingList<HotelAllViewModel> viewModel = PagingList.Create(hotels, GlobalConstants.DefaultPageSize, page);
             return base.View(viewModel);
         }
 

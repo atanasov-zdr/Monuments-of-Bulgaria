@@ -29,5 +29,9 @@
         public const int MinPhoneNumberLength = 6;
 
         public const int MaxPhoneNumberLength = 10;
+
+        public const int DefaultStartPage = 1;
+
+        public const int DefaultPageSize = 12;
     }
 }

@@ -54,6 +54,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = GlobalConstants.AdminRoleName)]
         public IActionResult Delete (int commentId, int hotelId)
         {
             this.hotelCommentsService.Delete(commentId);
