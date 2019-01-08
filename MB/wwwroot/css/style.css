@@ -188,3 +188,7 @@ body nav {
     overflow-y: scroll;
     margin-bottom: 4rem;
 }
+
+.marginBottom {
+    margin-bottom: 7rem;
+}
