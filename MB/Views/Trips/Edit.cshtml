@@ -3,8 +3,8 @@
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
 
-<div class="mt-5 d-flex justify-content-center marginBottom">
-    <form asp-controller="Trips" asp-action="Edit" method="post" class="col-6 text-dark">
+<div class="mt-4 d-flex justify-content-center marginBottom">
+    <form asp-controller="Trips" asp-action="Edit" method="post" class="col-6 text-dark" enctype="multipart/form-data">
         <input type="hidden" asp-for="@Model.Id" />
         <div class="form-group">
             <label asp-for="@Model.Name"></label>
@@ -28,8 +28,13 @@
                 <span asp-validation-for="@Model.SelectedHotelId" class="text-danger"></span>
             </div>
         </div>
+        <div class="form-group mt-3">
+            <label asp-for="@Model.Photo">Upload Photo</label>
+            <input asp-for="@Model.Photo" type="file" class="form-control-file" />
+            <span asp-validation-for="@Model.Photo" class="text-danger font-weight-bold"></span>
+        </div>
         <div class="d-flex justify-content-center mt-5">
-            <button type="submit" class="btn btn-dark">Edit Trip</button>
+            <button type="submit" class="btn btn-dark">@ViewData["Title"]</button>
         </div>
     </form>
 </div>

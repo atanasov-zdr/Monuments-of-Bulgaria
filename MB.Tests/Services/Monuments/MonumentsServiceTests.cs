@@ -8,6 +8,7 @@
 
     using CloudinaryDotNet;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -252,21 +253,36 @@
             int monumentId = 3;
             this.dbContext.Monuments.Add(new Monument { Id = monumentId });
             this.dbContext.SaveChanges();
-            
-            string description = "testDescription";
-            string name = "testName";
 
             int oblastId = 1;
             this.dbContext.Oblasts.Add(new Oblast { Id = oblastId });
             this.dbContext.SaveChanges();
+            
+            string description = "testDescription";
+            string name = "testName";
+            IFormFile photo = new Mock<IFormFile>().Object;
 
             var model = new MonumentEditViewModel
             {
                 Id = monumentId,
                 Description = description,
                 Name = name,
+                Photo = photo,
                 SelectedOblastId = oblastId,
             };
+
+            string imageUrl = "testUrl";
+            string imagesDirectory = "wwwroot/images/monuments/";
+            string imagesFolderName = "monuments";
+            var mockedImagesUploader = new Mock<ImagesUploader>(null);
+            mockedImagesUploader
+                .Setup(x => x.Upload(photo, imagesDirectory, imagesFolderName))
+                .Returns(imageUrl);
+
+            typeof(MonumentsService)
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .First(x => x.FieldType == typeof(ImagesUploader))
+                .SetValue(this.monumentsService, mockedImagesUploader.Object);
 
             this.monumentsService.Update(model);
 
@@ -275,10 +291,28 @@
             (
                 () => result.Description.ShouldBe(description),
                 () => result.Name.ShouldBe(name),
-                () => result.OblastId.ShouldBe(oblastId)
+                () => result.OblastId.ShouldBe(oblastId),
+                () => result.ImageUrl.ShouldBe(imageUrl)
             );
         }
-        
+
+        [Fact]
+        public void Update_DoNotChangeMonumentPhotoIfDoNotHaveGivenPhoto()
+        {
+            int oblastId = 1;
+            int monumentId = 2;
+            string imageUrl = "testImageUrl";
+            this.dbContext.Oblasts.Add(new Oblast { Id = oblastId });
+            this.dbContext.Monuments.Add(new Monument { Id = monumentId, ImageUrl = imageUrl });
+            this.dbContext.SaveChanges();
+
+            var model = new MonumentEditViewModel { Id = monumentId, SelectedOblastId = oblastId };
+            this.monumentsService.Update(model);
+
+            string result = this.dbContext.Monuments.First().ImageUrl;
+            result.ShouldBe(imageUrl);
+        }
+
         [Fact]
         public void Update_ThrowExceptionIfOblastWithGivenIdDoNotExist()
         {

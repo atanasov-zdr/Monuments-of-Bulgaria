@@ -8,6 +8,7 @@
 
     using CloudinaryDotNet;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -262,15 +263,16 @@
             this.dbContext.Hotels.Add(new Hotel { Id = hotelId });
             this.dbContext.SaveChanges();
 
+            int oblastId = 1;
+            this.dbContext.Oblasts.Add(new Oblast { Id = oblastId });
+            this.dbContext.SaveChanges();
+
             string address = "testAddress";
             string description = "testDescription";
             string name = "testName";
             string phoneNumber = "testPhoneNumner";
             int stars = 1;
-
-            int oblastId = 1;
-            this.dbContext.Oblasts.Add(new Oblast { Id = oblastId });
-            this.dbContext.SaveChanges();
+            IFormFile photo = new Mock<IFormFile>().Object;
 
             var model = new HotelEditViewModel
             {
@@ -280,8 +282,22 @@
                 Name = name,
                 PhoneNumber = phoneNumber,
                 Stars = stars,
+                Photo = photo,
                 SelectedOblastId = oblastId,
             };
+
+            string imageUrl = "testUrl";
+            string imagesDirectory = "wwwroot/images/hotels/";
+            string imagesFolderName = "hotels";
+            var mockedImagesUploader = new Mock<ImagesUploader>(null);
+            mockedImagesUploader
+                .Setup(x => x.Upload(photo, imagesDirectory, imagesFolderName))
+                .Returns(imageUrl);
+
+            typeof(HotelsService)
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .First(x => x.FieldType == typeof(ImagesUploader))
+                .SetValue(this.hotelsService, mockedImagesUploader.Object);
 
             this.hotelsService.Update(model);
 
@@ -293,8 +309,26 @@
                 () => result.Name.ShouldBe(name),
                 () => result.PhoneNumber.ShouldBe(phoneNumber),
                 () => result.Stars.ShouldBe(stars),
-                () => result.OblastId.ShouldBe(oblastId)
+                () => result.OblastId.ShouldBe(oblastId),
+                () => result.ImageUrl.ShouldBe(imageUrl)
             );
+        }
+        
+        [Fact]
+        public void Update_DoNotChangeHotelPhotoIfDoNotHaveGivenPhoto()
+        {
+            int oblastId = 1;
+            int hotelId = 2;
+            string imageUrl = "testImageUrl";
+            this.dbContext.Oblasts.Add(new Oblast { Id = oblastId });
+            this.dbContext.Hotels.Add(new Hotel { Id = hotelId, ImageUrl = imageUrl });
+            this.dbContext.SaveChanges();
+
+            var model = new HotelEditViewModel { Id = hotelId, SelectedOblastId = oblastId };
+            this.hotelsService.Update(model);
+
+            string result = this.dbContext.Hotels.First().ImageUrl;
+            result.ShouldBe(imageUrl);
         }
         
         [Fact]

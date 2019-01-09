@@ -108,6 +108,9 @@
             trip.Monument = monument;
             trip.Hotel = hotel;
 
+            if (model.Photo != null)
+                trip.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
+
             this.dbContext.SaveChanges();
         }
     }

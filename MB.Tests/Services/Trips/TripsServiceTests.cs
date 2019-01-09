@@ -8,6 +8,7 @@
 
     using CloudinaryDotNet;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -244,7 +245,8 @@
             this.dbContext.SaveChanges();
             
             string description = "testDescription";
-            string name = "testName";           
+            string name = "testName";
+            IFormFile photo = new Mock<IFormFile>().Object;
             var model = new TripEditViewModel
             {
                 Id = tripId,
@@ -252,7 +254,21 @@
                 Name = name,
                 SelectedHotelId = hotelId,
                 SelectedMonumentId = monumentId,
+                Photo = photo,
             };
+
+            string imageUrl = "testUrl";
+            string imagesDirectory = "wwwroot/images/trips/";
+            string imagesFolderName = "trips";
+            var mockedImagesUploader = new Mock<ImagesUploader>(null);
+            mockedImagesUploader
+                .Setup(x => x.Upload(photo, imagesDirectory, imagesFolderName))
+                .Returns(imageUrl);
+
+            typeof(TripsService)
+                .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .First(x => x.FieldType == typeof(ImagesUploader))
+                .SetValue(this.tripsService, mockedImagesUploader.Object);
 
             this.tripsService.Update(model);
 
@@ -262,8 +278,29 @@
                 () => result.Description.ShouldBe(description),
                 () => result.Name.ShouldBe(name),
                 () => result.HotelId.ShouldBe(hotelId),
-                () => result.MonumentId.ShouldBe(monumentId)
+                () => result.MonumentId.ShouldBe(monumentId),
+                () => result.ImageUrl.ShouldBe(imageUrl)
             );
+        }
+
+        [Fact]
+        public void Update_DoNotChangeTripPhotoIfDoNotHaveGivenPhoto()
+        {
+            int monumentId = 1;
+            int hotelId = 2;
+            this.dbContext.Monuments.Add(new Monument { Id = monumentId });
+            this.dbContext.Hotels.Add(new Hotel { Id = hotelId });
+
+            int tripId = 3;
+            string imageUrl = "testImageUrl";
+            this.dbContext.Trips.Add(new Trip { Id = tripId, ImageUrl = imageUrl });
+            this.dbContext.SaveChanges();
+
+            var model = new TripEditViewModel { Id = tripId, SelectedHotelId = hotelId, SelectedMonumentId = monumentId };
+            this.tripsService.Update(model);
+
+            string result = this.dbContext.Trips.First().ImageUrl;
+            result.ShouldBe(imageUrl);
         }
     }
 }

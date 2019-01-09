@@ -105,14 +105,7 @@
         public IActionResult Add(MonumentAddViewModel model)
         {
             if (!this.ModelState.IsValid)
-            {
-                var oblasts = this.oblastsService.GetAllOrderedByName()
-                   .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
-                   .ToList();
-                model.Oblasts = oblasts;
-
-                return base.View(model);
-            }
+                return base.RedirectToAction("Add");
 
             int monumentId = this.monumentsService.Add(model);
 

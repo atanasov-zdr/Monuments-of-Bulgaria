@@ -2,7 +2,8 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     using Common;
@@ -16,7 +17,9 @@
         public string Name { get; set; }
 
         public string Description { get; set; }
-        
+
+        public IFormFile Photo { get; set; }
+
         [Required]
         [Display(Name = "Monuments")]
         public int SelectedMonumentId { get; set; }

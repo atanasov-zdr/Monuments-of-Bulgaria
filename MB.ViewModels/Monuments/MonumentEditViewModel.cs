@@ -3,15 +3,13 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     using Common;
 
     public class MonumentEditViewModel
     {
-        private const int MinLength = 3;
-        private const int MaxLength = 100;
-
         public int Id { get; set; }
 
         [Required]
@@ -19,7 +17,9 @@
         public string Name { get; set; }
 
         public string Description { get; set; }
-        
+
+        public IFormFile Photo { get; set; }
+
         [Required]
         [Display(Name = "Oblasts")]
         public int SelectedOblastId { get; set; }

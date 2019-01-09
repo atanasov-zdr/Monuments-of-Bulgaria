@@ -101,6 +101,9 @@
             monument.Description = model.Description;
             monument.OblastId = model.SelectedOblastId;
 
+            if (model.Photo != null)
+                monument.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
+
             this.dbContext.SaveChanges();
         }
 

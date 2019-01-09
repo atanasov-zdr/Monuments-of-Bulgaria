@@ -104,6 +104,9 @@
             hotel.PhoneNumber = model.PhoneNumber;
             hotel.OblastId = model.SelectedOblastId;
 
+            if (model.Photo != null)
+                hotel.ImageUrl = this.imagesUploader.Upload(model.Photo, ImagesDirectory, ImagesFolderName);
+
             this.dbContext.SaveChanges();
         }
 

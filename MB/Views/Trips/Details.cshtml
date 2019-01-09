@@ -25,14 +25,14 @@
     </section>
 </section>
 
-<section class="container-fluid mx-auto mt-5 mb-5 text-center text-dark monuments">
+<section class="container-fluid mx-auto mt-5 text-center text-dark monuments marginBottom">
     <div class="row d-flex justify-content-around mt-5">
         <h3 class="col-2">Monument:</h3>
         <h3 class="col-2">Hotel:</h3>
     </div>
     <div class="row d-flex justify-content-around mb-5">
         <section class="col-2 border border-dark rounded-top p-0">
-            <h4>@Model.MonumentName</h4>
+            <h4 class="pt-2">@Model.MonumentName</h4>
             <hr class="bg-dark mt-0" />
             <img src="@Model.MonumentImageUrl" alt="@Model.MonumentName-photo" class="w-100 rounded-circle pr-3 pl-3 mainImg" />
             <p class="pt-3">
@@ -43,7 +43,7 @@
                        class="btn btn btn-outline-dark btn-sm mb-3">View Details</a>
                 </section>
                 <section class="col-2 border border-dark rounded-top p-0">
-                    <h4>@Model.HotelName</h4>
+                    <h4 class="pt-2">@Model.HotelName</h4>
                     <hr class="bg-dark mt-0" />
                     <img src="@Model.HotelImageUrl" alt="@Model.HotelName-photo" class="w-100 rounded-circle pr-3 pl-3 mainImg" />
                     <p class="pt-3">

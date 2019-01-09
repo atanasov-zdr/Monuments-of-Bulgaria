@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     using Common;
@@ -33,7 +34,9 @@
         [Phone]
         [StringLength(GlobalConstants.MaxPhoneNumberLength, MinimumLength = GlobalConstants.MinPhoneNumberLength)]
         public string PhoneNumber { get; set; }
-        
+
+        public IFormFile Photo { get; set; }
+
         [Required]
         [Display(Name = "Oblasts")]
         public int SelectedOblastId { get; set; }
