@@ -3,7 +3,7 @@
 
 <h1 class="text-center text-dark">@ViewData["Title"]</h1>
 
-<div class="mt-4 mb-5 d-flex justify-content-center">
+<div class="mt-4 d-flex justify-content-center marginBottom">
     <form asp-controller="Trips" asp-action="Create" method="post" class="col-6 text-dark" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="@Model.Name"></label>
@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label asp-for="@Model.Description"></label>
-            <textarea asp-for="@Model.Description" rows="2" class="form-control" placeholder="Description..."></textarea>
+            <textarea asp-for="@Model.Description" rows="5" class="form-control" placeholder="Description..."></textarea>
             <span asp-validation-for="@Model.Description" class="text-danger font-weight-bold"></span>
         </div>
         <div class="d-flex justify-content-between">
